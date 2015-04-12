@@ -9,15 +9,7 @@ import java.util.HashMap;
  */
 public class IFormatInstruction extends Instruction {
 
-    /*
-    op 6b String  //  operation code (opcode)
-rs  5b  Register // first source register number
-rt  5b  Register // second source register number
-constant/address 16b byte//function code (extends opcode)
 
-     */
-
-    private String opcode;//TODO discuss about type , masked byte ?
     private Register sourceRegister, targetRegister;
     private short constantAddressHolder;
 
@@ -26,8 +18,7 @@ constant/address 16b byte//function code (extends opcode)
                               Register sourceRegister,
                               Register targetRegister,
                               short constantAddressHolder) {
-        super(state);
-        this.opcode = opcode;
+        super(state, opcode);
         this.sourceRegister = sourceRegister;
         this.targetRegister = targetRegister;
         this.constantAddressHolder = constantAddressHolder;
@@ -48,14 +39,6 @@ constant/address 16b byte//function code (extends opcode)
     }
 
     // Getters and Setters
-
-    public String getOpcode() {
-        return opcode;
-    }
-
-    public void setOpcode(String opcode) {
-        this.opcode = opcode;
-    }
 
     public Register getSourceRegister() {
         return sourceRegister;

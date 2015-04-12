@@ -11,7 +11,6 @@ import java.util.HashMap;
  */
 public class RFormatInstruction extends Instruction {
 
-    private String opcode; //TODO discuss about type , masked byte ?
     private Register sourceRegister, targetRegister, destinationRegister;
     private byte shiftAmount, function;
 
@@ -22,8 +21,7 @@ public class RFormatInstruction extends Instruction {
                               Register destinationRegister,
                               byte shiftAmount,
                               byte function) {
-        super(state);
-        this.opcode = opcode;
+        super(state, opcode);
         this.sourceRegister = sourceRegister;
         this.targetRegister = targetRegister;
         this.destinationRegister = destinationRegister;
@@ -41,15 +39,13 @@ public class RFormatInstruction extends Instruction {
         return false;
     }
 
+    @Override
+    public HashMap<String, Integer> getControlSignals() {
+        //TODO implement and add documentation
+        return null;
+    }
+
     // Getters and Setters
-
-    public String getOpcode() {
-        return opcode;
-    }
-
-    public void setOpcode(String opcode) {
-        this.opcode = opcode;
-    }
 
     public Register getSourceRegister() {
         return sourceRegister;
@@ -89,11 +85,5 @@ public class RFormatInstruction extends Instruction {
 
     public void setFunction(byte function) {
         this.function = function;
-    }
-
-    @Override
-    public HashMap<String, Integer> getControlSignals() {
-        //TODO implement and add documentation
-        return null;
     }
 }
