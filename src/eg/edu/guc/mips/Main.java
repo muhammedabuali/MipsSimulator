@@ -1,4 +1,4 @@
-package eg.edu.guc;
+package eg.edu.guc.mips;
 
 public class Main {
 
