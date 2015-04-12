@@ -1,4 +1,4 @@
-package eg.edu.guc.mips;
+package eg.edu.guc.instructions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
