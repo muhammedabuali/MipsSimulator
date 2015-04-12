@@ -30,11 +30,13 @@ public class IFormatInstruction extends Instruction {
 
     @Override
     public boolean execute() {
+        //TODO implement and add documentation
         return false;
     }
 
     @Override
     public HashMap<String, Integer> getControlSignals() {
+        //TODO implement and add documentation
         return null;
     }
 

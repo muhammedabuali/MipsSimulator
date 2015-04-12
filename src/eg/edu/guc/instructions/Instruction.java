@@ -41,6 +41,13 @@ public abstract class Instruction {
         this.state = state;
     }
 
+    public String getOpcode() {
+        return opcode;
+    }
+
+    public void setOpcode(String opcode) {
+        this.opcode = opcode;
+    }
 
     public enum State {
         UNSTARTED, IF, ID, EX, MEM, WB, FINISHED

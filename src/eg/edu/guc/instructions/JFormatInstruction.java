@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 /**
  * Created by kady on 12/04/15.
+ *
+ * @author kady
  */
 public class JFormatInstruction extends Instruction {
 
@@ -20,11 +22,13 @@ public class JFormatInstruction extends Instruction {
 
     @Override
     public boolean execute() {
+        //TODO implement and add documentation
         return false;
     }
 
     @Override
     public HashMap<String, Integer> getControlSignals() {
+        //TODO implement and add documentation
         return null;
     }
 
