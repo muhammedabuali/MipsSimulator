@@ -2,7 +2,8 @@ package eg.edu.guc.memory;
 
 /**
  * Created by kady on 12/04/15.
- *
+ * <p/>
+ * Memory class representing the main memory in mips architecture
  *
  * @author kady
  */
