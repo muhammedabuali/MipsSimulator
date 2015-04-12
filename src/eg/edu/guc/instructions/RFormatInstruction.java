@@ -41,6 +41,56 @@ public class RFormatInstruction extends Instruction {
         return false;
     }
 
+    // Getters and Setters
+
+    public String getOpcode() {
+        return opcode;
+    }
+
+    public void setOpcode(String opcode) {
+        this.opcode = opcode;
+    }
+
+    public Register getSourceRegister() {
+        return sourceRegister;
+    }
+
+    public void setSourceRegister(Register sourceRegister) {
+        this.sourceRegister = sourceRegister;
+    }
+
+    public Register getTargetRegister() {
+        return targetRegister;
+    }
+
+    public void setTargetRegister(Register targetRegister) {
+        this.targetRegister = targetRegister;
+    }
+
+    public Register getDestinationRegister() {
+        return destinationRegister;
+    }
+
+    public void setDestinationRegister(Register destinationRegister) {
+        this.destinationRegister = destinationRegister;
+    }
+
+    public byte getShiftAmount() {
+        return shiftAmount;
+    }
+
+    public void setShiftAmount(byte shiftAmount) {
+        this.shiftAmount = shiftAmount;
+    }
+
+    public byte getFunction() {
+        return function;
+    }
+
+    public void setFunction(byte function) {
+        this.function = function;
+    }
+
     @Override
     public HashMap<String, Integer> getControlSignals() {
         //TODO implement and add documentation
