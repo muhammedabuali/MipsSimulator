@@ -36,7 +36,7 @@ public abstract class Instruction {
     }
 
 
-    private enum State {
+    public enum State {
         UNSTARTED, IF, ID, EX, MEM, WB, FINISHED
     }
 
