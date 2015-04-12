@@ -2,6 +2,9 @@ package eg.edu.guc.memory;
 
 /**
  * Created by kady on 12/04/15.
+ *
+ *
+ * @author kady
  */
 public class Memory {
 
@@ -25,6 +28,16 @@ public class Memory {
     public static byte loadByteUnsigned(int location) {
         //TODO implement and add documentation
         return -1;
+    }
+
+    public static boolean storeWord(int data, int location) {
+        //TODO implement and add documentation
+        return false;
+    }
+
+    public static boolean storeByte(byte data, int location) {
+        //TODO implement and add documentation
+        return false;
     }
 
     public static boolean clear() {
