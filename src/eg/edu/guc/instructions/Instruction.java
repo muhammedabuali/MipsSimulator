@@ -22,8 +22,9 @@ public abstract class Instruction {
         this.state = state;
     }
 
-    public void advanceState() {
+    public State advanceState() {
         //TODO implement and add documentation
+        return state;
     }
 
     public abstract boolean execute();
@@ -50,7 +51,6 @@ public abstract class Instruction {
     }
 
     public enum State {
-        UNSTARTED, IF, ID, EX, MEM, WB, FINISHED
+         IF, ID, EX, MEM, WB, FINISHED
     }
-
 }

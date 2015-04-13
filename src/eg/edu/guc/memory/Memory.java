@@ -10,7 +10,7 @@ package eg.edu.guc.memory;
 public class Memory {
 
     private static int[] memory;
-    private static int size;
+    private static int size = 65536; // added max size 2^16
 
     public Memory() {
         init();
