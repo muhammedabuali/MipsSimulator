@@ -19,6 +19,10 @@ public class Register {
     }
 
     public void setData(int data) {
+        if (this == RegisterFile.ZERO) {
+            System.err.println("Register ZERO can't be set");
+            return;
+        }
         this.data = data;
     }
 }
