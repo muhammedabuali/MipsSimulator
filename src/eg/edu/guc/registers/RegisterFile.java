@@ -9,8 +9,8 @@ package eg.edu.guc.registers;
  */
 public class RegisterFile {
 
-    // ZERO .. Don't touch !
-    public static final Register ZERO = new Register(0);
+    // ZERO_REGISTER .. Don't touch !
+    public static final Register ZERO_REGISTER = new Register(0);
 
     //Arguments
     public static Register A0_REGISTER;
