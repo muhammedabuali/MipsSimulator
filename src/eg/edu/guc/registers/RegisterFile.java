@@ -108,6 +108,7 @@ public class RegisterFile {
         init(EX_MEM_REGISTER, 0);
         init(EX_WB_REGISTER, 0);
 
+        
         return true;
     }
 
