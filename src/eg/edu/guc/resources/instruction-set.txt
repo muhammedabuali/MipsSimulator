@@ -1,0 +1,70 @@
+I-Format Instruction : 
+
+-addi $t0, $t1, 2 : means to add 2 to t1 and save the results in t0
+
+-lw $t0, 0($t1) : means to load the word in the first location starting from $t1 into t0
+
+-lb $t0, 1($t1) : means to load only the second byte in a word in the first location starting from $t1 into t0
+
+-lbu $t0, 1($t1) : means to load only the second byte in a word in the first location starting from $t1 into t0
+ without taking in consideration the sign  for example:
+lbu ---> 1001 means 9
+BUT
+lb  ---> 1001 means -7
+
+-sw $t0, 0($t1) : means to store the value in t0 to the first location in memory starting from location $t1 
+
+-sb $t0, 0($t1) : means to store the value in t0 to the first -byte- location in memory starting from location $t1 
+
+-lui $t0, i : The immediate value is shifted left 16 bits and stored in the register. The lower 16 bits are zeroes.
+
+-beq $t0, $t1, offset: Branches to the offset if the two registers are equal
+
+-bne $s0, $t1, offset : Branches to the offset if the two registers are NOT equal
+
+-sll $t0, $t1, i : Shifts a register value [t1] left by the shift amount listed in the instruction [i] and places the result in a third register [t0]. Zeroes are shifted in.
+
+-srl $t0, $t1, i : Shifts a register value [t1] right by the shift amount listed in the instruction [i] and places the result in a third register [t0]. Zeroes are shifted in.
+ 
+Format:
+op              :    6  bits
+rs              :    5  bits 
+rt              :    5  bits 
+address/constant:    16 bits 
+
+
+
+
+R-Format Instruction : 
+
+-sub $t0, $t1, $t2 : Subtracts two registers [t1 - t2] and stores the result in a register [t0]
+
+-and $t0, $t1, $t2 : Bitwise ands two registers [t1, t2] and stores the result in a register [t0]
+
+-nor $t0, $t1, $t2 : Bitwise nor between the two registers [t1, t2] and stores the result in a register [t0]
+
+-slt $t0, $t1, $t2 : If $t1 is less than $t2, $t0 is set to one. It gets zero otherwise.
+
+-sltu $t0, $t1, $t2 : If $t1 is less than $t2 with unsigned integers, $t0 is set to one. It gets zero otherwise.
+
+-add $t0, $t1, $t2 : means to add t1 to t2 and save the results in t0. 
+
+Format:
+op   : 6 bits
+rs   : 5 bits ($t1)
+rd   : 5 bits ($t2)
+rt   : 5 bits ($t0)
+shamt: 5 bits
+funct: 6 bits 
+
+J-Format Instructions :
+
+-j target : Jumps to the calculated address  
+
+-jal target : Jumps to the calculated address and stores the return address in $ra
+
+-jr $s0 : Jump to the address contained in register $s0
+
+Format:
+op      : 6  bits
+address : 26 bits
