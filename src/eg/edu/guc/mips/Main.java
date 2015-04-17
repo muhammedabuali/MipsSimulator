@@ -51,10 +51,10 @@ public class Main {
                 String instName = info[0];
                 char instType = info[1].charAt(0);
                 byte opcode = Byte.parseByte(info[2], 16);
-                byte funcode = Byte.parseByte(info[3], 16);
+                String funcode = info[3];
                 switch (instType) {
                     case 'R':
-                        instruction = new RFormatInstruction(Instruction.State.IF, opcode, null, null, null, (byte) 0, funcode);
+                        instruction = new RFormatInstruction(Instruction.State.IF, opcode, null, null, null, (byte) 0, Byte.parseByte(funcode, 16));
                         break;
                     case 'I':
                         instruction = new IFormatInstruction(Instruction.State.IF, opcode, null, null, (short) 0);
