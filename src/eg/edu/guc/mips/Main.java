@@ -40,6 +40,7 @@ public class Main {
     }
 
     private static void readInstructionsData() {
+        nameInstruction = new Hashtable<String, Instruction>();
         String instructionsDataPath = "src/eg/edu/guc/data/instructions.csv";
         File file = new File(instructionsDataPath);
         try {
