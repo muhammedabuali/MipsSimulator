@@ -105,25 +105,13 @@ public class RegisterFile {
         FP_REGISTER = new Register(Utilities.intToByteArray(0));
         RA_REGISTER = new Register(Utilities.intToByteArray(0));
 
-        init(IF_ID_REGISTER, 0);
-        init(ID_EX_REGISTER, 0);
-        init(EX_MEM_REGISTER, 0);
-        init(EX_WB_REGISTER, 0);
+        IF_ID_REGISTER = new Register(Utilities.intToByteArray(0));
+        ID_EX_REGISTER = new Register(Utilities.intToByteArray(0));
+        EX_MEM_REGISTER = new Register(Utilities.intToByteArray(0));
+        EX_WB_REGISTER = new Register(Utilities.intToByteArray(0));
 
 
         return true;
-    }
-
-    /**
-     * Initializing a specific register with a value
-     *
-     * @param register
-     * @param value
-     * @return a reference of the initialized register
-     */
-    public static Register init(Register register, int value) {
-        register = new Register(Utilities.intToByteArray(value));
-        return register;
     }
 
 }
