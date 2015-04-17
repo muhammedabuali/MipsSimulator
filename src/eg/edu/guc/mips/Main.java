@@ -1,6 +1,9 @@
 package eg.edu.guc.mips;
 
+import eg.edu.guc.instructions.IFormatInstruction;
 import eg.edu.guc.instructions.Instruction;
+import eg.edu.guc.instructions.JFormatInstruction;
+import eg.edu.guc.instructions.RFormatInstruction;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -54,8 +57,30 @@ public class Main {
     }
 
     private static Instruction parse(String line) {
-        String[] info = line.split(" ,");
-        return null;
+        String[] splited = line.split(" ,");
+        if (splited.length < 3) {
+            System.err.println("Syntax Error");
+            return null;
+        }
+        String[] info = instructionNameData.get(splited[0]);
+        Instruction instruction = null;
+        char instType = info[1].charAt(0);
+        byte opcode = Byte.parseByte(info[2], 16);
+        String funcode = info[3];
+        switch (instType) {
+            case 'R':
+                instruction = new RFormatInstruction(Instruction.State.IF, opcode, null, null, null, (byte) 0, Byte.parseByte(funcode, 16));
+                break;
+            case 'I':
+                instruction = new IFormatInstruction(Instruction.State.IF, opcode, null, null, (short) 0);
+                break;
+            case 'J':
+                instruction = new JFormatInstruction(Instruction.State.IF, opcode, 0);
+                break;
+            default:
+                System.err.println("Unkown Instruction type '" + instType + "'");
+        }
+        return instruction;
     }
 
 }
