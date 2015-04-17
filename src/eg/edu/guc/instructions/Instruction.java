@@ -11,9 +11,9 @@ import java.util.HashMap;
 public abstract class Instruction {
 
     private State state;
-    private String opcode;//TODO discuss about type , masked byte ?
+    private byte opcode;
 
-    public Instruction(State state, String opcode) {
+    public Instruction(State state, byte opcode) {
         this.state = state;
         this.opcode = opcode;
     }
@@ -42,11 +42,11 @@ public abstract class Instruction {
         this.state = state;
     }
 
-    public String getOpcode() {
+    public byte getOpcode() {
         return opcode;
     }
 
-    public void setOpcode(String opcode) {
+    public void setOpcode(byte opcode) {
         this.opcode = opcode;
     }
 
