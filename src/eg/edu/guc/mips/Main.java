@@ -42,7 +42,7 @@ public class Main {
         }
     }
 
-    private static void readInstructionsData() {
+    public static void readInstructionsData() {
         instructionNameData = new Hashtable<String, String[]>();
         String instructionsDataPath = "src/eg/edu/guc/data/instructions.csv";
         File file = new File(instructionsDataPath);
@@ -63,7 +63,7 @@ public class Main {
     /**
      * adds each Register in the registerFile class into the nameRegister hash table
      */
-    private static void initializeNameRegisterHtbl() {
+    public static void initializeNameRegisterHtbl() {
         nameRegister = new Hashtable<String, Register>();
 
         RegisterFile.init();
@@ -103,7 +103,7 @@ public class Main {
         nameRegister.put("$t9", RegisterFile.T9_REGISTER);
     }
 
-    private static Instruction parse(String line) {
+    public static Instruction parse(String line) {
         String[] splitted = line.split(" ,");
         if (splitted.length < 3) {
             System.err.println("Syntax Error");
