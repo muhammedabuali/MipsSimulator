@@ -1,5 +1,7 @@
 package eg.edu.guc.utils;
 
+import eg.edu.guc.instructions.Instruction;
+
 /**
  * Created by kady on 17/04/15.
  * <p/>
@@ -21,5 +23,10 @@ public class Utilities {
                 (byte) (value >>> 16),
                 (byte) (value >>> 8),
                 (byte) value.intValue()};
+    }
+
+    public static Instruction parse(String line) {
+        //TODO implement the parse function here :D
+        return null;
     }
 }
