@@ -9,8 +9,8 @@ package eg.edu.guc.memory;
  */
 public class Memory {
 
-    private static int[] memory;
-    private static int size = 65536; // added max size 2^16
+    private static byte[] memory;
+    private static int size = 262144; // added max size 2^16
 
     public Memory() {
         init();
@@ -48,17 +48,17 @@ public class Memory {
 
     public static void init() {
         //TODO implement and add documentation
-        memory = new int[size];
+        memory = new byte[size];
     }
 
 
     //Getters and setters
 
-    public int[] getMemory() {
+    public byte[] getMemory() {
         return memory;
     }
 
-    public void setMemory(int[] memory) {
+    public void setMemory(byte[] memory) {
         Memory.memory = memory;
     }
 }
