@@ -1,6 +1,9 @@
 package eg.edu.guc.mips;
 
+import eg.edu.guc.instructions.IFormatInstruction;
 import eg.edu.guc.instructions.Instruction;
+import eg.edu.guc.instructions.JFormatInstruction;
+import eg.edu.guc.instructions.RFormatInstruction;
 import eg.edu.guc.registers.Register;
 import eg.edu.guc.registers.RegisterFile;
 
@@ -47,15 +50,23 @@ public class Main {
                 Instruction instruction = null;
                 String instName = info[0];
                 char instType = info[1].charAt(0);
+                byte opcode = Byte.parseByte(info[2], 16);
+                byte funcode = Byte.parseByte(info[3], 16);
                 switch (instType) {
                     case 'R':
+                        instruction = new RFormatInstruction(Instruction.State.IF, opcode, null, null, null, (byte) 0, funcode);
+                        break;
                     case 'I':
+                        instruction = new IFormatInstruction(Instruction.State.IF, opcode, null, null, (short) 0);
+                        break;
                     case 'J':
+                        instruction = new JFormatInstruction(Instruction.State.IF, opcode, 0);
+                        break;
                     default:
                         System.err.println("Unkown Instruction type '" + instType + "'");
                 }
+                nameInstruction.put(instName, instruction);
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("wrong file path");
         } catch (IOException e) {
