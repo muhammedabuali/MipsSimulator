@@ -18,6 +18,7 @@ public class Main {
     private static Hashtable<String, Instruction> nameInstruction;
 
     public static void main(String[] args) {
+        readInstructionsData();
         //read the file
         File file = new File(filePath);
         try {
