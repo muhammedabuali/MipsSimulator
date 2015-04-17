@@ -13,7 +13,7 @@ public class Main {
     private static String filePath = "src/eg/edu/guc/programFiles/test1.txt";
     private static ArrayList<Instruction> inMipsInstructions;
     private static Hashtable<String, Instruction> nameInstruction;
-    
+
     public static void main(String[] args) {
         //read the file
         File file = new File(filePath);
@@ -26,6 +26,33 @@ public class Main {
                     inMipsInstructions.get(i).execute();
                     if (inMipsInstructions.get(i).advanceState() == Instruction.State.FINISHED)
                         inMipsInstructions.remove(i);
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("wrong file path");
+        } catch (IOException e) {
+            System.out.println("you have reached the ending of the file");
+        }
+    }
+
+    private static void readInstructionsData() {
+        String instructionsDataPath = "src/eg/edu/guc/data/instructions.csv";
+        File file = new File(instructionsDataPath);
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] info = line.split(",");
+                Instruction instruction = null;
+                String instName = info[0];
+                char instType = info[1].charAt(0);
+                switch (instType) {
+                    case 'R':
+                    case 'I':
+                    case 'J':
+                    default:
+                        System.err.println("Unkown Instruction type '" + instType + "'");
                 }
             }
 
