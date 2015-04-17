@@ -1,11 +1,6 @@
 package eg.edu.guc.mips;
 
-import eg.edu.guc.instructions.IFormatInstruction;
 import eg.edu.guc.instructions.Instruction;
-import eg.edu.guc.instructions.JFormatInstruction;
-import eg.edu.guc.instructions.RFormatInstruction;
-import eg.edu.guc.registers.Register;
-import eg.edu.guc.registers.RegisterFile;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +10,7 @@ public class Main {
     private static BufferedReader reader;
     private static String filePath = "src/eg/edu/guc/programFiles/test1.txt";
     private static ArrayList<Instruction> inMipsInstructions;
-    private static Hashtable<String, String[]> nameInstruction;
+    private static Hashtable<String, String[]> instructionNameData;
 
     public static void main(String[] args) {
         readInstructionsData();
@@ -41,7 +36,7 @@ public class Main {
     }
 
     private static void readInstructionsData() {
-        nameInstruction = new Hashtable<String, String[]>();
+        instructionNameData = new Hashtable<String, String[]>();
         String instructionsDataPath = "src/eg/edu/guc/data/instructions.csv";
         File file = new File(instructionsDataPath);
         try {
@@ -49,7 +44,7 @@ public class Main {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] info = line.split(",");
-                nameInstruction.put(info[0], info);
+                instructionNameData.put(info[0], info);
             }
         } catch (FileNotFoundException e) {
             System.out.println("wrong file path");
