@@ -19,6 +19,7 @@ public class ParserTests {
         String inst = "addi $t0, $0, 10";
         Instruction instruction = Main.parse(inst);
         assertTrue("addi instruction should be instance of IFormatInstruction class", instruction instanceof IFormatInstruction);
+        assertTrue("opcode for addi instruction should be 8", instruction.getOpcode() == (byte) 8);
     }
 
 }
