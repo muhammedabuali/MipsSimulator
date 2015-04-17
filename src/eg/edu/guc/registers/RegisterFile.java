@@ -4,7 +4,7 @@ import eg.edu.guc.utils.Utilities;
 
 /**
  * Created by kady on 12/04/15.
- * <p/>
+ * <p>
  * The register file , containing references to all MIPS processor's registers
  *
  * @author kady
@@ -72,38 +72,38 @@ public class RegisterFile {
      */
     public static boolean init() {
         // TODO can be done using reflection ?
-        init(A0_REGISTER, 0);
-        init(A1_REGISTER, 0);
-        init(A2_REGISTER, 0);
-        init(A3_REGISTER, 0);
+        A0_REGISTER = new Register(Utilities.intToByteArray(0));
+        A1_REGISTER = new Register(Utilities.intToByteArray(0));
+        A2_REGISTER = new Register(Utilities.intToByteArray(0));
+        A3_REGISTER = new Register(Utilities.intToByteArray(0));
 
-        init(V0_REGISTER, 0);
-        init(V1_REGISTER, 0);
+        V0_REGISTER = new Register(Utilities.intToByteArray(0));
+        V1_REGISTER = new Register(Utilities.intToByteArray(0));
 
-        init(T0_REGISTER, 0);
-        init(T1_REGISTER, 0);
-        init(T2_REGISTER, 0);
-        init(T3_REGISTER, 0);
-        init(T4_REGISTER, 0);
-        init(T5_REGISTER, 0);
-        init(T6_REGISTER, 0);
-        init(T7_REGISTER, 0);
-        init(T8_REGISTER, 0);
-        init(T9_REGISTER, 0);
+        T0_REGISTER = new Register(Utilities.intToByteArray(0));
+        T1_REGISTER = new Register(Utilities.intToByteArray(0));
+        T2_REGISTER = new Register(Utilities.intToByteArray(0));
+        T3_REGISTER = new Register(Utilities.intToByteArray(0));
+        T4_REGISTER = new Register(Utilities.intToByteArray(0));
+        T5_REGISTER = new Register(Utilities.intToByteArray(0));
+        T6_REGISTER = new Register(Utilities.intToByteArray(0));
+        T7_REGISTER = new Register(Utilities.intToByteArray(0));
+        T8_REGISTER = new Register(Utilities.intToByteArray(0));
+        T9_REGISTER = new Register(Utilities.intToByteArray(0));
 
-        init(S0_REGISTER, 0);
-        init(S1_REGISTER, 0);
-        init(S2_REGISTER, 0);
-        init(S3_REGISTER, 0);
-        init(S4_REGISTER, 0);
-        init(S5_REGISTER, 0);
-        init(S6_REGISTER, 0);
-        init(S7_REGISTER, 0);
+        S0_REGISTER = new Register(Utilities.intToByteArray(0));
+        S1_REGISTER = new Register(Utilities.intToByteArray(0));
+        S2_REGISTER = new Register(Utilities.intToByteArray(0));
+        S3_REGISTER = new Register(Utilities.intToByteArray(0));
+        S4_REGISTER = new Register(Utilities.intToByteArray(0));
+        S5_REGISTER = new Register(Utilities.intToByteArray(0));
+        S6_REGISTER = new Register(Utilities.intToByteArray(0));
+        S7_REGISTER = new Register(Utilities.intToByteArray(0));
 
-        init(GP_REGISTER, 0);
-        init(SP_REGISTER, 0);
-        init(FP_REGISTER, 0);
-        init(RA_REGISTER, 0);
+        GP_REGISTER = new Register(Utilities.intToByteArray(0));
+        SP_REGISTER = new Register(Utilities.intToByteArray(0));
+        FP_REGISTER = new Register(Utilities.intToByteArray(0));
+        RA_REGISTER = new Register(Utilities.intToByteArray(0));
 
         init(IF_ID_REGISTER, 0);
         init(ID_EX_REGISTER, 0);
