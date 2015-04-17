@@ -5,6 +5,7 @@ import eg.edu.guc.instructions.Instruction;
 import eg.edu.guc.instructions.JFormatInstruction;
 import eg.edu.guc.instructions.RFormatInstruction;
 import eg.edu.guc.registers.Register;
+import eg.edu.guc.registers.RegisterFile;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Main {
     private static ArrayList<Instruction> inMipsInstructions;
     private static Hashtable<String, String[]> instructionNameData;
     private static Hashtable<String, Register> nameRegister;
-    
+
     public static void main(String[] args) {
         readInstructionsData();
         //read the file
@@ -32,7 +33,6 @@ public class Main {
                         inMipsInstructions.remove(i);
                 }
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("wrong file path");
         } catch (IOException e) {
@@ -56,6 +56,47 @@ public class Main {
         } catch (IOException e) {
             System.out.println("you have reached the ending of the file");
         }
+    }
+
+    /**
+     * adds each register in the registerFile class into the nameRegister hash table
+     */
+    private static void initializeNameRegisterHtbl() {
+        nameRegister = new Hashtable<String, Register>();
+
+        nameRegister.put("$a0", RegisterFile.A0_REGISTER);
+        nameRegister.put("$a1", RegisterFile.A1_REGISTER);
+        nameRegister.put("$a2", RegisterFile.A2_REGISTER);
+        nameRegister.put("$a3", RegisterFile.A3_REGISTER);
+
+        nameRegister.put("$ra", RegisterFile.RA_REGISTER);
+
+        nameRegister.put("$s0", RegisterFile.S0_REGISTER);
+        nameRegister.put("$s1", RegisterFile.S1_REGISTER);
+        nameRegister.put("$s2", RegisterFile.S2_REGISTER);
+        nameRegister.put("$s3", RegisterFile.S3_REGISTER);
+        nameRegister.put("$s4", RegisterFile.S4_REGISTER);
+        nameRegister.put("$s5", RegisterFile.S5_REGISTER);
+        nameRegister.put("$s6", RegisterFile.S6_REGISTER);
+        nameRegister.put("$s7", RegisterFile.S7_REGISTER);
+
+        nameRegister.put("$sp", RegisterFile.SP_REGISTER);
+
+        nameRegister.put("$0", RegisterFile.ZERO_REGISTER);
+
+        nameRegister.put("$v0", RegisterFile.V0_REGISTER);
+        nameRegister.put("$v1", RegisterFile.V1_REGISTER);
+
+        nameRegister.put("$t0", RegisterFile.T0_REGISTER);
+        nameRegister.put("$t1", RegisterFile.T1_REGISTER);
+        nameRegister.put("$t2", RegisterFile.T2_REGISTER);
+        nameRegister.put("$t3", RegisterFile.T3_REGISTER);
+        nameRegister.put("$t4", RegisterFile.T4_REGISTER);
+        nameRegister.put("$t5", RegisterFile.T5_REGISTER);
+        nameRegister.put("$t6", RegisterFile.T6_REGISTER);
+        nameRegister.put("$t7", RegisterFile.T7_REGISTER);
+        nameRegister.put("$t8", RegisterFile.T8_REGISTER);
+        nameRegister.put("$t9", RegisterFile.T9_REGISTER);
     }
 
     private static Instruction parse(String line) {
