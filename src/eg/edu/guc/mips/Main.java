@@ -19,6 +19,7 @@ public class Main {
     private static Hashtable<String, Register> nameRegister;
 
     public static void main(String[] args) {
+        initializeNameRegisterHtbl();
         readInstructionsData();
         //read the file
         File file = new File(filePath);
@@ -59,7 +60,7 @@ public class Main {
     }
 
     /**
-     * adds each register in the registerFile class into the nameRegister hash table
+     * adds each Register in the registerFile class into the nameRegister hash table
      */
     private static void initializeNameRegisterHtbl() {
         nameRegister = new Hashtable<String, Register>();
