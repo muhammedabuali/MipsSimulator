@@ -1,5 +1,7 @@
 package eg.edu.guc.registers;
 
+import eg.edu.guc.util.Utilities;
+
 /**
  * Created by kady on 12/04/15.
  * <p/>
@@ -10,7 +12,7 @@ package eg.edu.guc.registers;
 public class RegisterFile {
 
     // ZERO_REGISTER .. Don't touch !
-    public static final Register ZERO_REGISTER = new Register(0);
+    public static final Register ZERO_REGISTER = new Register(Utilities.intToByteArray(0));
 
     //Arguments
     public static Register A0_REGISTER;
@@ -108,7 +110,7 @@ public class RegisterFile {
         init(EX_MEM_REGISTER, 0);
         init(EX_WB_REGISTER, 0);
 
-        
+
         return true;
     }
 
@@ -120,7 +122,7 @@ public class RegisterFile {
      * @return a reference of the initialized register
      */
     public static Register init(Register register, int value) {
-        register = new Register(value);
+        register = new Register(Utilities.intToByteArray(value));
         return register;
     }
 

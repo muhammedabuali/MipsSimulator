@@ -6,7 +6,6 @@ import java.util.HashMap;
  * Created by kady on 12/04/15.
  *
  * @author kady
- * @author kady
  */
 public class JFormatInstruction extends Instruction {
 

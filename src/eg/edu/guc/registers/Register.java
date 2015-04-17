@@ -8,17 +8,20 @@ package eg.edu.guc.registers;
  * @author kady
  */
 public class Register {
-    private int data;
+    private byte[] data;
 
-    public Register(int data) {
-        this.data = data;
+    public Register(byte[] data) {
+        for (int i = 0; i < data.length; i++) {
+            this.data[i] = data[i];
+
+        }
     }
 
-    public int getData() {
+    public byte[] getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(byte[] data) {
         if (this == RegisterFile.ZERO_REGISTER) {
             System.err.println("Register ZERO can't be set");
             return;
