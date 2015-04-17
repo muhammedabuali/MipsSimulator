@@ -41,7 +41,7 @@ public class Main {
     }
 
     private static void readInstructionsData() {
-        nameInstruction = new Hashtable<String, Instruction>();
+        nameInstruction = new Hashtable<String, String[]>();
         String instructionsDataPath = "src/eg/edu/guc/data/instructions.csv";
         File file = new File(instructionsDataPath);
         try {
@@ -49,24 +49,7 @@ public class Main {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] info = line.split(",");
-                Instruction instruction = null;
-                String instName = info[0];
-                char instType = info[1].charAt(0);
-                byte opcode = Byte.parseByte(info[2], 16);
-                String funcode = info[3];
-                switch (instType) {
-                    case 'R':
-                        instruction = new RFormatInstruction(Instruction.State.IF, opcode, null, null, null, (byte) 0, Byte.parseByte(funcode, 16));
-                        break;
-                    case 'I':
-                        instruction = new IFormatInstruction(Instruction.State.IF, opcode, null, null, (short) 0);
-                        break;
-                    case 'J':
-                        instruction = new JFormatInstruction(Instruction.State.IF, opcode, 0);
-                        break;
-                    default:
-                        System.err.println("Unkown Instruction type '" + instType + "'");
-                }
+
                 nameInstruction.put(instName, instruction);
             }
         } catch (FileNotFoundException e) {
