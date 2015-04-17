@@ -6,12 +6,14 @@ import eg.edu.guc.registers.RegisterFile;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Main {
     private static BufferedReader reader;
     private static String filePath = "src/eg/edu/guc/programFiles/test1.txt";
     private static ArrayList<Instruction> inMipsInstructions;
-
+    private static Hashtable<String, Instruction> nameInstruction;
+    
     public static void main(String[] args) {
         //read the file
         File file = new File(filePath);
