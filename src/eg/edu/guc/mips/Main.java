@@ -129,4 +129,19 @@ public class Main {
         return instruction;
     }
 
+    /**
+     * returns the register corresponding to the given register name ,
+     * prints an error if register name is invalid
+     *
+     * @param regName
+     * @return
+     */
+    private static Register getRegisterByName(String regName) {
+        if (!regName.contains(regName)) {
+            System.err.println("Syntax Error, Unknown Register Name " + regName);
+            return null;
+        }
+        return nameRegister.get(regName);
+    }
+
 }
