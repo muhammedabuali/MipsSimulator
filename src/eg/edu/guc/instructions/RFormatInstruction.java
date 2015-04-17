@@ -15,7 +15,7 @@ public class RFormatInstruction extends Instruction {
     private byte shiftAmount, function;
 
     public RFormatInstruction(State state,
-                              String opcode,
+                              byte opcode,
                               Register sourceRegister,
                               Register targetRegister,
                               Register destinationRegister,

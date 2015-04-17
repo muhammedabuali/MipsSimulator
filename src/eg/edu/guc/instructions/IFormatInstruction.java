@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 /**
  * Created by kady on 12/04/15.
+ * @author kady
  */
 public class IFormatInstruction extends Instruction {
 
@@ -14,7 +15,7 @@ public class IFormatInstruction extends Instruction {
     private short constantAddressHolder;
 
     public IFormatInstruction(State state,
-                              String opcode,
+                              byte opcode,
                               Register sourceRegister,
                               Register targetRegister,
                               short constantAddressHolder) {

@@ -6,12 +6,13 @@ import java.util.HashMap;
  * Created by kady on 12/04/15.
  *
  * @author kady
+ * @author kady
  */
 public class JFormatInstruction extends Instruction {
 
     private int jumpAddress;
 
-    public JFormatInstruction(State state, String opcode, int jumpAddress) {
+    public JFormatInstruction(State state, byte opcode, int jumpAddress) {
         super(state, opcode);
         this.jumpAddress = jumpAddress;
     }
