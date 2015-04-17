@@ -104,7 +104,8 @@ public class Main {
     }
 
     public static Instruction parse(String line) {
-        String[] splitted = line.split(" ,");
+        line = line.replaceAll(",", "");
+        String[] splitted = line.split(" ");
         if (splitted.length < 3) {
             System.err.println("Syntax Error");
             return null;
