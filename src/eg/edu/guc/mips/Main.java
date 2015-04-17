@@ -49,8 +49,7 @@ public class Main {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] info = line.split(",");
-
-                nameInstruction.put(instName, instruction);
+                nameInstruction.put(info[0], info);
             }
         } catch (FileNotFoundException e) {
             System.out.println("wrong file path");
