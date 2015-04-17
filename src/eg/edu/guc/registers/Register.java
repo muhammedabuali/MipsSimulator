@@ -2,7 +2,7 @@ package eg.edu.guc.registers;
 
 /**
  * Created by kady on 12/04/15.
- * <p/>
+ * <p>
  * Register class , representing a single register in the mips processor
  *
  * @author kady
@@ -11,9 +11,9 @@ public class Register {
     private byte[] data;
 
     public Register(byte[] data) {
+        data = new byte[4];
         for (int i = 0; i < data.length; i++) {
             this.data[i] = data[i];
-
         }
     }
 
