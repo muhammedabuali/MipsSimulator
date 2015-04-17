@@ -3,5 +3,5 @@ package eg.edu.guc.tests;
 /**
  * Created by mohamed on 17/04/15.
  */
-public class InstructionTests {
+public class InstructionsTests {
 }
