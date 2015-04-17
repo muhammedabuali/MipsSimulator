@@ -15,7 +15,7 @@ public class Main {
     private static BufferedReader reader;
     private static String filePath = "src/eg/edu/guc/programFiles/test1.txt";
     private static ArrayList<Instruction> inMipsInstructions;
-    private static Hashtable<String, Instruction> nameInstruction;
+    private static Hashtable<String, String[]> nameInstruction;
 
     public static void main(String[] args) {
         readInstructionsData();
@@ -77,7 +77,7 @@ public class Main {
     }
 
     private static Instruction parse(String line) {
-        //TODO implement the parse function here :D
+        String[] info = line.split(" ,");
         return null;
     }
 
