@@ -113,18 +113,26 @@ public class Main {
         char instType = info[1].charAt(0);
         byte opcode = Byte.parseByte(info[2], 16);
         String funcode = info[3];
+        Register dstReg, srcReg, targetReg;
         switch (instType) {
             case 'R':
-                instruction = new RFormatInstruction(Instruction.State.IF, opcode, null, null, null, (byte) 0, Byte.parseByte(funcode, 16));
+                dstReg = getRegisterByName(splitted[1]);
+                srcReg = getRegisterByName(splitted[2]);
+                targetReg = splitted[3].charAt(0) == '$' ? getRegisterByName(splitted[3]) : null;
+                byte shiftAmount = splitted[3].charAt(0) == '$' ? (byte) 0 : Byte.parseByte(splitted[3]);
+                instruction = new RFormatInstruction(Instruction.State.IF, opcode, srcReg, dstReg, targetReg, shiftAmount, Byte.parseByte(funcode, 16));
                 break;
             case 'I':
-                instruction = new IFormatInstruction(Instruction.State.IF, opcode, null, null, (short) 0);
+                srcReg = getRegisterByName(splitted[1]);
+                targetReg = getRegisterByName(splitted[2]);
+                short constAddressHolder = Short.parseShort(splitted[3]);
+                instruction = new IFormatInstruction(Instruction.State.IF, opcode, srcReg, targetReg, constAddressHolder);
                 break;
             case 'J':
-                instruction = new JFormatInstruction(Instruction.State.IF, opcode, 0);
+                instruction = new JFormatInstruction(Instruction.State.IF, opcode, Integer.parseInt(splitted[1]));
                 break;
             default:
-                System.err.println("Unkown Instruction type '" + instType + "'");
+                System.err.println("Unkown Instruction type '" + info[1] + "'");
         }
         return instruction;
     }
