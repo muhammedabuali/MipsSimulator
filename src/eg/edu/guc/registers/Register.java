@@ -11,7 +11,7 @@ public class Register {
     private byte[] data;
 
     public Register(byte[] data) {
-        data = new byte[4];
+        this.data = new byte[4];
         for (int i = 0; i < data.length; i++) {
             this.data[i] = data[i];
         }
