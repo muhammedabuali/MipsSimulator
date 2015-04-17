@@ -4,6 +4,7 @@ import eg.edu.guc.instructions.IFormatInstruction;
 import eg.edu.guc.instructions.Instruction;
 import eg.edu.guc.instructions.JFormatInstruction;
 import eg.edu.guc.instructions.RFormatInstruction;
+import eg.edu.guc.registers.Register;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ public class Main {
     private static String filePath = "src/eg/edu/guc/programFiles/test1.txt";
     private static ArrayList<Instruction> inMipsInstructions;
     private static Hashtable<String, String[]> instructionNameData;
-
+    private static Hashtable<String, Register> nameRegister;
+    
     public static void main(String[] args) {
         readInstructionsData();
         //read the file
@@ -57,12 +59,12 @@ public class Main {
     }
 
     private static Instruction parse(String line) {
-        String[] splited = line.split(" ,");
-        if (splited.length < 3) {
+        String[] splitted = line.split(" ,");
+        if (splitted.length < 3) {
             System.err.println("Syntax Error");
             return null;
         }
-        String[] info = instructionNameData.get(splited[0]);
+        String[] info = instructionNameData.get(splitted[0]);
         Instruction instruction = null;
         char instType = info[1].charAt(0);
         byte opcode = Byte.parseByte(info[2], 16);
