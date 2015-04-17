@@ -1,4 +1,4 @@
-package eg.edu.guc.util;
+package eg.edu.guc.utils;
 
 /**
  * Created by kady on 17/04/15.
