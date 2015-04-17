@@ -21,6 +21,7 @@ public class Main {
     public static void main(String[] args) {
         initializeNameRegisterHtbl();
         readInstructionsData();
+        inMipsInstructions = new ArrayList<>();
         //read the file
         File file = new File(filePath);
         try {
