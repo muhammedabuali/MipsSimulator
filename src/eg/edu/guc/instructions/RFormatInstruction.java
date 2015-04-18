@@ -39,20 +39,20 @@ public class RFormatInstruction extends Instruction {
         //TODO implement and add documentation
         if (!destinationRegister.equals(RegisterFile.ZERO_REGISTER)) {
             this.setState(State.ID);
-            switch (this.getOpcode()) {
-                case 0000:
+            switch (this.getFunction()) {
+                case 0x20:
                     add();
                     break;
-                case 0001:
+                case 0x22:
                     sub();
                     break;
-                case 0010:
+                case 0x24:
                     and();
                     break;
-                case 0011:
+                case 0x27:
                     nor();
                     break;
-                case 0100:
+                case 0x2A:
                     slt();
                     break;
                 default:
