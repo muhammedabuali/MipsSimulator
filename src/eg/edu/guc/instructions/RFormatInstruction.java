@@ -145,7 +145,7 @@ public class RFormatInstruction extends Instruction {
 
         }
         if (!notEqual)
-            destinationArray[3]=1;
+            destinationArray[3]= 1;
 
     }
     // Set if less than unsigned method
@@ -167,7 +167,6 @@ public class RFormatInstruction extends Instruction {
         }
         if (!notEqual)
             destinationArray[3]=1;
-
     }
 
     // Getters and Setters
