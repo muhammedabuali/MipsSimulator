@@ -48,29 +48,95 @@ public class RFormatInstruction extends Instruction {
     // add method
     public void add()
     {
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) (sourceArray[i] + targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
     }
 
     // subtracting method
     public void sub()
     {
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) (sourceArray[i] - targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
+
     }
 
     //Bitwise and method
     public void and()
     {
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) (sourceArray[i] & targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
+
     }
     //Bitwise nor method
     public void nor()
     {
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) ~(sourceArray[i] | targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
 
     }
     // Set if less than method
     public void slt()
     {
+        boolean notEqual = false;
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            if (sourceArray[i] != targetArray[i])
+            {
+                notEqual=true;
+                break;
+            }
+
+        }
+        if (!notEqual)
+            destinationArray[3]=1;
+
     }
     // Set if less than unsigned method
     public void sltu()
     {
+        boolean notEqual = false;
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            if (sourceArray[i] != targetArray[i])
+            {
+                notEqual=true;
+                break;
+            }
+
+        }
+        if (!notEqual)
+            destinationArray[3]=1;
+
     }
 
     // Getters and Setters
