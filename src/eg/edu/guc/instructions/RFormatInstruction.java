@@ -132,10 +132,9 @@ public class RFormatInstruction extends Instruction {
     {
         this.setState(State.EX);
         boolean notEqual = false;
-        byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
         byte [] targetArray = targetRegister.getData();
-        for (int i = 0; i<destinationArray.length;i++)
+        for (int i = 0; i<sourceArray.length;i++)
         {
             if (sourceArray[i] != targetArray[i])
             {
@@ -145,7 +144,7 @@ public class RFormatInstruction extends Instruction {
 
         }
         if (!notEqual)
-            destinationArray[3]= 1;
+            destinationRegister.setData(1);
 
     }
     // Set if less than unsigned method
@@ -153,10 +152,9 @@ public class RFormatInstruction extends Instruction {
     {
         this.setState(State.EX);
         boolean notEqual = false;
-        byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
         byte [] targetArray = targetRegister.getData();
-        for (int i = 0; i<destinationArray.length;i++)
+        for (int i = 0; i<sourceArray.length;i++)
         {
             if (sourceArray[i] != targetArray[i])
             {
@@ -166,7 +164,7 @@ public class RFormatInstruction extends Instruction {
 
         }
         if (!notEqual)
-            destinationArray[3]=1;
+            destinationRegister.setData(1);
     }
 
     // Getters and Setters
