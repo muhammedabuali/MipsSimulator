@@ -1,5 +1,8 @@
 package eg.edu.guc.utils;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 /**
  * Created by kady on 17/04/15.
  * <p/>
@@ -16,10 +19,16 @@ public class Utilities {
      * @return a byte array with the same integer value if concatenated
      */
     public static byte[] intToByteArray(Integer value) {
-        return new byte[]{
-                (byte) (value >>> 24),
-                (byte) (value >>> 16),
-                (byte) (value >>> 8),
-                (byte) value.intValue()};
+        return ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN).putInt(value).array();
+    }
+
+    /**
+     * Converting a byte array to an int
+     *
+     * @param value byte array
+     * @return equivalent value as int
+     */
+    public static int byteArrayToInt(byte[] value) {
+        return ByteBuffer.wrap(value).order(ByteOrder.BIG_ENDIAN).getInt();
     }
 }
