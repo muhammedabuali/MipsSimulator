@@ -1,6 +1,7 @@
 package eg.edu.guc.instructions;
 
 import eg.edu.guc.registers.Register;
+import eg.edu.guc.registers.RegisterFile;
 
 import java.util.HashMap;
 
@@ -36,6 +37,30 @@ public class RFormatInstruction extends Instruction {
     @Override
     public boolean execute() {
         //TODO implement and add documentation
+        if (!destinationRegister.equals(RegisterFile.ZERO_REGISTER)) {
+            this.setState(State.ID);
+            switch (this.getOpcode()) {
+                case 0000:
+                    add();
+                    break;
+                case 0001:
+                    sub();
+                    break;
+                case 0010:
+                    and();
+                    break;
+                case 0011:
+                    nor();
+                    break;
+                case 0100:
+                    slt();
+                    break;
+                default:
+                    sltu();
+                    break;
+            }
+            return true;
+        }
         return false;
     }
 
@@ -48,6 +73,7 @@ public class RFormatInstruction extends Instruction {
     // add method
     public void add()
     {
+
         byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
         byte [] targetArray = targetRegister.getData();
