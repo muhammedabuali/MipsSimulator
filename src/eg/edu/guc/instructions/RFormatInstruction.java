@@ -73,7 +73,7 @@ public class RFormatInstruction extends Instruction {
     // add method
     public void add()
     {
-
+        this.setState(State.EX);
         byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
         byte [] targetArray = targetRegister.getData();
@@ -87,6 +87,7 @@ public class RFormatInstruction extends Instruction {
     // subtracting method
     public void sub()
     {
+        this.setState(State.EX);
         byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
         byte [] targetArray = targetRegister.getData();
@@ -101,6 +102,7 @@ public class RFormatInstruction extends Instruction {
     //Bitwise and method
     public void and()
     {
+        this.setState(State.EX);
         byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
         byte [] targetArray = targetRegister.getData();
@@ -114,6 +116,7 @@ public class RFormatInstruction extends Instruction {
     //Bitwise nor method
     public void nor()
     {
+        this.setState(State.EX);
         byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
         byte [] targetArray = targetRegister.getData();
@@ -127,6 +130,7 @@ public class RFormatInstruction extends Instruction {
     // Set if less than method
     public void slt()
     {
+        this.setState(State.EX);
         boolean notEqual = false;
         byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
@@ -147,6 +151,7 @@ public class RFormatInstruction extends Instruction {
     // Set if less than unsigned method
     public void sltu()
     {
+        this.setState(State.EX);
         boolean notEqual = false;
         byte [] destinationArray = new byte[4];
         byte [] sourceArray = sourceRegister.getData();
