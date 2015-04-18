@@ -45,6 +45,34 @@ public class RFormatInstruction extends Instruction {
         return null;
     }
 
+    // add method
+    public void add()
+    {
+    }
+
+    // subtracting method
+    public void sub()
+    {
+    }
+
+    //Bitwise and method
+    public void and()
+    {
+    }
+    //Bitwise nor method
+    public void nor()
+    {
+
+    }
+    // Set if less than method
+    public void slt()
+    {
+    }
+    // Set if less than unsigned method
+    public void sltu()
+    {
+    }
+
     // Getters and Setters
 
     public Register getSourceRegister() {
