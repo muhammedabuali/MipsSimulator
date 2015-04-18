@@ -1,6 +1,7 @@
 package eg.edu.guc.instructions;
 
 import eg.edu.guc.registers.Register;
+import eg.edu.guc.registers.RegisterFile;
 
 import java.util.HashMap;
 
@@ -36,6 +37,30 @@ public class RFormatInstruction extends Instruction {
     @Override
     public boolean execute() {
         //TODO implement and add documentation
+        if (!destinationRegister.equals(RegisterFile.ZERO_REGISTER)) {
+            this.setState(State.ID);
+            switch (this.getFunction()) {
+                case 0x20:
+                    add();
+                    break;
+                case 0x22:
+                    sub();
+                    break;
+                case 0x24:
+                    and();
+                    break;
+                case 0x27:
+                    nor();
+                    break;
+                case 0x2A:
+                    slt();
+                    break;
+                default:
+                    sltu();
+                    break;
+            }
+            return true;
+        }
         return false;
     }
 
@@ -43,6 +68,103 @@ public class RFormatInstruction extends Instruction {
     public HashMap<String, Integer> getControlSignals() {
         //TODO implement and add documentation
         return null;
+    }
+
+    // add method
+    public void add()
+    {
+        this.setState(State.EX);
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) (sourceArray[i] + targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
+    }
+
+    // subtracting method
+    public void sub()
+    {
+        this.setState(State.EX);
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) (sourceArray[i] - targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
+
+    }
+
+    //Bitwise and method
+    public void and()
+    {
+        this.setState(State.EX);
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) (sourceArray[i] & targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
+
+    }
+    //Bitwise nor method
+    public void nor()
+    {
+        this.setState(State.EX);
+        byte [] destinationArray = new byte[4];
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<destinationArray.length;i++)
+        {
+            destinationArray[i]= (byte) ~(sourceArray[i] | targetArray[i]);
+        }
+        destinationRegister.setData(destinationArray);
+
+    }
+    // Set if less than method
+    public void slt()
+    {
+        this.setState(State.EX);
+        boolean notEqual = false;
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<sourceArray.length;i++)
+        {
+            if (sourceArray[i] != targetArray[i])
+            {
+                notEqual=true;
+                break;
+            }
+
+        }
+        if (!notEqual)
+            destinationRegister.setData(1);
+
+    }
+    // Set if less than unsigned method
+    public void sltu()
+    {
+        this.setState(State.EX);
+        boolean notEqual = false;
+        byte [] sourceArray = sourceRegister.getData();
+        byte [] targetArray = targetRegister.getData();
+        for (int i = 0; i<sourceArray.length;i++)
+        {
+            if (sourceArray[i] != targetArray[i])
+            {
+                notEqual=true;
+                break;
+            }
+
+        }
+        if (!notEqual)
+            destinationRegister.setData(1);
     }
 
     // Getters and Setters
