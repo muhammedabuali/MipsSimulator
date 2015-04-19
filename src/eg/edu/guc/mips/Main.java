@@ -74,6 +74,7 @@ public class Main {
         nameRegister.put("$a3", RegisterFile.A3_REGISTER);
 
         nameRegister.put("$ra", RegisterFile.RA_REGISTER);
+        nameRegister.put("$fp", RegisterFile.FP_REGISTER);
 
         nameRegister.put("$s0", RegisterFile.S0_REGISTER);
         nameRegister.put("$s1", RegisterFile.S1_REGISTER);
