@@ -3,6 +3,7 @@ package eg.edu.guc.instructions;
 import eg.edu.guc.registers.Register;
 import eg.edu.guc.registers.RegisterFile;
 
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 
 /**
@@ -74,29 +75,20 @@ public class RFormatInstruction extends Instruction {
     public void add()
     {
         this.setState(State.EX);
-        byte [] destinationArray = new byte[4];
-        byte [] sourceArray = sourceRegister.getData();
-        byte [] targetArray = targetRegister.getData();
-        for (int i = 0; i<destinationArray.length;i++)
-        {
-            destinationArray[i]= (byte) (sourceArray[i] + targetArray[i]);
-        }
-        destinationRegister.setData(destinationArray);
+        int sourceValue = twosComplementToInteger(sourceRegister);
+        int targetValue = twosComplementToInteger(targetRegister);
+        int destinationValue = sourceValue+targetValue;
+        destinationRegister.setData(destinationValue);
     }
 
     // subtracting method
     public void sub()
     {
         this.setState(State.EX);
-        byte [] destinationArray = new byte[4];
-        byte [] sourceArray = sourceRegister.getData();
-        byte [] targetArray = targetRegister.getData();
-        for (int i = 0; i<destinationArray.length;i++)
-        {
-            destinationArray[i]= (byte) (sourceArray[i] - targetArray[i]);
-        }
-        destinationRegister.setData(destinationArray);
-
+        int sourceValue = twosComplementToInteger(sourceRegister);
+        int targetValue = twosComplementToInteger(targetRegister);
+        int destinationValue = sourceValue-targetValue;
+        destinationRegister.setData(destinationValue);
     }
 
     //Bitwise and method
@@ -131,21 +123,13 @@ public class RFormatInstruction extends Instruction {
     public void slt()
     {
         this.setState(State.EX);
-        boolean notEqual = false;
-        byte [] sourceArray = sourceRegister.getData();
-        byte [] targetArray = targetRegister.getData();
-        for (int i = 0; i<sourceArray.length;i++)
-        {
-            if (sourceArray[i] != targetArray[i])
-            {
-                notEqual=true;
-                break;
-            }
-
-        }
-        if (!notEqual)
-            destinationRegister.setData(1);
-
+        int sourceValue = twosComplementToInteger(sourceRegister);
+        int targetValue = twosComplementToInteger(targetRegister);
+        int destinationValue = sourceValue-targetValue;
+        if (destinationValue<0)
+        destinationRegister.setData(1);
+        else
+            destinationRegister.setData(0);
     }
     // Set if less than unsigned method
     public void sltu()
@@ -165,6 +149,13 @@ public class RFormatInstruction extends Instruction {
         }
         if (!notEqual)
             destinationRegister.setData(1);
+    }
+
+    public int twosComplementToInteger(Register r)
+    {
+        ByteBuffer wrapped = ByteBuffer.wrap(r.getData()); // big-endian by default
+        int num = wrapped.getInt();
+        return num;
     }
 
     // Getters and Setters
