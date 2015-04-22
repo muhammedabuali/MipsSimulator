@@ -9,7 +9,7 @@ public class IDEXRegister {
 
     private int pc, registerOneValue, registerTwoValue, offset;
 
-    private byte Rt, Rd;
+    private byte rt, rd;
 
     //WB controls
 
@@ -57,22 +57,22 @@ public class IDEXRegister {
 
     public byte getRt() {
         //TODO mask
-        return Rt;
+        return rt;
     }
 
     public void setRt(byte rt) {
         //TODO Check length ... 5
-        Rt = rt;
+        this.rt = rt;
     }
 
     public byte getRd() {
         //TODO mask
-        return Rd;
+        return rd;
     }
 
     public void setRd(byte rd) {
         //TODO Check length ... 5
-        Rd = rd;
+        this.rd = rd;
     }
 
     public boolean isMemToReg() {
