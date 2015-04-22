@@ -22,5 +22,14 @@ public class Mips {
         }
     }
 
+    /**
+     * Fetching an instruction from the loaded instructions
+     */
+    public String fetch() {
+        String instruction = instructions[Components.getPC()];
+        Components.incrementPC();
+        return instruction;
+    }
+
 
 }
