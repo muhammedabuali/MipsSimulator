@@ -1,6 +1,8 @@
 package eg.edu.guc.mips;
 
 
+import eg.edu.guc.registers.IFIDRegister;
+
 import java.io.*;
 
 public class Mips {
@@ -25,11 +27,25 @@ public class Mips {
     /**
      * Fetching an instruction from the loaded instructions
      */
-    public String fetch() {
-        String instruction = instructions[Components.getPC()];
-        Components.incrementPC();
+    public int fetch() {
+        int instruction = getInstructionBitStream(instructions[Components.getPC()]);
+
+
+        IFIDRegister.setInstruction(instruction);
+        IFIDRegister.setPc(Components.incrementPC());
+
         return instruction;
     }
 
+    /**
+     * Converting an instruction to equivalent bits
+     *
+     * @param instruction
+     * @return
+     */
+    private int getInstructionBitStream(String instruction) {
+        //TODO Convert instruction to the appropriate bitstream
+        return -1;
+    }
 
 }
