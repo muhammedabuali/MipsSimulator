@@ -13,7 +13,7 @@ import java.util.Hashtable;
 
 public class Main {
     private static BufferedReader reader;
-    private static String filePath = "src/eg/edu/guc/programFiles/test1.txt";
+    private static String filePath = "program_files/test1.txt";
     private static ArrayList<Instruction> inMipsInstructions;
     private static Hashtable<String, String[]> instructionNameData;
     private static Hashtable<String, Register> nameRegister;
