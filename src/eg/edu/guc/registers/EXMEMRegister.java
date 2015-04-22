@@ -9,7 +9,7 @@ public class EXMEMRegister {
     private int branchAddress, aluOut, registerValueToMem;
     private boolean zeroFlag;
 
-    byte rd;
+    private byte rd;
 
     //WB controls
 
