@@ -25,7 +25,7 @@ public class Register {
      * @param data
      */
     public Register(int data) {
-        this.data = Utilities.intToByteArray(data);
+        this.data = Utilities.intToByteArray(data, 4);
     }
 
     public byte[] getData() {
@@ -53,6 +53,6 @@ public class Register {
             return;
         }
 
-        this.data = Utilities.intToByteArray(data);
+        this.data = Utilities.intToByteArray(data, 4);
     }
 }

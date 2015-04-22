@@ -12,14 +12,16 @@ import java.nio.ByteOrder;
  */
 public class Utilities {
 
+
     /**
      * Converting an int to a byte array
      *
      * @param value integer value
-     * @return a byte array with the same integer value if concatenated
+     * @param bytes the number of bytes returned
+     * @return a byte array with the same integer value with <code>bytes</code> length
      */
-    public static byte[] intToByteArray(Integer value) {
-        return ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN).putInt(value).array();
+    public static byte[] intToByteArray(Integer value, int bytes) {
+        return ByteBuffer.allocate(bytes).order(ByteOrder.BIG_ENDIAN).putInt(value).array();
     }
 
     /**
