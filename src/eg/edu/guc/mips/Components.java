@@ -17,8 +17,9 @@ public class Components {
         return PC;
     }
 
-    public static void incrementPC() {
+    public static int incrementPC() {
         Components.PC += 1;
+        return Components.PC;
     }
 
     public static void setPC(int PC) {
