@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import eg.edu.guc.registers.IFIDRegister;
 import eg.edu.guc.utils.Utilities;
 
 public class Mips {
-	private String[] instructions;
+	private ArrayList<String> instructions;
 
 	/**
 	 * Reading a file containing a mips instructions
@@ -19,11 +20,11 @@ public class Mips {
 	 * @throws IOException
 	 */
 	private void readProgram(File file) throws IOException {
-		int line = 0;
 		BufferedReader reader = new BufferedReader(new FileReader(file));
-
-		while ((instructions[line++] = reader.readLine()) != null) {
-		}
+		instructions = new ArrayList<String>();
+		String line;
+		while ((line = reader.readLine()) != null)
+			instructions.add(line);
 		reader.close();
 	}
 
