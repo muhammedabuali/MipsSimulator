@@ -30,15 +30,4 @@ public class MipsTests {
 				"The code for the instruction should be 0x2149000b as found in mars",
 				Integer.toHexString(instCode).equals("2149000b"));
 	}
-
-	@Test
-	public void testGetJInstructionBitStream() {
-		RegisterFile.init();
-		Mips m = new Mips();
-
-		int instCode = m.getInstructionBitStream("j 11");
-		assertTrue(
-				"The code for the instruction should be 0x2149000b as found in mars",
-				Integer.toHexString(instCode).equals("2149000b"));
-	}
 }
