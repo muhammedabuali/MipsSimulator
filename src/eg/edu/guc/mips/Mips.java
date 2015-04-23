@@ -34,7 +34,7 @@ public class Mips {
 	 * Fetching an instruction from the loaded instructions
 	 */
 	public int fetch() {
-		int instruction = getInstructionBitStream(instructions.get(Components
+		int instruction = getInstructionBitStream(parsedInstrutions.get(Components
 				.getPC()));
 
 		IFIDRegister.setInstruction(instruction);
@@ -73,15 +73,6 @@ public class Mips {
 		}
 
 		return -1;
-	}
-
-	private Object[] removeSeprators(String[] splitted) {
-		LinkedList<String> res = new LinkedList<String>();
-		for (String curr : splitted)
-			if (!curr.isEmpty() && curr.charAt(0) != ' ')
-				res.add(curr);
-
-		return res.toArray();
 	}
 
 	/**
