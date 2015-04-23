@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import eg.edu.guc.registers.IFIDRegister;
 import eg.edu.guc.utils.Utilities;
@@ -34,8 +33,8 @@ public class Mips {
 	 * Fetching an instruction from the loaded instructions
 	 */
 	public int fetch() {
-		int instruction = getInstructionBitStream(parsedInstrutions.get(Components
-				.getPC()));
+		int instruction = getInstructionBitStream(parsedInstrutions
+				.get(Components.getPC()));
 
 		IFIDRegister.setInstruction(instruction);
 		IFIDRegister.setPc(Components.incrementPC());

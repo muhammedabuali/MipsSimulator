@@ -28,7 +28,6 @@ public class Parser {
 		LinkedList<String> instruction = removeSeprators(currInstruction
 				.replace(' ', ',').split(","));
 		if (instruction.get(0).endsWith(":")) {
-			// this is a label
 			Utilities.setLabelNumber(instruction.removeFirst(), line);
 		}
 		String[] res = new String[instruction.size()];
