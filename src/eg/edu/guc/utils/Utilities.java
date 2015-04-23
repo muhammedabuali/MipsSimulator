@@ -1,4 +1,4 @@
-package eg.edu.guc.utilities;
+package eg.edu.guc.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +10,7 @@ import java.util.Hashtable;
 import eg.edu.guc.registers.Register;
 import eg.edu.guc.registers.RegisterFile;
 
-public class Utils {
+public class Utilities {
 
 	private static BufferedReader reader;
 	private static Hashtable<String, String[]> instructionNameData;
