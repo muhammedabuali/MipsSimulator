@@ -4,7 +4,7 @@ import eg.edu.guc.registers.Register;
 
 public class Utilities {
 
-	public static Register getResgisterByName(String regName) {
+	public static Register getRegisterByName(String regName) {
 		if (Constants.nameRegister == null)
 			Constants.initializeNameRegisterHtbl();
 		if (Constants.nameRegister.containsKey(regName))

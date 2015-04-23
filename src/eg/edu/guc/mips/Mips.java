@@ -66,7 +66,7 @@ public class Mips {
 			return getIInstructionBitStream(instName, instOpCode, instFunCode,
 					instructionSplitted[1], instructionSplitted[2]);
 		} else if (instType.equals("J")) {
-			return getjInstructionBitStream(instName, instOpCode,
+			return getJInstructionBitStream(instName, instOpCode,
 					instructionSplitted[1]);
 		}
 
@@ -80,19 +80,23 @@ public class Mips {
 	 * [B31-26, B25-21, B20-16, B15-11, B10-6, B5-0]
 	 *
 	 * [opcode, register s, register t, register d, shift amount, function]
-	 * 
-	 * @param instName
-	 * @param opCode
-	 * @param funCode
-	 * @param destReg
-	 * @param srcReg
-	 * @param targetReg
-	 * @return
 	 */
-	private int getRInstructionBitStream(String instName, String opCode,
-			String funCode, String destReg, String srcReg, String targetReg) {
+	private int getRInstructionBitStream(String instName, String instOpCode,
+			String instFunCode, String destReg, String srcReg, String targetReg) {
 		// TODO Auto-generated method stub
-		return 0;
+		int opCode = Integer.parseInt(instOpCode, 16);
+		int funCode = Integer.parseInt(instFunCode, 16);
+		int destRegNum = Utilities.getRegisterByName(destReg).getNumber();
+		int srcRegNum = Utilities.getRegisterByName(srcReg).getNumber();
+		int targetRegNum = 0;
+		int shiftamount = 0;
+		if (targetReg.charAt(0) == '$') {
+			targetRegNum = Utilities.getRegisterByName(targetReg).getNumber();
+		} else {
+			shiftamount = Integer.parseInt(targetReg, 16);
+		}
+		return (opCode << 26) | (srcRegNum << 21) | (targetRegNum << 16)
+				| (destRegNum << 11) | (shiftamount << 6) | (funCode);
 	}
 
 	/**
@@ -102,14 +106,8 @@ public class Mips {
 	 * 
 	 * [opcode, register s, register t, immediate]
 	 * 
-	 * @param instName
-	 * @param opCode
-	 * @param srcReg
-	 * @param targetReg
-	 * @param immediate
-	 * @return
 	 */
-	private int getIInstructionBitStream(String instName, String opCode,
+	private int getIInstructionBitStream(String instName, String instOpCode,
 			String srcReg, String targetReg, String immediate) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -122,12 +120,8 @@ public class Mips {
 	 * 
 	 * [opcode, target]
 	 * 
-	 * @param instName
-	 * @param opCode
-	 * @param target
-	 * @return
 	 */
-	private int getjInstructionBitStream(String instName, String opCode,
+	private int getJInstructionBitStream(String instName, String instOpCode,
 			String target) {
 		// TODO Auto-generated method stub
 		return 0;

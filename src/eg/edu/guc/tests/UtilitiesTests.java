@@ -11,7 +11,7 @@ public class UtilitiesTests {
 	@Test
 	public void testGetRegByName() {
 		RegisterFile.init();
-		int atRegNum = Utilities.getResgisterByName("$at").getNumber();
+		int atRegNum = Utilities.getRegisterByName("$at").getNumber();
 		assertTrue("Should be 1", atRegNum == 1);
 	}
 
