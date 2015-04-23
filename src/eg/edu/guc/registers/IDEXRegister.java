@@ -7,127 +7,129 @@ package eg.edu.guc.registers;
  */
 public class IDEXRegister {
 
-    private int pc, registerOneValue, registerTwoValue, offset;
+    private static int pc, registerOneValue, registerTwoValue, offset;
 
-    private byte rt, rd;
+    private static byte rt, rd;
 
     //WB controls
 
-    boolean memToReg, RegWrite;
+    static boolean memToReg, RegWrite;
 
     //Memory controls
 
-    boolean memWrite, memRead;
+    static boolean memWrite, memRead, branch;
 
     //EX controls
 
-    boolean regDest, aluOp, aluSrc;
+    static boolean regDest, aluSrc;
 
-    public int getPc() {
+    static int aluOp;
+
+    public static int getPc() {
         return pc;
     }
 
-    public void setPc(int pc) {
-        this.pc = pc;
+    public static void setPc(int pc) {
+        IDEXRegister.pc = pc;
     }
 
-    public int getRegisterOneValue() {
+    public static int getRegisterOneValue() {
         return registerOneValue;
     }
 
-    public void setRegisterOneValue(int registerOneValue) {
-        this.registerOneValue = registerOneValue;
+    public static void setRegisterOneValue(int registerOneValue) {
+        IDEXRegister.registerOneValue = registerOneValue;
     }
 
-    public int getRegisterTwoValue() {
+    public static int getRegisterTwoValue() {
         return registerTwoValue;
     }
 
-    public void setRegisterTwoValue(int registerTwoValue) {
-        this.registerTwoValue = registerTwoValue;
+    public static void setRegisterTwoValue(int registerTwoValue) {
+        IDEXRegister.registerTwoValue = registerTwoValue;
     }
 
-    public int getOffset() {
+    public static int getOffset() {
         return offset;
     }
 
-    public void setOffset(int offset) {
-        this.offset = offset;
+    public static void setOffset(int offset) {
+        IDEXRegister.offset = offset;
     }
 
-    public byte getRt() {
+    public static byte getRt() {
         //TODO mask
         return rt;
     }
 
-    public void setRt(byte rt) {
+    public static void setRt(byte rt) {
         //TODO Check length ... 5
-        this.rt = rt;
+        IDEXRegister.rt = rt;
     }
 
-    public byte getRd() {
+    public static byte getRd() {
         //TODO mask
         return rd;
     }
 
-    public void setRd(byte rd) {
+    public static void setRd(byte rd) {
         //TODO Check length ... 5
-        this.rd = rd;
+        IDEXRegister.rd = rd;
     }
 
-    public boolean isMemToReg() {
+    public static boolean isMemToReg() {
         return memToReg;
     }
 
-    public void setMemToReg(boolean memToReg) {
-        this.memToReg = memToReg;
+    public static void setMemToReg(boolean memToReg) {
+        IDEXRegister.memToReg = memToReg;
     }
 
-    public boolean isRegWrite() {
+    public static boolean isRegWrite() {
         return RegWrite;
     }
 
-    public void setRegWrite(boolean regWrite) {
+    public static void setRegWrite(boolean regWrite) {
         RegWrite = regWrite;
     }
 
-    public boolean isMemWrite() {
+    public static boolean isMemWrite() {
         return memWrite;
     }
 
-    public void setMemWrite(boolean memWrite) {
-        this.memWrite = memWrite;
+    public static void setMemWrite(boolean memWrite) {
+        IDEXRegister.memWrite = memWrite;
     }
 
-    public boolean isMemRead() {
+    public static boolean isMemRead() {
         return memRead;
     }
 
-    public void setMemRead(boolean memRead) {
-        this.memRead = memRead;
+    public static void setMemRead(boolean memRead) {
+        IDEXRegister.memRead = memRead;
     }
 
-    public boolean isRegDest() {
+    public static boolean isRegDest() {
         return regDest;
     }
 
-    public void setRegDest(boolean regDest) {
-        this.regDest = regDest;
+    public static void setRegDest(boolean regDest) {
+        IDEXRegister.regDest = regDest;
     }
 
-    public boolean isAluOp() {
+    public static int isAluOp() {
         return aluOp;
     }
 
-    public void setAluOp(boolean aluOp) {
-        this.aluOp = aluOp;
+    public static void setAluOp(int aluOp) {
+        IDEXRegister.aluOp = aluOp;
     }
 
-    public boolean isAluSrc() {
+    public static boolean isAluSrc() {
         return aluSrc;
     }
 
-    public void setAluSrc(boolean aluSrc) {
-        this.aluSrc = aluSrc;
+    public static void setAluSrc(boolean aluSrc) {
+        IDEXRegister.aluSrc = aluSrc;
     }
 }
