@@ -15,8 +15,8 @@ public class Parser {
 	 */
 	public static ArrayList<String[]> parseInstructions(
 			ArrayList<String> instructions) {
-		int line = 0;
 		ArrayList<String[]> res = new ArrayList<String[]>();
+		int line = 0;
 		for (String currInstruction : instructions) {
 			res.add(parseInstruction(currInstruction, line));
 			line++;
@@ -31,7 +31,11 @@ public class Parser {
 			// this is a label
 			Utilities.setLabelNumber(instruction.removeFirst(), line);
 		}
-		return null;
+		String[] res = new String[instruction.size()];
+		int i = 0;
+		for (String str : instruction)
+			res[i++] = str;
+		return res;
 	}
 
 	private static LinkedList<String> removeSeprators(String[] splitted) {

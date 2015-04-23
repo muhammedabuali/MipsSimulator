@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import eg.edu.guc.mips.Mips;
+import eg.edu.guc.mips.Parser;
 import eg.edu.guc.registers.RegisterFile;
 
 public class MipsTests {
@@ -14,7 +15,8 @@ public class MipsTests {
 		RegisterFile.init();
 		Mips m = new Mips();
 
-		int instCode = m.getInstructionBitStream("add $t1, $t2, $t3");
+		int instCode = m.getInstructionBitStream(Parser.parseInstruction(
+				"add $t1, $t2, $t3", 1));
 		assertTrue(
 				"The code for the instruction should be 0x014b4820 as found in mars",
 				Integer.toHexString(instCode).equals("14b4820"));
@@ -25,7 +27,8 @@ public class MipsTests {
 		RegisterFile.init();
 		Mips m = new Mips();
 
-		int instCode = m.getInstructionBitStream("addi $t1, $t2, 11");
+		int instCode = m.getInstructionBitStream(Parser.parseInstruction(
+				"addi $t1, $t2, 11", 1));
 		assertTrue(
 				"The code for the instruction should be 0x2149000b as found in mars",
 				Integer.toHexString(instCode).equals("2149000b"));
