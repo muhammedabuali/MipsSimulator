@@ -65,6 +65,8 @@ public class Constants {
 
 		nameRegister.put("$0", RegisterFile.ZERO_REGISTER);
 
+		nameRegister.put("$at", RegisterFile.AT_REGISTER);
+
 		nameRegister.put("$v0", RegisterFile.V0_REGISTER);
 		nameRegister.put("$v1", RegisterFile.V1_REGISTER);
 

@@ -73,38 +73,40 @@ public class RegisterFile {
 	 */
 	public static boolean init() {
 		// TODO can be done using reflection ?
-		A0_REGISTER = new Register(0);
-		A1_REGISTER = new Register(0);
-		A2_REGISTER = new Register(0);
-		A3_REGISTER = new Register(0);
+		AT_REGISTER = new Register(0, 1);
+
+		A0_REGISTER = new Register(0, 4);
+		A1_REGISTER = new Register(0, 5);
+		A2_REGISTER = new Register(0, 6);
+		A3_REGISTER = new Register(0, 7);
 
 		V0_REGISTER = new Register(0, 2);
 		V1_REGISTER = new Register(0, 3);
 
-		T0_REGISTER = new Register(0);
-		T1_REGISTER = new Register(0);
-		T2_REGISTER = new Register(0);
-		T3_REGISTER = new Register(0);
-		T4_REGISTER = new Register(0);
-		T5_REGISTER = new Register(0);
-		T6_REGISTER = new Register(0);
-		T7_REGISTER = new Register(0);
-		T8_REGISTER = new Register(0);
-		T9_REGISTER = new Register(0);
+		T0_REGISTER = new Register(0, 8);
+		T1_REGISTER = new Register(0, 9);
+		T2_REGISTER = new Register(0, 10);
+		T3_REGISTER = new Register(0, 11);
+		T4_REGISTER = new Register(0, 12);
+		T5_REGISTER = new Register(0, 13);
+		T6_REGISTER = new Register(0, 14);
+		T7_REGISTER = new Register(0, 15);
+		T8_REGISTER = new Register(0, 24);
+		T9_REGISTER = new Register(0, 25);
 
-		S0_REGISTER = new Register(0);
-		S1_REGISTER = new Register(0);
-		S2_REGISTER = new Register(0);
-		S3_REGISTER = new Register(0);
-		S4_REGISTER = new Register(0);
-		S5_REGISTER = new Register(0);
-		S6_REGISTER = new Register(0);
-		S7_REGISTER = new Register(0);
+		S0_REGISTER = new Register(0, 16);
+		S1_REGISTER = new Register(0, 17);
+		S2_REGISTER = new Register(0, 18);
+		S3_REGISTER = new Register(0, 19);
+		S4_REGISTER = new Register(0, 20);
+		S5_REGISTER = new Register(0, 21);
+		S6_REGISTER = new Register(0, 22);
+		S7_REGISTER = new Register(0, 23);
 
-		GP_REGISTER = new Register(0);
-		SP_REGISTER = new Register(0);
-		FP_REGISTER = new Register(0);
-		RA_REGISTER = new Register(0);
+		GP_REGISTER = new Register(0, 28);
+		SP_REGISTER = new Register(0, 29);
+		FP_REGISTER = new Register(0, 30);
+		RA_REGISTER = new Register(0, 31);
 
 		// TODO Reference the pipeline registers here
 
