@@ -43,8 +43,6 @@ public class Constants {
 	protected static void initializeNameRegisterHtbl() {
 		nameRegister = new Hashtable<String, Register>();
 
-		RegisterFile.init();
-
 		nameRegister.put("$a0", RegisterFile.A0_REGISTER);
 		nameRegister.put("$a1", RegisterFile.A1_REGISTER);
 		nameRegister.put("$a2", RegisterFile.A2_REGISTER);
