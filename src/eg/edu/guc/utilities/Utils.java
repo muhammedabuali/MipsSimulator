@@ -16,6 +16,9 @@ public class Utils {
 	private static Hashtable<String, String[]> instructionNameData;
 	private static Hashtable<String, Register> nameRegister;
 
+	/**
+	 * reads all instructions from csv file and adds them to the htbl
+	 */
 	public static void readInstructionsData() {
 		instructionNameData = new Hashtable<String, String[]>();
 		String instructionsDataPath = "src/eg/edu/guc/data/instructions.csv";
@@ -35,8 +38,7 @@ public class Utils {
 	}
 
 	/**
-	 * adds each Register in the registerFile class into the nameRegister hash
-	 * table
+	 * adds each Register in the registerFile class into the nameRegister htbl
 	 */
 	public static void initializeNameRegisterHtbl() {
 		nameRegister = new Hashtable<String, Register>();
@@ -61,6 +63,7 @@ public class Utils {
 		nameRegister.put("$s7", RegisterFile.S7_REGISTER);
 
 		nameRegister.put("$sp", RegisterFile.SP_REGISTER);
+		nameRegister.put("$gp", RegisterFile.GP_REGISTER);
 
 		nameRegister.put("$0", RegisterFile.ZERO_REGISTER);
 
@@ -77,6 +80,12 @@ public class Utils {
 		nameRegister.put("$t7", RegisterFile.T7_REGISTER);
 		nameRegister.put("$t8", RegisterFile.T8_REGISTER);
 		nameRegister.put("$t9", RegisterFile.T9_REGISTER);
+
+		nameRegister.put("ifid", RegisterFile.IF_ID_REGISTER);
+		nameRegister.put("idex", RegisterFile.ID_EX_REGISTER);
+		nameRegister.put("exmem", RegisterFile.EX_MEM_REGISTER);
+		nameRegister.put("exwb", RegisterFile.EX_WB_REGISTER);
+
 	}
 
 }
