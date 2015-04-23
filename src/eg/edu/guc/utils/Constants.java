@@ -94,6 +94,7 @@ public class Constants {
 			Register curr = registers.nextElement();
 			numberRegister.put(curr.getNumber(), curr);
 		}
+		System.out.println(numberRegister.toString());
 	}
 
 }
