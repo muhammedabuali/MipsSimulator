@@ -12,7 +12,7 @@ import eg.edu.guc.utils.Utilities;
 
 public class Mips {
 	private ArrayList<String> instructions;
-
+	
 	/**
 	 * Reading a file containing a mips instructions
 	 *
@@ -26,14 +26,15 @@ public class Mips {
 		while ((line = reader.readLine()) != null)
 			instructions.add(line);
 		reader.close();
+		Parser.parseInstructions(instructions);
 	}
 
 	/**
 	 * Fetching an instruction from the loaded instructions
 	 */
 	public int fetch() {
-		int instruction = getInstructionBitStream(instructions[Components
-				.getPC()]);
+		int instruction = getInstructionBitStream(instructions.get(Components
+				.getPC()));
 
 		IFIDRegister.setInstruction(instruction);
 		IFIDRegister.setPc(Components.incrementPC());
