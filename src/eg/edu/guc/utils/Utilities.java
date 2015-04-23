@@ -7,7 +7,7 @@ public class Utilities {
 	public static Register getResgisterByName(String regName) {
 		if (Constants.nameRegister == null)
 			Constants.initializeNameRegisterHtbl();
-		if (Constants.nameRegister.contains(regName))
+		if (Constants.nameRegister.containsKey(regName))
 			return Constants.nameRegister.get(regName);
 		System.err.println("Register " + regName
 				+ " was not found in the Registers table");
@@ -17,7 +17,7 @@ public class Utilities {
 	public static Register getRegisterByNumber(int regNum) {
 		if (Constants.numberRegister == null)
 			Constants.initializeNumberRegisterHtbl();
-		if (Constants.numberRegister.contains(regNum))
+		if (Constants.numberRegister.containsKey(regNum))
 			return Constants.numberRegister.get(regNum);
 		System.err.println("Register number " + regNum
 				+ " was not found in the Registers table");
