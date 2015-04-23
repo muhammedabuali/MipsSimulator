@@ -8,8 +8,11 @@ public class Parser {
 	 * into the hashtable
 	 * 
 	 * @param instructions
+	 * @return
 	 */
-	public static void parseInstructions(ArrayList<String> instructions) {
-		
+	public static ArrayList<String[]> parseInstructions(
+			ArrayList<String> instructions) {
+		// TODO
+		return null;
 	}
 }

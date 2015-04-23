@@ -12,7 +12,8 @@ import eg.edu.guc.utils.Utilities;
 
 public class Mips {
 	private ArrayList<String> instructions;
-	
+	private ArrayList<String[]> parsedInstrutions;
+
 	/**
 	 * Reading a file containing a mips instructions
 	 *
@@ -26,7 +27,7 @@ public class Mips {
 		while ((line = reader.readLine()) != null)
 			instructions.add(line);
 		reader.close();
-		Parser.parseInstructions(instructions);
+		parsedInstrutions = Parser.parseInstructions(instructions);
 	}
 
 	/**
@@ -45,15 +46,13 @@ public class Mips {
 	/**
 	 * Converting an instruction to equivalent bits
 	 * 
-	 * @param instruction
+	 * @param instructionaa
 	 * @return
 	 */
-	public int getInstructionBitStream(String instruction) {
+	public int getInstructionBitStream(String[] instruction) {
 		// TODO Convert instruction to the appropriate bitstream
-		Object[] instructionSplitted = removeSeprators(instruction.replace(' ',
-				',').split(","));
 		String[] instructionData = Utilities
-				.getInstructionDataByName(instructionSplitted[0].toString());
+				.getInstructionDataByName(instruction[0].toString());
 
 		String instName = instructionData[0];
 		String instType = instructionData[1];
@@ -62,20 +61,15 @@ public class Mips {
 
 		if (instType.equals("R")) {
 			return getRInstructionBitStream(instName, instOpCode, instFunCode,
-					instructionSplitted[1].toString(),
-					instructionSplitted[2].toString(),
-					instructionSplitted[3].toString());
+					instruction[1].toString(), instruction[2].toString(),
+					instruction[3].toString());
 		} else if (instType.equals("I")) {
-			return getIInstructionBitStream(
-					instName,
-					instOpCode,
-					instructionSplitted[1].toString(),
-					instructionSplitted[2].toString(),
-					instructionSplitted.length == 4 ? instructionSplitted[3]
-							.toString() : "");
+			return getIInstructionBitStream(instName, instOpCode,
+					instruction[1].toString(), instruction[2].toString(),
+					instruction.length == 4 ? instruction[3].toString() : "");
 		} else if (instType.equals("J")) {
 			return getJInstructionBitStream(instName, instOpCode,
-					instructionSplitted[1].toString());
+					instruction[1].toString());
 		}
 
 		return -1;
