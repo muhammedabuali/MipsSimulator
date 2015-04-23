@@ -27,7 +27,7 @@ public class Utilities {
 	public static String[] getInstructionDataByName(String instName) {
 		if (Constants.instructionNameData == null)
 			Constants.readInstructionsData();
-		if (Constants.instructionNameData.contains(instName))
+		if (Constants.instructionNameData.containsKey(instName))
 			return Constants.instructionNameData.get(instName);
 		System.err.println("Unknown Instruction " + instName);
 		return null;
