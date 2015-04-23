@@ -67,9 +67,13 @@ public class Mips {
 					instructionSplitted[2].toString(),
 					instructionSplitted[3].toString());
 		} else if (instType.equals("I")) {
-			return getIInstructionBitStream(instName, instOpCode, instFunCode,
+			return getIInstructionBitStream(
+					instName,
+					instOpCode,
 					instructionSplitted[1].toString(),
-					instructionSplitted[2].toString());
+					instructionSplitted[2].toString(),
+					instructionSplitted.length == 4 ? instructionSplitted[3]
+							.toString() : "");
 		} else if (instType.equals("J")) {
 			return getJInstructionBitStream(instName, instOpCode,
 					instructionSplitted[1].toString());
@@ -98,7 +102,6 @@ public class Mips {
 	private int getRInstructionBitStream(String instName, String instOpCode,
 			String instFunctionCode, String destReg, String srcReg,
 			String targetReg) {
-		// TODO Auto-generated method stub
 		int opCode = Integer.parseInt(instOpCode, 16);
 		int funCode = Integer.parseInt(instFunctionCode, 16);
 		int destRegNum = Utilities.getRegisterByName(destReg).getNumber();
@@ -123,9 +126,24 @@ public class Mips {
 	 * 
 	 */
 	private int getIInstructionBitStream(String instName, String instOpCode,
-			String srcReg, String targetReg, String immediate) {
-		// TODO Auto-generated method stub
-		return 0;
+			String targetReg, String srcReg, String immediate) {
+		int opCode = Integer.parseInt(instOpCode, 16);
+		int targetRegNum = Utilities.getRegisterByName(targetReg).getNumber();
+		int srcRegNum = 0;
+		int constant = 0;
+		if (immediate.length() > 0) {
+			srcRegNum = Utilities.getRegisterByName(srcReg).getNumber();
+			constant = Integer.parseInt(immediate);
+		} else {
+			// lw or sw or lb or sb
+			constant = Integer
+					.parseInt(srcReg.substring(0, srcReg.indexOf('(')));
+			srcReg = srcReg.substring(srcReg.indexOf("(") + 1,
+					srcReg.indexOf(")"));
+			srcRegNum = Integer.parseInt(srcReg);
+		}
+		return (opCode << 26) | (srcRegNum << 21) | (targetRegNum << 16)
+				| (constant);
 	}
 
 	/**
