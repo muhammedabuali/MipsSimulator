@@ -156,8 +156,9 @@ public class Mips {
 	 */
 	private int getJInstructionBitStream(String instName, String instOpCode,
 			String target) {
-		// TODO Auto-generated method stub
-		return 0;
+		int opCode = Integer.parseInt(instOpCode, 16);
+		int constant = Integer.parseInt(target);
+		return (opCode << 26) | (constant);
 	}
 
 }
