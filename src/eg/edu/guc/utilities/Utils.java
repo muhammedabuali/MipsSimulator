@@ -18,6 +18,7 @@ public class Utils {
 
 	/**
 	 * reads all instructions from csv file and adds them to the htbl
+	 * instructions data goes like (name,type,opcode,funcode)
 	 */
 	public static void readInstructionsData() {
 		instructionNameData = new Hashtable<String, String[]>();
@@ -81,11 +82,14 @@ public class Utils {
 		nameRegister.put("$t8", RegisterFile.T8_REGISTER);
 		nameRegister.put("$t9", RegisterFile.T9_REGISTER);
 
-		nameRegister.put("ifid", RegisterFile.IF_ID_REGISTER);
-		nameRegister.put("idex", RegisterFile.ID_EX_REGISTER);
-		nameRegister.put("exmem", RegisterFile.EX_MEM_REGISTER);
-		nameRegister.put("exwb", RegisterFile.EX_WB_REGISTER);
+	}
 
+	public static Register getResgisterByName(String regName) {
+		if (nameRegister.contains(regName))
+			return nameRegister.get(regName);
+		System.err.println("Register " + regName
+				+ " was not found in the Registers table");
+		return null;
 	}
 
 }
