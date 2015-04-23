@@ -14,6 +14,16 @@ public class Utilities {
 		return null;
 	}
 
+	public static Register getRegisterByNumber(int regNum) {
+		if (Constants.numberRegister == null)
+			Constants.initializeNumberRegisterHtbl();
+		if (Constants.numberRegister.contains(regNum))
+			return Constants.numberRegister.get(regNum);
+		System.err.println("Register number " + regNum
+				+ " was not found in the Registers table");
+		return null;
+	}
+
 	public static String[] getInstructionDataByName(String instName) {
 		if (Constants.instructionNameData == null)
 			Constants.readInstructionsData();
