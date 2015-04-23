@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 import eg.edu.guc.registers.IFIDRegister;
 import eg.edu.guc.utils.Utilities;
@@ -157,7 +154,7 @@ public class Mips {
 	private int getJInstructionBitStream(String instName, String instOpCode,
 			String target) {
 		int opCode = Integer.parseInt(instOpCode, 16);
-		int constant = Integer.parseInt(target);
+		int constant = Utilities.getLabelNumber(target);
 		return (opCode << 26) | (constant);
 	}
 

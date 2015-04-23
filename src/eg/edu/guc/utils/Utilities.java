@@ -33,4 +33,13 @@ public class Utilities {
 		return null;
 	}
 
+	public static int getLabelNumber(String label) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static void setLabelNumber(String label, int number) {
+		// TODO Auto-generated method stub
+	}
+
 }
