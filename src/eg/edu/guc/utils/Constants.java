@@ -16,6 +16,7 @@ public class Constants {
 	protected static Hashtable<String, String[]> instructionNameData;
 	protected static Hashtable<String, Register> nameRegister;
 	protected static Hashtable<Integer, Register> numberRegister;
+	protected static Hashtable<String, Integer> labelNameNumber = new Hashtable<String, Integer>();
 
 	/**
 	 * reads all instructions from csv file and adds them to the htbl
