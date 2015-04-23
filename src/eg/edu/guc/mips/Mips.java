@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import eg.edu.guc.registers.IFIDRegister;
 import eg.edu.guc.utils.Utilities;
@@ -45,13 +49,12 @@ public class Mips {
 	 * @param instruction
 	 * @return
 	 */
-	private int getInstructionBitStream(String instruction) {
+	public int getInstructionBitStream(String instruction) {
 		// TODO Convert instruction to the appropriate bitstream
-		instruction = instruction.replace(',', ' ');
-		String[] instructionSplitted = instruction.split(" ");
-
+		Object[] instructionSplitted = removeSeprators(instruction.replace(' ',
+				',').split(","));
 		String[] instructionData = Utilities
-				.getInstructionDataByName(instructionSplitted[0]);
+				.getInstructionDataByName(instructionSplitted[0].toString());
 
 		String instName = instructionData[0];
 		String instType = instructionData[1];
@@ -60,17 +63,28 @@ public class Mips {
 
 		if (instType.equals("R")) {
 			return getRInstructionBitStream(instName, instOpCode, instFunCode,
-					instructionSplitted[1], instructionSplitted[2],
-					instructionSplitted[3]);
+					instructionSplitted[1].toString(),
+					instructionSplitted[2].toString(),
+					instructionSplitted[3].toString());
 		} else if (instType.equals("I")) {
 			return getIInstructionBitStream(instName, instOpCode, instFunCode,
-					instructionSplitted[1], instructionSplitted[2]);
+					instructionSplitted[1].toString(),
+					instructionSplitted[2].toString());
 		} else if (instType.equals("J")) {
 			return getJInstructionBitStream(instName, instOpCode,
-					instructionSplitted[1]);
+					instructionSplitted[1].toString());
 		}
 
 		return -1;
+	}
+
+	private Object[] removeSeprators(String[] splitted) {
+		LinkedList<String> res = new LinkedList<String>();
+		for (String curr : splitted)
+			if (!curr.isEmpty() && curr.charAt(0) != ' ')
+				res.add(curr);
+
+		return res.toArray();
 	}
 
 	/**
@@ -82,10 +96,11 @@ public class Mips {
 	 * [opcode, register s, register t, register d, shift amount, function]
 	 */
 	private int getRInstructionBitStream(String instName, String instOpCode,
-			String instFunCode, String destReg, String srcReg, String targetReg) {
+			String instFunctionCode, String destReg, String srcReg,
+			String targetReg) {
 		// TODO Auto-generated method stub
 		int opCode = Integer.parseInt(instOpCode, 16);
-		int funCode = Integer.parseInt(instFunCode, 16);
+		int funCode = Integer.parseInt(instFunctionCode, 16);
 		int destRegNum = Utilities.getRegisterByName(destReg).getNumber();
 		int srcRegNum = Utilities.getRegisterByName(srcReg).getNumber();
 		int targetRegNum = 0;
