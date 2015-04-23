@@ -11,15 +11,15 @@ import eg.edu.guc.registers.Register;
 import eg.edu.guc.registers.RegisterFile;
 
 public class Constants {
-	private static BufferedReader reader;
-	private static Hashtable<String, String[]> instructionNameData;
-	private static Hashtable<String, Register> nameRegister;
+	protected static BufferedReader reader;
+	protected static Hashtable<String, String[]> instructionNameData;
+	protected static Hashtable<String, Register> nameRegister;
 
 	/**
 	 * reads all instructions from csv file and adds them to the htbl
 	 * instructions data goes like (name,type,opcode,funcode)
 	 */
-	public static void readInstructionsData() {
+	protected static void readInstructionsData() {
 		instructionNameData = new Hashtable<String, String[]>();
 		String instructionsDataPath = "src/eg/edu/guc/data/instructions.csv";
 		File file = new File(instructionsDataPath);
@@ -40,7 +40,7 @@ public class Constants {
 	/**
 	 * adds each Register in the registerFile class into the nameRegister htbl
 	 */
-	public static void initializeNameRegisterHtbl() {
+	protected static void initializeNameRegisterHtbl() {
 		nameRegister = new Hashtable<String, Register>();
 
 		RegisterFile.init();
