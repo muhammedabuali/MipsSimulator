@@ -35,11 +35,15 @@ public class Utilities {
 
 	public static int getLabelNumber(String label) {
 		// TODO Auto-generated method stub
-		return 0;
+		if (Constants.labelNameNumber.containsKey(label))
+			return Constants.labelNameNumber.get(label);
+		System.err.println("Label name " + label
+				+ " was not found in the table");
+		return -1;
 	}
 
 	public static void setLabelNumber(String label, int number) {
-		// TODO Auto-generated method stub
+		Constants.labelNameNumber.put(label, number);
 	}
 
 }
