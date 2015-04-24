@@ -49,6 +49,10 @@ public class Utilities {
 		return null;
 	}
 
+	public static void setLabelNumber(String label, int number) {
+		Constants.labelNameNumber.put(label, number);
+	}
+
 	public static int getLabelNumber(String label) {
 		if (Constants.labelNameNumber.containsKey(label))
 			return Constants.labelNameNumber.get(label);
@@ -58,15 +62,9 @@ public class Utilities {
 	}
 
 	public static int getSubset(int originalNumber, int start, int end) {
-		int mask = 0;
-		for (int i = start; i <= end; i++) {
-			mask += Math.pow(2, i);
-		}
-		return (originalNumber & mask) >> start;
-	}
-
-	public static void setLabelNumber(String label, int number) {
-		Constants.labelNameNumber.put(label, number);
+		originalNumber = originalNumber >> start;
+		originalNumber = originalNumber & ((1 << end) - 1);
+		return originalNumber;
 	}
 
 }
