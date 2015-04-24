@@ -26,6 +26,6 @@ public class UtilitiesTests {
 	public void testGetInstNameByOpcode() {
 		RegisterFile.init();
 		String instruction = Utilities.getInstructionNameByOpcode(32);
-		assertTrue("the instruction should be add", instruction.equals("add"));
+		assertTrue("The instruction should be add", instruction.equals("add"));
 	}
 }

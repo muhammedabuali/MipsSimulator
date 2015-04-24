@@ -43,13 +43,21 @@ public class Mips {
 		int rd = register1.getNumber();
 		IDEXRegister.setRd((byte) rd);
 
-		String opearation = "";// to be filled when abkr finished his task
+		int opcode = (instruction >> 26) << 26;
+
+		if (opcode == 0) {
+			// R format Instruction need to get function code
+			int functioncode = instruction & ((1 << 6) - 1); // anding with mask
+			opcode |= functioncode;
+		}
+
+		String operation = Utilities.getInstructionNameByOpcode(opcode);
 
 		/*
-		 * ALU src : whether the ALu should take input from registers (false)or
+		 * ALU src : whether the ALU should take input from registers (false)or
 		 * sign extended input)
 		 */
-		switch (opearation) {
+		switch (operation) {
 		// arithmatic
 		case "add":
 			setControSignals(false, true, 0b10, false, false, false, false,
