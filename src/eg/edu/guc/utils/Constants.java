@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 import eg.edu.guc.registers.Register;
@@ -14,6 +15,8 @@ public class Constants {
 	protected static BufferedReader reader;
 	protected static Hashtable<String, String[]> instructionNameData;
 	protected static Hashtable<String, Register> nameRegister;
+	protected static Hashtable<Integer, Register> numberRegister;
+	protected static Hashtable<String, Integer> labelNameNumber = new Hashtable<String, Integer>();
 
 	/**
 	 * reads all instructions from csv file and adds them to the htbl
@@ -81,6 +84,17 @@ public class Constants {
 		nameRegister.put("$t8", RegisterFile.T8_REGISTER);
 		nameRegister.put("$t9", RegisterFile.T9_REGISTER);
 
+	}
+
+	protected static void initializeNumberRegisterHtbl() {
+		numberRegister = new Hashtable<Integer, Register>();
+		if (nameRegister == null)
+			initializeNameRegisterHtbl();
+		Enumeration<Register> registers = nameRegister.elements();
+		while (registers.hasMoreElements()) {
+			Register curr = registers.nextElement();
+			numberRegister.put(curr.getNumber(), curr);
+		}
 	}
 
 }
