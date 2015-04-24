@@ -35,34 +35,92 @@ public class Mips {
 
          */
         switch (opearation) {
+            //arithmatic
             case "add":
-                setControSignals(false,true,0b10,false,false,false,false,false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
                 break;
 
             case "sub":
-                setControSignals(false,true,0b10,false,false,false,false,false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
                 break;
 
             case "addi":
-                setControSignals(true,true,0b00,false,false,false,false,false);
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, false);
                 break;
-
+            //loading from memory
             case "lw":
-                setControSignals(true,false,0b00,true,false,false,true,true);
-                break;
-
-            case "sw":
-                setControSignals(true,false,0b00,false,true,false,false,false);
+                setControSignals(true, false, 0b00, true, false, false, true, true, false, false, false);
                 break;
 
             case "lb":
-                setControSignals(true,true,0b00,false,false,false,false,false);
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, true, false);
                 break;
+
+            case "lbu":
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, true, true);
+                break;
+
+            case "sw":
+                setControSignals(true, false, 0b00, false, true, false, false, false, false, false, false);
+                break;
+
+            case "sb":
+                setControSignals(true, false, 0b00, false, true, false, false, false, false, true, false);
+                break;
+
+            case "lui"://needs to be redone
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, true, true);
+                break;
+
+            //logic
+            case "sll"://same as addi diffrence is in funct
+                setControSignals(true, true, 0b10, false, false, false, false, false, false, false, false);
+                break;
+
+            case "srl"://same as addi diffrence is in funct
+                setControSignals(true, true, 0b10, false, false, false, false, false, false, false, false);
+                break;
+
+            case "and"://same as add,sub diffrence is in funct
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
+                break;
+
+            case "nor"://same as add,sub diffrence is in funct
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
+                break;
+
+            //branching
+            case "beq"://same as add,sub diffrence is in funct
+                setControSignals(false, false, 0b10, false, false, true, false, false, false, false, false);
+                break;
+
+            case "bne"://same as add,sub diffrence is in funct
+                setControSignals(false, true, 0b10, false, false, true, false, false, true, false, false);
+                break;
+            //jumping
+            case "j"://0b11 im aluop converts 26bit address to 32bit address
+                setControSignals(true, false, 0b11, false, false, true, false, false, false, false, false);
+                break;
+
+            case "jal"://added new
+                setControSignals(,, false, 0b11, false, false, true, false, false, false, false, false);
+                break;
+
+            case "jr"://same as add,sub diffrence is in funct
+                setControSignals(false, true, 0b10, false, false, true, false, false, true, false, false);
+                break;
+
         }
 
     }
+
+    //added new MEM signal memByte to be used with lw , lb , lbu , sw
+    //added new MEM signal unsigned to be used with lw , lb , lbu , sw
+    //added new MEM signal "compOne" to use with beq , bne
+    //added new EX  signal "jump" to b diffrenciate between jump and branch
+    //00 beq bne ,01 j ,10 Jal ,11 jar
     public void setControSignals(boolean ALUSrc, boolean RegDst, int AlUop,
-                                 boolean MemRead, boolean MemWrite, boolean branch,
+                                 boolean MemRead, boolean MemWrite, boolean branch, boolean memByte, boolean unsigned, boolean compOne,
                                  boolean RegWrite, boolean MemToReg) {
 
 
@@ -78,6 +136,7 @@ public class Mips {
         //TODO Convert instruction to the appropriate bitstream
         return -1;
     }
+
     private void readProgram(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         instructions = new ArrayList<String>();
@@ -134,10 +193,10 @@ public class Mips {
 
     /**
      * retruns Integer that represents the given R Type Instruction
-     *
-     *
+     * <p/>
+     * <p/>
      * [B31-26, B25-21, B20-16, B15-11, B10-6, B5-0]
-     *
+     * <p/>
      * [opcode, register s, register t, register d, shift amount, function]
      */
     private int getRInstructionBitStream(String instName, String instOpCode,
@@ -160,11 +219,10 @@ public class Mips {
 
     /**
      * retruns Integer that represents the given I Type Instruction
-     *
+     * <p/>
      * [B31-26, B25-21, B20-16, B15-0]
-     *
+     * <p/>
      * [opcode, register s, register t, immediate]
-     *
      */
     private int getIInstructionBitStream(String instName, String instOpCode,
                                          String targetReg, String srcReg, String immediate) {
@@ -189,11 +247,10 @@ public class Mips {
 
     /**
      * retruns Integer that represents the given J Type Instruction
-     *
+     * <p/>
      * [B31-26, B25-0]
-     *
+     * <p/>
      * [opcode, target]
-     *
      */
     private int getJInstructionBitStream(String instName, String instOpCode,
                                          String target) {
