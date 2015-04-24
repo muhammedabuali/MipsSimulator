@@ -41,7 +41,14 @@ public class Utilities {
 				+ " was not found in the table");
 		return -1;
 	}
-
+	public static int getSubset(int originalNumber,int start , int end)//some one please recheck the logic
+	{
+		int mask = 0;
+		for (int i = start; i <= end ; i++) {
+			mask += Math.pow(2,i);
+		}
+		return (originalNumber & mask) >> start;
+	}
 	public static void setLabelNumber(String label, int number) {
 		Constants.labelNameNumber.put(label, number);
 	}

@@ -6,6 +6,7 @@ import eg.edu.guc.registers.IDEXRegister;
 import java.io.*;
 import java.util.ArrayList;
 
+import eg.edu.guc.registers.Register;
 import eg.edu.guc.utils.Utilities;
 
 public class Mips {
@@ -24,11 +25,22 @@ public class Mips {
 
         int instruction = IFIDRegister.getInstruction();
 
-        IDEXRegister.setPc(IFIDRegister.getPc());
+        IDEXRegister.setPc(IFIDRegister.getPc());//store 32 bit incremented PC
+        Register register1 = Utilities.getRegisterByNumber(Utilities.getSubset(IFIDRegister.getInstruction(), 21, 25));
+        IDEXRegister.setRegisterOneValue(register1.getData());//store register 1 data
 
-        IFIDRegister.setInstruction(instruction);
-        IFIDRegister.setPc(Components.incrementPC());
+        Register register2 = Utilities.getRegisterByNumber(Utilities.getSubset(IFIDRegister.getInstruction(), 16, 20));
+        IDEXRegister.setRegisterOneValue(register2.getData());//store register 2 data
 
+        int offset = Utilities.getSubset(IFIDRegister.getInstruction(), 15, 0);
+        IDEXRegister.setOffset(offset);//store offset
+
+        int rt = register1.getNumber();
+        IDEXRegister.setRt((byte) rt);
+
+        int rd = register1.getNumber();
+        IDEXRegister.setRd((byte) rd);
+        
         String opearation = "";
         /*
         ALU src : whether the ALu should take input from registers (false)or sign extended input)
@@ -37,77 +49,77 @@ public class Mips {
         switch (opearation) {
             //arithmatic
             case "add":
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
                 break;
 
             case "sub":
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
                 break;
 
             case "addi":
-                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, false);
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, false, false);
                 break;
             //loading from memory
             case "lw":
-                setControSignals(true, false, 0b00, true, false, false, true, true, false, false, false);
+                setControSignals(true, false, 0b00, true, false, false, false, true, true, false, false, false);
                 break;
 
             case "lb":
-                setControSignals(true, true, 0b00, false, false, false, false, false, false, true, false);
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, true, false);
                 break;
 
             case "lbu":
-                setControSignals(true, true, 0b00, false, false, false, false, false, false, true, true);
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, true, true);
                 break;
 
             case "sw":
-                setControSignals(true, false, 0b00, false, true, false, false, false, false, false, false);
+                setControSignals(true, false, 0b00, false, true, false, false, false, false, false, false, false);
                 break;
 
             case "sb":
-                setControSignals(true, false, 0b00, false, true, false, false, false, false, true, false);
+                setControSignals(true, false, 0b00, false, true, false, false, false, false, false, true, false);
                 break;
 
             case "lui"://needs to be redone
-                setControSignals(true, true, 0b00, false, false, false, false, false, false, true, true);
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, true, true);
                 break;
 
             //logic
             case "sll"://same as addi diffrence is in funct
-                setControSignals(true, true, 0b10, false, false, false, false, false, false, false, false);
+                setControSignals(true, true, 0b10, false, false, false, false, false, false, false, false, false);
                 break;
 
             case "srl"://same as addi diffrence is in funct
-                setControSignals(true, true, 0b10, false, false, false, false, false, false, false, false);
+                setControSignals(true, true, 0b10, false, false, false, false, false, false, false, false, false);
                 break;
 
             case "and"://same as add,sub diffrence is in funct
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
                 break;
 
             case "nor"://same as add,sub diffrence is in funct
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
                 break;
 
             //branching
             case "beq"://same as add,sub diffrence is in funct
-                setControSignals(false, false, 0b10, false, false, true, false, false, false, false, false);
+                setControSignals(false, false, 0b10, false, false, true, false, false, false, false, false, false);
                 break;
 
             case "bne"://same as add,sub diffrence is in funct
-                setControSignals(false, true, 0b10, false, false, true, false, false, true, false, false);
+                setControSignals(false, false, 0b10, false, false, true, false, false, false, true, false, false);
                 break;
             //jumping
             case "j"://0b11 im aluop converts 26bit address to 32bit address
-                setControSignals(true, false, 0b11, false, false, true, false, false, false, false, false);
+                setControSignals(false, false, 0b11, false, false, true, false, false, false, false, false, false);
                 break;
 
             case "jal"://added new
-                setControSignals(,, false, 0b11, false, false, true, false, false, false, false, false);
+                setControSignals(false, false, 0b11, false, false, true, false, false, false, false, false, false);
                 break;
 
             case "jr"://same as add,sub diffrence is in funct
-                setControSignals(false, true, 0b10, false, false, true, false, false, true, false, false);
+                setControSignals(false, false, 0b11, false, false, true, true, false, false, false, false, false);
                 break;
 
         }
@@ -120,7 +132,7 @@ public class Mips {
     //added new EX  signal "jump" to b diffrenciate between jump and branch
     //00 beq bne ,01 j ,10 Jal ,11 jar
     public void setControSignals(boolean ALUSrc, boolean RegDst, int AlUop,
-                                 boolean MemRead, boolean MemWrite, boolean branch, boolean memByte, boolean unsigned, boolean compOne,
+                                 boolean MemRead, boolean MemWrite, boolean branch, boolean jump, boolean memByte, boolean unsigned, boolean compOne,
                                  boolean RegWrite, boolean MemToReg) {
 
 

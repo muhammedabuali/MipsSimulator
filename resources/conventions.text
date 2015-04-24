@@ -1,0 +1,24 @@
+					Alu control
+------------------------------------------------------------------------------------------------
+ins    aluop  funct    aluAction   aluControlInput
+---------------------------------------------------
+lw     00     xxxxxx   add         010
+sw     00     xxxxxx   add         010 //they all have
+lb     00     xxxxxx   add         010 // the same
+sb     00     xxxxxx   add         010 // Alu inputs .
+lbu    00     xxxxxx   add         010 // however they are diffrent in control signals 
+lui 
+---------------------------------------------------
+beq    01     xxxxxx   sub         110
+bne    01     xxxxxx   sub         110 //diffrence in control signals .. check the compOne signal
+---------------------------------------------------
+add    10     100000   add         010
+sub    10     100010   sub         110
+addi   10     100000   add         010
+sll    10     010000   sll         101 //i added that because it wasn't supported
+srl    10     000010   srl         011 //i added that as well
+and    10     100100   and         000
+nor    10     111111   nor         100 //and that too
+slt    10     101010   slt         111 
+sltu   10     010101   sltu        001 // and also this one 
+*************************************************************************************************
