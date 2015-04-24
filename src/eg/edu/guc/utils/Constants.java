@@ -89,6 +89,8 @@ public class Constants {
 
 	protected static void initializeOpcodeInstNameHtbl() {
 		opcodeInstructionName = new Hashtable<Integer, String>();
+		if (instructionNameData == null)
+			readInstructionsData();
 		Enumeration<String[]> instructionsData = instructionNameData.elements();
 		while (instructionsData.hasMoreElements()) {
 			String[] currInstData = instructionsData.nextElement();
