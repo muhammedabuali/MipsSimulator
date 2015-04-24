@@ -7,6 +7,7 @@ import org.junit.Test;
 import eg.edu.guc.mips.Mips;
 import eg.edu.guc.mips.Parser;
 import eg.edu.guc.registers.RegisterFile;
+import eg.edu.guc.utils.Utilities;
 
 public class MipsTests {
 
@@ -32,5 +33,22 @@ public class MipsTests {
 		assertTrue(
 				"The code for the instruction should be 0x2149000b as found in mars",
 				Integer.toHexString(instCode).equals("2149000b"));
+	}
+
+	@Test
+	public void testGetInstructionNameByOpcodePart() {
+		RegisterFile.init();
+		int instruction = Integer.parseInt("2149000b", 16);
+		int opcode = (instruction >> 26) << 26;
+
+		if (opcode == 0) {
+			// R format Instruction need to get function code
+			int functioncode = instruction & ((1 << 6) - 1); // anding with mask
+			opcode |= functioncode;
+		}
+
+		String instructionName = Utilities.getInstructionNameByOpcode(opcode);
+		assertTrue("The instruction should be addi",
+				instructionName.equals("addi"));
 	}
 }
