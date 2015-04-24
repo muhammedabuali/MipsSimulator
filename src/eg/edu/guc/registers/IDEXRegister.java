@@ -17,7 +17,10 @@ public class IDEXRegister {
 
     //Memory controls
 
-    static boolean memWrite, memRead, branch;
+    static boolean memWrite, memRead, branch, jump, memByte, unsigned;
+
+
+    static boolean compOne;
 
     //EX controls
 
@@ -132,4 +135,49 @@ public class IDEXRegister {
     public static void setAluSrc(boolean aluSrc) {
         IDEXRegister.aluSrc = aluSrc;
     }
+
+    public static boolean isBranch() {
+        return branch;
+    }
+
+    public static void setBranch(boolean branch) {
+        IDEXRegister.branch = branch;
+    }
+
+    public static boolean isJump() {
+        return jump;
+    }
+
+    public static void setJump(boolean jump) {
+        IDEXRegister.jump = jump;
+    }
+
+    public static boolean isMemByte() {
+        return memByte;
+    }
+
+    public static void setMemByte(boolean memByte) {
+        IDEXRegister.memByte = memByte;
+    }
+
+    public static boolean isUnsigned() {
+        return unsigned;
+    }
+
+    public static void setUnsigned(boolean unsigned) {
+        IDEXRegister.unsigned = unsigned;
+    }
+
+    public static int getAluOp() {
+        return aluOp;
+    }
+
+    public static boolean isCompOne() {
+        return compOne;
+    }
+
+    public static void setCompOne(boolean compOne) {
+        IDEXRegister.compOne = compOne;
+    }
+
 }

@@ -40,8 +40,9 @@ public class Mips {
 
         int rd = register1.getNumber();
         IDEXRegister.setRd((byte) rd);
-        
-        String opearation = "";
+
+        String opearation = "";//to be filled when abkr finished his task
+
         /*
         ALU src : whether the ALu should take input from registers (false)or sign extended input)
 
@@ -49,15 +50,15 @@ public class Mips {
         switch (opearation) {
             //arithmatic
             case "add":
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, true, false);
                 break;
 
             case "sub":
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, true, false);
                 break;
 
             case "addi":
-                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, false, false);
+                setControSignals(true, true, 0b00, false, false, false, false, false, false, false, true, false);
                 break;
             //loading from memory
             case "lw":
@@ -94,11 +95,11 @@ public class Mips {
                 break;
 
             case "and"://same as add,sub diffrence is in funct
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, true, false);
                 break;
 
             case "nor"://same as add,sub diffrence is in funct
-                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, false, false);
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, true, false);
                 break;
 
             //branching
@@ -122,18 +123,39 @@ public class Mips {
                 setControSignals(false, false, 0b11, false, false, true, true, false, false, false, false, false);
                 break;
 
+            case "slt"://same as add,sub diffrence is in funct
+                setControSignals(false, true, 0b10, false, false, false, false, false, false, false, true, false);
+                break;
+            case "sltu"://same as add,sub diffrence is in funct
+                setControSignals(false, true, 0b10, false, false, false, false, false, true, false, true, false);
+                break;
         }
 
     }
 
-    //added new MEM signal memByte to be used with lw , lb , lbu , sw
-    //added new MEM signal unsigned to be used with lw , lb , lbu , sw
-    //added new MEM signal "compOne" to use with beq , bne
-    //added new EX  signal "jump" to b diffrenciate between jump and branch
-    //00 beq bne ,01 j ,10 Jal ,11 jar
-    public void setControSignals(boolean ALUSrc, boolean RegDst, int AlUop,
-                                 boolean MemRead, boolean MemWrite, boolean branch, boolean jump, boolean memByte, boolean unsigned, boolean compOne,
-                                 boolean RegWrite, boolean MemToReg) {
+    /*
+    added new MEM signal memByte to be used with lw , lb , lbu , sw
+    added new MEM signal unsigned to be used with lw , lb , lbu , sw
+    added new MEM signal "compOne" to use with beq , bne
+    added new EX  signal "jump" to b diffrenciate between jump and branch
+    00 beq bne ,01 j ,10 Jal ,11 jar
+    */
+    public void setControSignals(boolean ALUSrc, boolean regDst, int AlUop,
+                                 boolean memRead, boolean memWrite, boolean branch, boolean jump, boolean memByte, boolean unsigned, boolean compOne,
+                                 boolean regWrite, boolean memToReg) {
+
+        IDEXRegister.setAluSrc(ALUSrc);
+        IDEXRegister.setRegDest(regDst);
+        IDEXRegister.setAluOp(AlUop);
+        IDEXRegister.setMemRead(memRead);
+        IDEXRegister.setMemWrite(memWrite);
+        IDEXRegister.setBranch(branch);
+        IDEXRegister.setJump(jump);
+        IDEXRegister.setMemByte(memByte);
+        IDEXRegister.setUnsigned(unsigned);
+        IDEXRegister.setCompOne(compOne);
+        IDEXRegister.setRegWrite(regWrite);
+        IDEXRegister.setMemToReg(memToReg);
 
 
     }
