@@ -33,6 +33,22 @@ public class Utilities {
 		return null;
 	}
 
+	/**
+	 * returns instruction name for a given (opcode << 26 | funcode)
+	 * 
+	 * @param opcodeOrFunctionCode
+	 * @return
+	 */
+	public static String getInstructionNameByOpcode(int opcodeOrFunctionCode) {
+		if (Constants.opcodeInstructionName == null)
+			Constants.initializeOpcodeInstNameHtbl();
+		if (Constants.opcodeInstructionName.containsKey(opcodeOrFunctionCode))
+			return Constants.opcodeInstructionName.get(opcodeOrFunctionCode);
+		System.err.println("No Instruction was found for "
+				+ opcodeOrFunctionCode);
+		return null;
+	}
+
 	public static int getLabelNumber(String label) {
 		if (Constants.labelNameNumber.containsKey(label))
 			return Constants.labelNameNumber.get(label);
@@ -51,10 +67,6 @@ public class Utilities {
 
 	public static void setLabelNumber(String label, int number) {
 		Constants.labelNameNumber.put(label, number);
-	}
-
-	public static String getInstructionNameByOpcode(int i) {
-		return null;
 	}
 
 }
