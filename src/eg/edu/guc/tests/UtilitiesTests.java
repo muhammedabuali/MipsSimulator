@@ -21,4 +21,11 @@ public class UtilitiesTests {
 		int atRegNum = Utilities.getRegisterByNumber(1).getNumber();
 		assertTrue("Should be 1", atRegNum == 1);
 	}
+	
+	@Test
+	public void testGetInstNameByOpcode(){
+		RegisterFile.init();
+		String instruction = Utilities.getInstructionNameByOpcode(1);
+		assertTrue("the instruction should be add", instruction.equals("add"));
+	}
 }

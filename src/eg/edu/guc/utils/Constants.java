@@ -92,8 +92,12 @@ public class Constants {
 		Enumeration<String[]> instructionsData = instructionNameData.elements();
 		while (instructionsData.hasMoreElements()) {
 			String[] currInstData = instructionsData.nextElement();
-			int opcode = Integer.parseInt(currInstData[1], 16);
-			opcodeInstructionName.put(opcode, currInstData[0]);
+			int opcode = Integer.parseInt(currInstData[2], 16);
+			opcode = opcode << 26;
+			int funcode = 0;
+			if (!currInstData[3].equals("NA"))
+				funcode = Integer.parseInt(currInstData[3], 16);
+			opcodeInstructionName.put(opcode | funcode, currInstData[0]);
 		}
 	}
 

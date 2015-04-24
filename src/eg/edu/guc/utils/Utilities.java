@@ -34,23 +34,27 @@ public class Utilities {
 	}
 
 	public static int getLabelNumber(String label) {
-		// TODO Auto-generated method stub
 		if (Constants.labelNameNumber.containsKey(label))
 			return Constants.labelNameNumber.get(label);
 		System.err.println("Label name " + label
 				+ " was not found in the table");
 		return -1;
 	}
-	public static int getSubset(int originalNumber,int start , int end)//some one please recheck the logic
-	{
+
+	public static int getSubset(int originalNumber, int start, int end) {
 		int mask = 0;
-		for (int i = start; i <= end ; i++) {
-			mask += Math.pow(2,i);
+		for (int i = start; i <= end; i++) {
+			mask += Math.pow(2, i);
 		}
 		return (originalNumber & mask) >> start;
 	}
+
 	public static void setLabelNumber(String label, int number) {
 		Constants.labelNameNumber.put(label, number);
+	}
+
+	public static String getInstructionNameByOpcode(int i) {
+		return null;
 	}
 
 }
