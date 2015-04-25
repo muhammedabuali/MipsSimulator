@@ -1,5 +1,6 @@
 package eg.edu.guc.mips;
 
+import eg.edu.guc.registers.EXMEMRegister;
 import eg.edu.guc.registers.IFIDRegister;
 import eg.edu.guc.registers.IDEXRegister;
 
@@ -7,6 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import eg.edu.guc.registers.Register;
+import eg.edu.guc.utils.ALUControl;
 import eg.edu.guc.utils.Utilities;
 
 public class Mips {
@@ -292,4 +294,30 @@ public class Mips {
         int constant = Utilities.getLabelNumber(target);
         return (opCode << 26) | (constant);
     }
+    public void excute(){
+    	//WB controls
+    	EXMEMRegister.setMemToReg(IDEXRegister.isMemToReg());
+    	EXMEMRegister.setRegWrite(IDEXRegister.isRegWrite());
+    	//Mem controls
+    	EXMEMRegister.setMemWrite(IDEXRegister.isMemWrite());
+    	EXMEMRegister.setMemRead(IDEXRegister.isMemRead());
+    	//AluOp
+    	int aluControlOutput = ALUControl.generateAluop(IDEXRegister.getAluOp(), IDEXRegister.getOffset());
+    	int AluSecondInput = (!IDEXRegister.isAluSrc()?IDEXRegister.getRegisterTwoValue():IDEXRegister.getOffset());
+    	int aluOutput = ALUControl.perform(IDEXRegister.getRegisterOneValue(),AluSecondInput, aluControlOutput);
+    	EXMEMRegister.setAluOut(aluOutput);
+    	EXMEMRegister.setZeroFlag(aluOutput==0?true:false);
+    	//branch address
+    	int shifted = IDEXRegister.getOffset() << 2;
+    	int added = shifted + IDEXRegister.getPc();
+    	EXMEMRegister.setBranchAddress(added);
+    	//rd
+    	byte rd = !IDEXRegister.isRegDest()?IDEXRegister.getRt():IDEXRegister.getRd();//need to be reviewed
+    	EXMEMRegister.setRd(rd);
+    	//register value to mem
+    	EXMEMRegister.setRegisterValueToMem(IDEXRegister.getRegisterTwoValue());
+    }
+    
+    
+    
 }
