@@ -27,7 +27,10 @@ public class GUI extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 5878820421093084909L;
+
 	private Color backgroundColor = SystemColor.activeCaption;
+
+	private JPanel pipelinedPanel;
 
 	private Mips mips = new Mips();
 	private Register[] registers = Utilities.getRegistersArray();
@@ -59,8 +62,7 @@ public class GUI extends JFrame {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 260, 35, 29, 178, 311 };
 		gridBagLayout.rowHeights = new int[] { 41, 319, 19, 77, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.4, 0.4, 0.0, 0.4, 0.4,
-				Double.MIN_VALUE };
+		gridBagLayout.columnWeights = new double[] { 0.4, 0.4, 0.0, 0.4, 0.4 };
 		gridBagLayout.rowWeights = new double[] { 0.001, 0.5, 0.0, 0.4,
 				Double.MIN_VALUE };
 		getContentPane().setLayout(gridBagLayout);
@@ -125,7 +127,7 @@ public class GUI extends JFrame {
 	}
 
 	private void initPipelinedRegistersPanel() {
-		JPanel pipelinedPanel = new JPanel();
+		pipelinedPanel = new JPanel();
 		GridBagConstraints gbc_pipelinedPanel = new GridBagConstraints();
 		gbc_pipelinedPanel.insets = new Insets(5, 5, 5, 5);
 		gbc_pipelinedPanel.fill = GridBagConstraints.BOTH;
@@ -133,6 +135,66 @@ public class GUI extends JFrame {
 		gbc_pipelinedPanel.gridx = 3;
 		gbc_pipelinedPanel.gridy = 0;
 		getContentPane().add(pipelinedPanel, gbc_pipelinedPanel);
+		GridBagLayout gbl_pipelinedPanel = new GridBagLayout();
+		gbl_pipelinedPanel.columnWidths = new int[] { 0, 0 };
+		gbl_pipelinedPanel.rowHeights = new int[] { 0, 69, 69, 74, 86, 0 };
+		gbl_pipelinedPanel.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gbl_pipelinedPanel.rowWeights = new double[] { 0.0, 0.2, 0.2, 0.2, 0.2,
+				Double.MIN_VALUE };
+		pipelinedPanel.setLayout(gbl_pipelinedPanel);
+
+		JLabel lblPiplenedRegisters = new JLabel("Piplened Registers");
+		GridBagConstraints gbc_lblPiplenedRegisters = new GridBagConstraints();
+		gbc_lblPiplenedRegisters.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPiplenedRegisters.gridx = 0;
+		gbc_lblPiplenedRegisters.gridy = 0;
+		pipelinedPanel.add(lblPiplenedRegisters, gbc_lblPiplenedRegisters);
+
+		initIFIDReg();
+		initIDEXReg();
+		initMEMWBReg();
+		initEXMEMReg();
+	}
+
+	private void initIFIDReg() {
+		JPanel IFIDPanel = new JPanel();
+		GridBagConstraints gbc_IFIDPanel = new GridBagConstraints();
+		gbc_IFIDPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_IFIDPanel.fill = GridBagConstraints.BOTH;
+		gbc_IFIDPanel.gridx = 0;
+		gbc_IFIDPanel.gridy = 1;
+		pipelinedPanel.add(IFIDPanel, gbc_IFIDPanel);
+	}
+
+	private void initIDEXReg() {
+		JPanel IDEXPanel = new JPanel();
+		GridBagConstraints gbc_IDEXPanel = new GridBagConstraints();
+		gbc_IDEXPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_IDEXPanel.fill = GridBagConstraints.BOTH;
+		gbc_IDEXPanel.gridx = 0;
+		gbc_IDEXPanel.gridy = 2;
+		pipelinedPanel.add(IDEXPanel, gbc_IDEXPanel);
+	}
+
+	private void initMEMWBReg() {
+		JPanel MEMWBPanel = new JPanel();
+		GridBagConstraints gbc_MEMWBPanel;
+		gbc_MEMWBPanel = new GridBagConstraints();
+		gbc_MEMWBPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_MEMWBPanel.fill = GridBagConstraints.BOTH;
+		gbc_MEMWBPanel.gridx = 0;
+		gbc_MEMWBPanel.gridy = 3;
+		pipelinedPanel.add(MEMWBPanel, gbc_MEMWBPanel);
+	}
+
+	private void initEXMEMReg() {
+		JPanel EXMEMPanel = new JPanel();
+		GridBagConstraints gbc_EXMEMPanel = new GridBagConstraints();
+		gbc_EXMEMPanel.fill = GridBagConstraints.BOTH;
+		gbc_EXMEMPanel.gridx = 0;
+		gbc_EXMEMPanel.gridy = 4;
+		pipelinedPanel.add(EXMEMPanel, gbc_EXMEMPanel);
+
 	}
 
 	private void initRegistersPanel() {
