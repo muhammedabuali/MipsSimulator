@@ -1,5 +1,6 @@
 package eg.edu.guc.mips;
 
+import eg.edu.guc.memory.Memory;
 import eg.edu.guc.registers.*;
 
 import java.io.*;
@@ -332,7 +333,7 @@ public class Mips {
         EXMEMRegister.setRd(rd);
 
         //register value to mem
-        EXMEMRegister.setRegisterValueToMem(IDEXRegister.getRegisterTwoValue());
+        EXMEMRegister.setMemoryReadValue(IDEXRegister.getRegisterTwoValue());
 
         //membyte unsigned compOne jump branch
         EXMEMRegister.setMemByte(IDEXRegister.isMemByte());
@@ -364,7 +365,15 @@ public class Mips {
 
         // READING
         if (EXMEMRegister.isMemRead()) {
-
+            if (EXMEMRegister.isMemByte()) {
+                if (EXMEMRegister.isUnsigned()) {
+                    EXMEMRegister.setMemoryReadValue(Memory.loadByteUnsigned(EXMEMRegister.getAluOut()));
+                } else {
+                    EXMEMRegister.setMemoryReadValue(Memory.loadByte(EXMEMRegister.getAluOut()));
+                }
+            } else {
+                EXMEMRegister.setMemoryReadValue(Memory.loadWord(EXMEMRegister.getAluOut()));
+            }
         }
 
 
