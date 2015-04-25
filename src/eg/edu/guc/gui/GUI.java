@@ -164,6 +164,28 @@ public class GUI extends JFrame {
 		gbc_IFIDPanel.gridx = 0;
 		gbc_IFIDPanel.gridy = 1;
 		pipelinedPanel.add(IFIDPanel, gbc_IFIDPanel);
+		GridBagLayout gbl_IFIDPanel = new GridBagLayout();
+		gbl_IFIDPanel.columnWidths = new int[] { 0 };
+		gbl_IFIDPanel.rowHeights = new int[] { 0, 0 };
+		gbl_IFIDPanel.columnWeights = new double[] { 0.2 };
+		gbl_IFIDPanel.rowWeights = new double[] { 0.3, 0.7 };
+		IFIDPanel.setLayout(gbl_IFIDPanel);
+
+		JPanel labelPane = new JPanel();
+		GridBagConstraints gbc_panel2 = new GridBagConstraints();
+		gbc_panel2.insets = new Insets(0, 0, 5, 0);
+		gbc_panel2.fill = GridBagConstraints.BOTH;
+		gbc_panel2.gridheight = 1;
+		gbc_panel2.gridx = 0;
+		gbc_panel2.gridy = 0;
+		IFIDPanel.add(labelPane, gbc_panel2);
+
+		JPanel valuesPane = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		IFIDPanel.add(valuesPane, gbc_panel);
 	}
 
 	private void initIDEXReg() {
