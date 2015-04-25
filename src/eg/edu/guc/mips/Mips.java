@@ -379,7 +379,10 @@ public class Mips {
             }
 
         } else if (EXMEMRegister.isMemWrite()) {
-            Memory.storeWord(EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
+            if (EXMEMRegister.isMemByte())
+                Memory.storeByte((byte) EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
+            else
+                Memory.storeWord(EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
         }
 
 
