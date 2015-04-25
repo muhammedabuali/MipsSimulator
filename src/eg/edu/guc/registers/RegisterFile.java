@@ -59,12 +59,6 @@ public class RegisterFile {
     // Return address
     public static Register RA_REGISTER;
 
-    // Pipelining Stuff
-    public static Register IF_ID_REGISTER;
-    public static Register ID_EX_REGISTER;
-    public static Register EX_MEM_REGISTER;
-    public static Register EX_WB_REGISTER;
-
     /**
      * Initializing <strong>All</strong> registers in <code>RegisterFile</code>
      * to <strong>Zeros</strong>
@@ -72,7 +66,6 @@ public class RegisterFile {
      * @return true if all initialized correctly
      */
     public static boolean init() {
-        // TODO can be done using reflection ?
         AT_REGISTER = new Register(0, 1);
 
         A0_REGISTER = new Register(0, 4);
