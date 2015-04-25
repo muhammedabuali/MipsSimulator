@@ -164,6 +164,7 @@ public class GUI extends JFrame {
 		gbc_IFIDPanel.gridx = 0;
 		gbc_IFIDPanel.gridy = 1;
 		pipelinedPanel.add(IFIDPanel, gbc_IFIDPanel);
+		
 		GridBagLayout gbl_IFIDPanel = new GridBagLayout();
 		gbl_IFIDPanel.columnWidths = new int[] { 0 };
 		gbl_IFIDPanel.rowHeights = new int[] { 0, 0 };
@@ -179,6 +180,7 @@ public class GUI extends JFrame {
 		gbc_panel2.gridx = 0;
 		gbc_panel2.gridy = 0;
 		IFIDPanel.add(labelPane, gbc_panel2);
+		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
 
 		JPanel valuesPane = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -186,6 +188,7 @@ public class GUI extends JFrame {
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 1;
 		IFIDPanel.add(valuesPane, gbc_panel);
+		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 	}
 
 	private void initIDEXReg() {
@@ -196,6 +199,31 @@ public class GUI extends JFrame {
 		gbc_IDEXPanel.gridx = 0;
 		gbc_IDEXPanel.gridy = 2;
 		pipelinedPanel.add(IDEXPanel, gbc_IDEXPanel);
+		
+		GridBagLayout gbl_IDEXPanel = new GridBagLayout();
+		gbl_IDEXPanel.columnWidths = new int[] { 0 };
+		gbl_IDEXPanel.rowHeights = new int[] { 0, 0 };
+		gbl_IDEXPanel.columnWeights = new double[] { 0.2 };
+		gbl_IDEXPanel.rowWeights = new double[] { 0.3, 0.7 };
+		IDEXPanel.setLayout(gbl_IDEXPanel);
+
+		JPanel labelPane = new JPanel();
+		GridBagConstraints gbc_panel2 = new GridBagConstraints();
+		gbc_panel2.insets = new Insets(0, 0, 5, 0);
+		gbc_panel2.fill = GridBagConstraints.BOTH;
+		gbc_panel2.gridheight = 1;
+		gbc_panel2.gridx = 0;
+		gbc_panel2.gridy = 0;
+		IDEXPanel.add(labelPane, gbc_panel2);
+		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
+
+		JPanel valuesPane = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		IDEXPanel.add(valuesPane, gbc_panel);
+		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 	}
 
 	private void initMEMWBReg() {
