@@ -17,37 +17,45 @@ public class Memory {
     }
 
     public static int loadWord(int location) {
-        //TODO implement and add documentation
-        return -1;
+        int result;
+        int b1 = loadByte(location + 0);
+        int b2 = loadByte(location + 1);
+        int b3 = loadByte(location + 2);
+        int b4 = loadByte(location + 3);
+        return b1 << 0 | b2 << 8 | b3 << 16 | b4 << 24;
     }
 
-    public static byte loadByte(int location) {
-        //TODO implement and add documentation
-        return -1;
+    public static int loadByte(int location) {
+
+        return memory[location];
     }
 
-    public static byte loadByteUnsigned(int location) {
-        //TODO implement and add documentation
-        return -1;
+    public static int loadByteUnsigned(int location) {
+
+        int b1 = loadByte(location + 0);
+        return ((int) 0) | b1;
     }
 
     public static boolean storeWord(int data, int location) {
-        //TODO implement and add documentation
-        return false;
+
+        storeByte((byte) (data >> 0), location + 0);
+        storeByte((byte) (data >> 8), location + 1);
+        storeByte((byte) (data >> 16), location + 2);
+        storeByte((byte) (data >> 24), location + 3);
+        return true;
     }
 
     public static boolean storeByte(byte data, int location) {
-        //TODO implement and add documentation
-        return false;
+        memory[location] = (byte) data;
+        return true;
     }
 
     public static boolean clear() {
-        //TODO implement and add documentation
+        memory = new byte[size];
         return true;
     }
 
     public static void init() {
-        //TODO implement and add documentation
         memory = new byte[size];
     }
 

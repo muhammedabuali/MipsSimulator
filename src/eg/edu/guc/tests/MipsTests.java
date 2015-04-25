@@ -54,11 +54,13 @@ public class MipsTests {
     @Test
     public void testAddInstructionDecode() {
         //add t0 t1 t2
-        int instruction = Integer.parseInt("000000" + "01001" + "01010" + "01000" + "00000" + "100000", 2);
-        IFIDRegister.setInstruction(instruction);
-
         Mips m = new Mips();
 
+        //int instruction = Integer.parseInt("000000" + "01001" + "01010" + "01000" + "00000" + "100000", 2);
+        //IFIDRegister.setInstruction(instruction);
+
+        int instCode = m.getInstructionBitStream(Parser.parseInstruction(
+                "add $t1, $t2, $t3", 1));
 
         m.decode();
         assertTrue("funct should be 100000", Utilities.getSubset(IDEXRegister.getOffset(), 0, 5) == 0b100000);

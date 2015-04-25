@@ -305,7 +305,7 @@ public class Mips {
     /**
      * perform the IDEX STAGE and write all values to the Register EXMEM
      */
-    public void excute() {
+    public void execute() {
         //WB controls
         EXMEMRegister.setMemToReg(IDEXRegister.isMemToReg());
         EXMEMRegister.setRegWrite(IDEXRegister.isRegWrite());
@@ -359,12 +359,25 @@ public class Mips {
         //ALUOut
         MEMWBRegister.setAluOut(EXMEMRegister.getAluOut());
 
+        // REGISTER Address
+        MEMWBRegister.setRd(EXMEMRegister.getRd());
+
         // READING
         if (EXMEMRegister.isMemRead()) {
 
         }
 
 
+    }
+
+    public void writeBack() {
+        if (MEMWBRegister.isRegWrite()) {
+            if (MEMWBRegister.isMemToReg()) {
+                Utilities.getRegisterByNumber(MEMWBRegister.getRd()).setData(MEMWBRegister.getMemoryRead());
+            } else {
+                Utilities.getRegisterByNumber(MEMWBRegister.getRd()).setData(MEMWBRegister.getAluOut());
+            }
+        }
     }
 
     /**
