@@ -359,6 +359,9 @@ public class Mips {
         //ALUOut
         MEMWBRegister.setAluOut(EXMEMRegister.getAluOut());
 
+        // REGISTER Address
+        MEMWBRegister.setRd(EXMEMRegister.getRd());
+
         // READING
         if (EXMEMRegister.isMemRead()) {
 
