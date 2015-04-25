@@ -69,7 +69,7 @@ public class Utilities {
      * @param register
      * @return the name of the Register
      */
-    public String getRegisterName(Register register) {
+    public static String getRegisterName(Register register) {
         for (Map.Entry<String, Register> entry : Constants.nameRegister.entrySet()) {
             if (register.equals(entry.getValue())) {
                 return entry.getKey();
