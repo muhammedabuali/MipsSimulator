@@ -216,7 +216,7 @@ public class GUI extends JFrame {
 		JLabel pc = new JLabel();
 		pc.setHorizontalAlignment(SwingConstants.CENTER);
 		JLabel inst = new JLabel();
-		pc.setHorizontalAlignment(SwingConstants.CENTER);
+		inst.setHorizontalAlignment(SwingConstants.CENTER);
 		ifid = new IFIDLabels(pc, inst);
 		ifid.reset();
 		JPanel valuesPane = new JPanel();
@@ -467,7 +467,8 @@ public class GUI extends JFrame {
 	}
 
 	private void run() {
-		mips = new Mips(codeArea);
+		mips.runText(codeArea);
+		System.out.println(codeArea.getText());
 		updateRegistersValues();
 	}
 

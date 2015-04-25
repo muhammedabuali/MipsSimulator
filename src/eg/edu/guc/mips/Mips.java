@@ -30,7 +30,7 @@ public class Mips {
 
 	}
 
-	public Mips(JTextArea codeArea) {
+	public void runText(JTextArea codeArea) {
 		instructions = new ArrayList<String>();
 		String[] lines = codeArea.getText().split("\n");
 		for (String inst : lines)
