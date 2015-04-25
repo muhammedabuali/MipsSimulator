@@ -13,6 +13,10 @@ public class Mips {
     private ArrayList<String> instructions;
     private ArrayList<String[]> parsedInstrutions;
 
+    public Mips() {
+
+    }
+
     public Mips(String path) {
         try {
             readProgram(new File(path));
