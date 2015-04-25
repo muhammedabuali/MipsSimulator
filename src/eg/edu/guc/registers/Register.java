@@ -1,7 +1,5 @@
 package eg.edu.guc.registers;
 
-import eg.edu.guc.utils.Utilities;
-
 /**
  * Created by kady on 12/04/15.
  * <p/>

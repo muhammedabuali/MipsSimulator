@@ -2,9 +2,13 @@ package eg.edu.guc.utils;
 
 import eg.edu.guc.registers.Register;
 
-import java.util.Map;
-
 public class Utilities {
+
+	public static Register[] getRegistersArray() {
+		if (Constants.numberRegister == null)
+			Constants.initializeNumberRegisterArray();
+		return Constants.numberRegister;
+	}
 
 	public static Register getRegisterByName(String regName) {
 		if (Constants.nameRegister == null)

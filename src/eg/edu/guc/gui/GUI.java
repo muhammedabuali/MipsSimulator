@@ -17,6 +17,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import eg.edu.guc.mips.Mips;
+import eg.edu.guc.registers.Register;
+import eg.edu.guc.utils.Constants;
+import eg.edu.guc.utils.Utilities;
+
 public class GUI extends JFrame {
 
 	/**
@@ -24,6 +29,10 @@ public class GUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 5878820421093084909L;
 	private Color backgroundColor = SystemColor.activeCaption;
+
+	private Mips mips = new Mips();
+	private Register[] registers = Utilities.getRegistersArray();
+	private JLabel[][] registerValueLabels;
 
 	/**
 	 * Launch the application.
@@ -129,6 +138,8 @@ public class GUI extends JFrame {
 
 	private void initRegistersPanel() {
 		JPanel registersPanel = new JPanel();
+		registersPanel.setOpaque(true);
+		registersPanel.setBackground(Color.black);
 		GridBagConstraints gbc_registersPanel = new GridBagConstraints();
 		gbc_registersPanel.insets = new Insets(5, 5, 5, 0);
 		gbc_registersPanel.fill = GridBagConstraints.BOTH;
@@ -136,31 +147,80 @@ public class GUI extends JFrame {
 		gbc_registersPanel.gridx = 4;
 		gbc_registersPanel.gridy = 0;
 		getContentPane().add(registersPanel, gbc_registersPanel);
-		registersPanel.setLayout(new GridLayout(0, 3, 0, 0));
-
-		JPanel regNamesPanel = new JPanel();
-		registersPanel.add(regNamesPanel);
-		regNamesPanel.setLayout(new GridLayout(33, 0, 0, 0));
-
-		JLabel regLabel = new JLabel("Register");
-		regLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		regNamesPanel.add(regLabel);
+		registersPanel.setLayout(new GridLayout(0, 4, 1, 0));
 
 		JPanel regNumsPanel = new JPanel();
 		registersPanel.add(regNumsPanel);
-		regNumsPanel.setLayout(new GridLayout(33, 0, 0, 0));
+		regNumsPanel.setLayout(new GridLayout(31, 0, 0, 1));
 
-		JLabel numLabel = new JLabel("Number");
+		JLabel numLabel = new JLabel("RegNumber");
 		numLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		regNumsPanel.add(numLabel);
 
-		JPanel regValsPanel = new JPanel();
-		registersPanel.add(regValsPanel);
-		regValsPanel.setLayout(new GridLayout(33, 0, 0, 0));
+		JPanel regNamesPanel = new JPanel();
+		registersPanel.add(regNamesPanel);
+		regNamesPanel.setLayout(new GridLayout(31, 0, 0, 1));
 
-		JLabel valLabel = new JLabel("Value");
-		valLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		regValsPanel.add(valLabel);
+		JLabel regLabel = new JLabel("RegName");
+		regLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		regNamesPanel.add(regLabel);
+
+		JPanel regDecPanel = new JPanel();
+		registersPanel.add(regDecPanel);
+		regDecPanel.setLayout(new GridLayout(31, 0, 0, 1));
+
+		JLabel decLabel = new JLabel("DEC");
+		decLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		regDecPanel.add(decLabel);
+
+		JPanel regHexPanel = new JPanel();
+		registersPanel.add(regHexPanel);
+		regHexPanel.setLayout(new GridLayout(31, 0, 0, 1));
+
+		JLabel hexLabel = new JLabel("HEX");
+		hexLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		regHexPanel.add(hexLabel);
+
+		registerValueLabels = new JLabel[2][32];
+		for (int i = 0; i < 32; i++) {
+			Register register = registers[i];
+			if (register != null) {
+				JLabel name = new JLabel(register.getName());
+				name.setBackground(Color.gray);
+				name.setForeground(Color.yellow);
+				name.setOpaque(true);
+				regNamesPanel.add(name);
+				name.setHorizontalAlignment(SwingConstants.CENTER);
+				JLabel num = new JLabel(register.getNumber() + "");
+				num.setBackground(Color.gray);
+				num.setOpaque(true);
+				num.setHorizontalAlignment(SwingConstants.CENTER);
+				regNumsPanel.add(num);
+				JLabel dec = new JLabel(register.getData() + "");
+				dec.setBackground(Color.gray);
+				dec.setOpaque(true);
+				dec.setHorizontalAlignment(SwingConstants.CENTER);
+				regDecPanel.add(dec);
+				JLabel hex = new JLabel(Integer.toHexString(register.getData())
+						+ "");
+				hex.setOpaque(true);
+				hex.setBackground(Color.gray);
+				hex.setHorizontalAlignment(SwingConstants.CENTER);
+				regHexPanel.add(hex);
+				registerValueLabels[0][i] = dec;
+				registerValueLabels[1][i] = hex;
+			}
+		}
+	}
+
+	private void updateRegistersValues() {
+		for (int i = 0; i < 32; i++) {
+			if (registers[i] == null)
+				continue;
+			registerValueLabels[0][i].setText(registers[i].getData() + "1");
+			registerValueLabels[1][i].setText(Integer.toHexString(registers[i]
+					.getData()) + "");
+		}
 	}
 
 	private void initCodeArea() {
@@ -176,7 +236,7 @@ public class GUI extends JFrame {
 		scrollPaneCode.setViewportView(codeTextArea);
 		getContentPane().add(scrollPaneCode, gbc_scrollPane);
 	}
-	
+
 	private void initConsoleArea() {
 		JLabel lblConsole = new JLabel("    Console:");
 		GridBagConstraints gbc_lblConsole = new GridBagConstraints();
