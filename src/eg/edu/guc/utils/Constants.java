@@ -45,6 +45,8 @@ public class Constants {
 	 * adds each Register in the registerFile class into the nameRegister htbl
 	 */
 	protected static void initializeNameRegisterHtbl() {
+		if (numberRegister == null)
+			initializeNumberRegisterArray();
 		nameRegister = new Hashtable<String, Integer>();
 		for (int i = 0; i < 32; i++) {
 			if (numberRegister[i] != null) {
@@ -71,7 +73,7 @@ public class Constants {
 		}
 	}
 
-	protected static void initializeNumberRegisterHtbl() {
+	protected static void initializeNumberRegisterArray() {
 		numberRegister = new Register[32];
 
 		numberRegister[0] = RegisterFile.ZERO_REGISTER;

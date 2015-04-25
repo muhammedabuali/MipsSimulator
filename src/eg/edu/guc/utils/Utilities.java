@@ -10,7 +10,7 @@ public class Utilities {
 		if (Constants.nameRegister == null)
 			Constants.initializeNameRegisterHtbl();
 		if (Constants.nameRegister.containsKey(regName))
-			return Constants.nameRegister.get(regName);
+			return Constants.numberRegister[Constants.nameRegister.get(regName)];
 		System.err.println("Register " + regName
 				+ " was not found in the Registers table");
 		return null;
@@ -18,7 +18,7 @@ public class Utilities {
 
 	public static Register getRegisterByNumber(int regNum) {
 		if (Constants.numberRegister == null)
-			Constants.initializeNumberRegisterHtbl();
+			Constants.initializeNumberRegisterArray();
 		if (regNum < 32)
 			return Constants.numberRegister[regNum];
 		System.err.println("Register number " + regNum
@@ -61,25 +61,6 @@ public class Utilities {
 		System.err.println("Label name " + label
 				+ " was not found in the table");
 		return -1;
-	}
-
-	/**
-	 * Return the register name based on it's reference in the RegisterFile
-	 *
-	 * @param register
-	 * @return the name of the Register
-	 */
-	public static String getRegisterName(Register register) {
-		if (Constants.nameRegister == null)
-			Constants.initializeNameRegisterHtbl();
-
-		for (Map.Entry<String, Register> entry : Constants.nameRegister
-				.entrySet()) {
-			if (register == entry.getValue()) {
-				return entry.getKey();
-			}
-		}
-		return null;
 	}
 
 	public static int getSubset(int originalNumber, int start, int end) {

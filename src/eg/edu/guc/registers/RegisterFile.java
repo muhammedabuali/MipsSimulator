@@ -10,7 +10,7 @@ package eg.edu.guc.registers;
 public class RegisterFile {
 
 	// ZERO_REGISTER .. Don't touch !
-	public static final Register ZERO_REGISTER = new Register(0, 0);
+	public static final Register ZERO_REGISTER = new Register(0, 0, "$0");
 
 	// Assembler Temporary
 	public static Register AT_REGISTER;
@@ -66,41 +66,41 @@ public class RegisterFile {
 	 * @return true if all initialized correctly
 	 */
 	public static boolean init() {
-        AT_REGISTER = new Register(0, 1,"$at");
+		AT_REGISTER = new Register(0, 1, "$at");
 
-        A0_REGISTER = new Register(0, 4,"$a0");
-        A1_REGISTER = new Register(0, 5,"$a1");
-        A2_REGISTER = new Register(0, 6,"$a2");
-        A3_REGISTER = new Register(0, 7,"$a3");
+		A0_REGISTER = new Register(0, 4, "$a0");
+		A1_REGISTER = new Register(0, 5, "$a1");
+		A2_REGISTER = new Register(0, 6, "$a2");
+		A3_REGISTER = new Register(0, 7, "$a3");
 
-        V0_REGISTER = new Register(0, 2,"$v0");
-        V1_REGISTER = new Register(0, 3,"$v1");
+		V0_REGISTER = new Register(0, 2, "$v0");
+		V1_REGISTER = new Register(0, 3, "$v1");
 
-        T0_REGISTER = new Register(0, 8,"$t0");
-        T1_REGISTER = new Register(0, 9,"$t1");
-        T2_REGISTER = new Register(0, 10,"$t2");
-        T3_REGISTER = new Register(0, 11,"$t3");
-        T4_REGISTER = new Register(0, 12,"$t4");
-        T5_REGISTER = new Register(0, 13,"$t5");
-        T6_REGISTER = new Register(0, 14,"$t6");
-        T7_REGISTER = new Register(0, 15,,"$t7");
-        T8_REGISTER = new Register(0, 24,"$t8");
-        T9_REGISTER = new Register(0, 25,"$t9");
+		T0_REGISTER = new Register(0, 8, "$t0");
+		T1_REGISTER = new Register(0, 9, "$t1");
+		T2_REGISTER = new Register(0, 10, "$t2");
+		T3_REGISTER = new Register(0, 11, "$t3");
+		T4_REGISTER = new Register(0, 12, "$t4");
+		T5_REGISTER = new Register(0, 13, "$t5");
+		T6_REGISTER = new Register(0, 14, "$t6");
+		T7_REGISTER = new Register(0, 15, "$t7");
+		T8_REGISTER = new Register(0, 24, "$t8");
+		T9_REGISTER = new Register(0, 25, "$t9");
 
-        S0_REGISTER = new Register(0, 16,"$s0");
-        S1_REGISTER = new Register(0, 17,"$s1");
-        S2_REGISTER = new Register(0, 18,"$s2");
-        S3_REGISTER = new Register(0, 19,"$s3");
-        S4_REGISTER = new Register(0, 20,"$s4");
-        S5_REGISTER = new Register(0, 21,"$s5");
-        S6_REGISTER = new Register(0, 22,"$s6");
-        S7_REGISTER = new Register(0, 23,"$s7");
+		S0_REGISTER = new Register(0, 16, "$s0");
+		S1_REGISTER = new Register(0, 17, "$s1");
+		S2_REGISTER = new Register(0, 18, "$s2");
+		S3_REGISTER = new Register(0, 19, "$s3");
+		S4_REGISTER = new Register(0, 20, "$s4");
+		S5_REGISTER = new Register(0, 21, "$s5");
+		S6_REGISTER = new Register(0, 22, "$s6");
+		S7_REGISTER = new Register(0, 23, "$s7");
 
-        GP_REGISTER = new Register(0, 28,"$gp");
-        SP_REGISTER = new Register(0, 29,"$sp");
-        FP_REGISTER = new Register(0, 30,"$fp");
-        RA_REGISTER = new Register(0, 31,"$ra");
+		GP_REGISTER = new Register(0, 28, "$gp");
+		SP_REGISTER = new Register(0, 29, "$sp");
+		FP_REGISTER = new Register(0, 30, "$fp");
+		RA_REGISTER = new Register(0, 31, "$ra");
 
-        return true;
-    }
+		return true;
+	}
 }
