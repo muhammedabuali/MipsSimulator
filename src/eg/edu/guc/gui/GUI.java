@@ -468,6 +468,7 @@ public class GUI extends JFrame {
 
 	private void run() {
 		mips = new Mips(codeArea);
+		updateRegistersValues();
 	}
 
 	private void initConsoleArea() {
