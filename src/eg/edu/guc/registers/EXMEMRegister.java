@@ -7,7 +7,7 @@ package eg.edu.guc.registers;
  */
 public class EXMEMRegister {
     private static int branchAddress, aluOut, memoryWriteValue;
-    private static boolean zeroFlag;
+    private static boolean zeroFlag, link;
 
     private static byte rd;
 
@@ -157,5 +157,17 @@ public class EXMEMRegister {
 
     public static void setJrRegisterAddress(int jrRegisterAddress) {
         EXMEMRegister.jrRegisterAddress = jrRegisterAddress;
+    }
+
+    public static boolean isLink() {
+        return link;
+    }
+
+    public static void setLink(boolean link) {
+        EXMEMRegister.link = link;
+    }
+
+    public static int getJrRegisterAddress() {
+        return jrRegisterAddress;
     }
 }

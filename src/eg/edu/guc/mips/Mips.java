@@ -147,6 +147,7 @@ public class Mips {
             case "jal":// added new
                 setControSignals(false, false, 0b11, false, false, true, false,
                         false, false, false, false, false);
+                IDEXRegister.setLink(true);
                 break;
 
             case "jr":// same as add,sub diffrence is in funct
@@ -192,7 +193,7 @@ public class Mips {
         IDEXRegister.setCompOne(compOne);
         IDEXRegister.setRegWrite(regWrite);
         IDEXRegister.setMemToReg(memToReg);
-
+        IDEXRegister.setLink(false);
     }
 
     private void readProgram(File file) throws IOException {
@@ -314,6 +315,7 @@ public class Mips {
         //Mem controls
         EXMEMRegister.setMemWrite(IDEXRegister.isMemWrite());
         EXMEMRegister.setMemRead(IDEXRegister.isMemRead());
+        EXMEMRegister.setLink(IDEXRegister.isLink());
 
         //AluOp
         int functionField = IDEXRegister.getOffset() & 63;//extract last 6 bits
@@ -380,9 +382,26 @@ public class Mips {
 
         } else if (EXMEMRegister.isMemWrite()) {
             if (EXMEMRegister.isMemByte())
+                // sb
                 Memory.storeByte((byte) EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
             else
+                // sw
                 Memory.storeWord(EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
+        }
+        if (EXMEMRegister.isBranch()) {
+            if (EXMEMRegister.isJump()) {
+                // j , jal
+                if (EXMEMRegister.isLink())
+                    RegisterFile.RA_REGISTER.setData(Components.getPC());
+                Components.setPC(EXMEMRegister.getJumpAddress());
+            } else {
+                //jr
+                Components.setPC(EXMEMRegister.getJrRegisterOneValueAddress());
+            }
+        } else {
+            if (EXMEMRegister.isJump()) {
+                Components.setPC(EXMEMRegister.getBranchAddress());
+            }
         }
 
 

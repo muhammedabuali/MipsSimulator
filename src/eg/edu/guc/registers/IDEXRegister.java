@@ -22,6 +22,7 @@ public class IDEXRegister {
     static boolean branch;
     static boolean jump;
     static boolean memByte;
+    static boolean link;
     static boolean unsigned;
 
     public static boolean isLink() {
@@ -31,8 +32,6 @@ public class IDEXRegister {
     public static void setLink(boolean link) {
         IDEXRegister.link = link;
     }
-
-    static boolean link;
 
 
     static boolean compOne;
