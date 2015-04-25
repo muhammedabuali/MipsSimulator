@@ -13,6 +13,16 @@ public class Mips {
     private ArrayList<String> instructions;
     private ArrayList<String[]> parsedInstrutions;
 
+    public Mips(String path) {
+        try {
+            readProgram(new File(path));
+            run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * Reading a file containing a mips instructions
      *
@@ -20,6 +30,7 @@ public class Mips {
      */
 
     public void decode() {
+
 
         int instruction = IFIDRegister.getInstruction();
 
@@ -444,9 +455,10 @@ public class Mips {
         fetch();
     }
 
-
     public void run() {
-
+        while (Components.getPC() < parsedInstrutions.size()) {
+            advance();
+        }
     }
 
 }
