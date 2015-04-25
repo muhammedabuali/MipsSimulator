@@ -36,13 +36,16 @@ public class Mips {
 		IDEXRegister.setRegisterOneValue(register2.getData());// store register
 																// 2 data
 
-		int offset = Utilities.getSubset(IFIDRegister.getInstruction(), 15, 0);
+		Register register3 = Utilities.getRegisterByNumber(Utilities.getSubset(
+				IFIDRegister.getInstruction(), 11, 15));
+
+		int offset = Utilities.getSubset(IFIDRegister.getInstruction(), 0, 15);
 		IDEXRegister.setOffset(offset);// store offset
 
-		int rt = register1.getNumber();
+		int rt = register2.getNumber();
 		IDEXRegister.setRt((byte) rt);
 
-		int rd = register1.getNumber();
+		int rd = register3.getNumber();
 		IDEXRegister.setRd((byte) rd);
 
 		int opcode = (instruction >> 26) << 26;
