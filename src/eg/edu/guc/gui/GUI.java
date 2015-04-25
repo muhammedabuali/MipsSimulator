@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class GUI extends JFrame {
 
@@ -53,6 +56,7 @@ public class GUI extends JFrame {
 
 		initButtons();
 		initPipelinedRegistersPanel();
+		initRegistersPanel();
 	}
 
 	private void initButtons() {
@@ -117,5 +121,42 @@ public class GUI extends JFrame {
 		gbc_pipelinedPanel.gridy = 0;
 		getContentPane().add(pipelinedPanel, gbc_pipelinedPanel);
 	}
+	
+	private void initRegistersPanel() {
+		JPanel registersPanel = new JPanel();
+		GridBagConstraints gbc_registersPanel = new GridBagConstraints();
+		gbc_registersPanel.insets = new Insets(5, 5, 5, 0);
+		gbc_registersPanel.fill = GridBagConstraints.BOTH;
+		gbc_registersPanel.gridheight = 4;
+		gbc_registersPanel.gridx = 4;
+		gbc_registersPanel.gridy = 0;
+		getContentPane().add(registersPanel, gbc_registersPanel);
+		registersPanel.setLayout(new GridLayout(0, 3, 0, 0));
+
+		JPanel regNamesPanel = new JPanel();
+		registersPanel.add(regNamesPanel);
+		regNamesPanel.setLayout(new GridLayout(33, 0, 0, 0));
+
+		JLabel regLabel = new JLabel("Register");
+		regLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		regNamesPanel.add(regLabel);
+
+		JPanel regNumsPanel = new JPanel();
+		registersPanel.add(regNumsPanel);
+		regNumsPanel.setLayout(new GridLayout(33, 0, 0, 0));
+
+		JLabel numLabel = new JLabel("Number");
+		numLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		regNumsPanel.add(numLabel);
+
+		JPanel regValsPanel = new JPanel();
+		registersPanel.add(regValsPanel);
+		regValsPanel.setLayout(new GridLayout(33, 0, 0, 0));
+
+		JLabel valLabel = new JLabel("Value");
+		valLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		regValsPanel.add(valLabel);
+	}
+
 
 }
