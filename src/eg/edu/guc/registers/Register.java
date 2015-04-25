@@ -65,9 +65,4 @@ public class Register {
 		return res.toString();
 	}
 
-	public String dataString() {
-		return "BIN: " + Integer.toBinaryString(data) + " DEC: "
-				+ Integer.toString(data) + " HEX: " + Integer.toHexString(data);
-	}
-
 }
