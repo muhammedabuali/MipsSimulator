@@ -162,6 +162,9 @@ public class Mips {
 					false, true, false, true, false);
 			break;
 		}
+		
+		// sending jump address to EXMEMRegister
+		IDEXRegister.setJumpAddress(Utilities.getSubset(instruction, 0, 25));
 
 	}
 
@@ -330,6 +333,21 @@ public class Mips {
     	
     	//register value to mem
     	EXMEMRegister.setRegisterValueToMem(IDEXRegister.getRegisterTwoValue());
+    	
+    	//membyte unsigned compOne jump branch 
+    	EXMEMRegister.setMemByte(IDEXRegister.isMemByte());
+    	EXMEMRegister.setUnsigned(IDEXRegister.isUnsigned());
+    	EXMEMRegister.setCompOne(IDEXRegister.isCompOne());
+    	EXMEMRegister.setJump(IDEXRegister.isJump());
+    	EXMEMRegister.setBranch(IDEXRegister.isBranch());
+    	
+    	//adding jumpAddress
+    	int leftFourBitsPC = IFIDRegister.getPc() & 0xf0000000;
+    	int addressJump = IDEXRegister.getJumpAddress();
+    	EXMEMRegister.setJumpAddress(leftFourBitsPC|addressJump);
+    	
+    	//adding the register address in case of jr
+    	EXMEMRegister.setJrRegisterAddress(IDEXRegister.getRegisterOneValue());
     }
 
 	/**
