@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class SimulatorTests {
     @Test
     public void testNormalProgram() {
-        Mips mipo = new Mips("program_files/test1.txt");
+        Mips mipo = new Mips("program_files/test2.txt");
         mipo.run();
 
         System.out.println(RegisterFile.T0_REGISTER.getData());
