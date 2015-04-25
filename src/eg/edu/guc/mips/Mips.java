@@ -388,8 +388,8 @@ public class Mips {
                 // sw
                 Memory.storeWord(EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
         }
-        if (EXMEMRegister.isBranch()) {
-            if (EXMEMRegister.isJump()) {
+        if (EXMEMRegister.isJump()) {
+            if (EXMEMRegister.isBranch()) {
                 // j , jal
                 if (EXMEMRegister.isLink())
                     RegisterFile.RA_REGISTER.setData(Components.getPC());
@@ -399,8 +399,13 @@ public class Mips {
                 Components.setPC(EXMEMRegister.getJrRegisterOneValueAddress());
             }
         } else {
-            if (EXMEMRegister.isJump()) {
-                Components.setPC(EXMEMRegister.getBranchAddress());
+            // beq and bne
+            if (EXMEMRegister.isBranch()) {
+
+                if ((!EXMEMRegister.isCompOne() && EXMEMRegister.isZeroFlag()) ||
+                        (EXMEMRegister.isCompOne() && !EXMEMRegister.isZeroFlag()))
+                    Components.setPC(EXMEMRegister.getBranchAddress());
+
             }
         }
 
