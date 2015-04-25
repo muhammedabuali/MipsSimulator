@@ -2,6 +2,7 @@ package eg.edu.guc.gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -12,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class GUI extends JFrame {
@@ -57,6 +60,7 @@ public class GUI extends JFrame {
 		initButtons();
 		initPipelinedRegistersPanel();
 		initRegistersPanel();
+		initCodeArea();
 	}
 
 	private void initButtons() {
@@ -110,7 +114,7 @@ public class GUI extends JFrame {
 		gbc_debugBtn.gridy = 0;
 		btnsPanel.add(debugBtn, gbc_debugBtn);
 	}
-	
+
 	private void initPipelinedRegistersPanel() {
 		JPanel pipelinedPanel = new JPanel();
 		GridBagConstraints gbc_pipelinedPanel = new GridBagConstraints();
@@ -121,7 +125,7 @@ public class GUI extends JFrame {
 		gbc_pipelinedPanel.gridy = 0;
 		getContentPane().add(pipelinedPanel, gbc_pipelinedPanel);
 	}
-	
+
 	private void initRegistersPanel() {
 		JPanel registersPanel = new JPanel();
 		GridBagConstraints gbc_registersPanel = new GridBagConstraints();
@@ -158,5 +162,18 @@ public class GUI extends JFrame {
 		regValsPanel.add(valLabel);
 	}
 
+	private void initCodeArea() {
+		JScrollPane scrollPaneCode = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(5, 5, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		JTextArea codeTextArea = new JTextArea();
+		codeTextArea.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		scrollPaneCode.setViewportView(codeTextArea);
+		getContentPane().add(scrollPaneCode, gbc_scrollPane);
+	}
 
 }
