@@ -61,6 +61,7 @@ public class GUI extends JFrame {
 		initPipelinedRegistersPanel();
 		initRegistersPanel();
 		initCodeArea();
+		initConsoleArea();
 	}
 
 	private void initButtons() {
@@ -174,6 +175,29 @@ public class GUI extends JFrame {
 		codeTextArea.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		scrollPaneCode.setViewportView(codeTextArea);
 		getContentPane().add(scrollPaneCode, gbc_scrollPane);
+	}
+	
+	private void initConsoleArea() {
+		JLabel lblConsole = new JLabel("    Console:");
+		GridBagConstraints gbc_lblConsole = new GridBagConstraints();
+		gbc_lblConsole.fill = GridBagConstraints.BOTH;
+		gbc_lblConsole.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConsole.gridx = 0;
+		gbc_lblConsole.gridy = 2;
+		getContentPane().add(lblConsole, gbc_lblConsole);
+
+		JScrollPane scrollPaneConsole = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+		gbc_scrollPane_1.insets = new Insets(5, 5, 5, 5);
+		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_1.gridwidth = 3;
+		gbc_scrollPane_1.gridx = 0;
+		gbc_scrollPane_1.gridy = 3;
+		JTextArea consoleTextArea = new JTextArea();
+		consoleTextArea.setEditable(false);
+		scrollPaneConsole.setViewportView(consoleTextArea);
+		getContentPane().add(scrollPaneConsole, gbc_scrollPane_1);
+
 	}
 
 }
