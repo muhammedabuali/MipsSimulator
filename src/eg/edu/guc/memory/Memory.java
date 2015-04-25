@@ -33,7 +33,7 @@ public class Memory {
     public static int loadByteUnsigned(int location) {
 
         int b1 = loadByte(location + 0);
-        return ((int)0)|b1;
+        return ((int) 0) | b1;
     }
 
     public static boolean storeWord(int data, int location) {
@@ -51,12 +51,11 @@ public class Memory {
     }
 
     public static boolean clear() {
-        //TODO implement and add documentation
+        memory = new byte[size];
         return true;
     }
 
     public static void init() {
-        //TODO implement and add documentation
         memory = new byte[size];
     }
 
