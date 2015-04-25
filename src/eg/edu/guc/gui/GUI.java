@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 import eg.edu.guc.mips.Mips;
 import eg.edu.guc.registers.Register;
 import eg.edu.guc.utils.Utilities;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame {
 
@@ -31,10 +33,11 @@ public class GUI extends JFrame {
 	private Color backgroundColor = SystemColor.activeCaption;
 
 	private JPanel pipelinedPanel;
-
+	private JTextArea codeArea;
 	private Mips mips = new Mips();
 	private Register[] registers = Utilities.getRegistersArray();
 	private JLabel[][] registerValueLabels;
+	private IFIDLabels ifid;
 
 	/**
 	 * Launch the application.
@@ -105,6 +108,11 @@ public class GUI extends JFrame {
 		btnsPanel.add(compileBtn, gbc_compileBtn);
 
 		JButton runBtn = new JButton("    Run    ");
+		runBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				run();
+			}
+		});
 		runBtn.setFocusable(false);
 		runBtn.setForeground(SystemColor.window);
 		runBtn.setBackground(new Color(46, 139, 87));
@@ -196,15 +204,30 @@ public class GUI extends JFrame {
 		gbc_panel2.gridx = 0;
 		gbc_panel2.gridy = 1;
 		IFIDPanel.add(labelPane, gbc_panel2);
-		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
+		labelPane.setLayout(new GridLayout(1, 2, 1, 0));
 
+		JLabel pclbl = new JLabel("PC");
+		pclbl.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel instlbl = new JLabel("Instruction");
+		instlbl.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPane.add(pclbl);
+		labelPane.add(instlbl);
+
+		JLabel pc = new JLabel();
+		pc.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel inst = new JLabel();
+		pc.setHorizontalAlignment(SwingConstants.CENTER);
+		ifid = new IFIDLabels(pc, inst);
+		ifid.reset();
 		JPanel valuesPane = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 2;
 		IFIDPanel.add(valuesPane, gbc_panel);
-		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
+		valuesPane.setLayout(new GridLayout(1, 2, 1, 0));
+		valuesPane.add(pc);
+		valuesPane.add(inst);
 	}
 
 	private void initIDEXReg() {
@@ -419,6 +442,7 @@ public class GUI extends JFrame {
 	}
 
 	private void updateRegistersValues() {
+		ifid.reset();
 		for (int i = 0; i < 32; i++) {
 			if (registers[i] == null)
 				continue;
@@ -436,10 +460,14 @@ public class GUI extends JFrame {
 		gbc_scrollPane.gridwidth = 3;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
-		JTextArea codeTextArea = new JTextArea();
-		codeTextArea.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		scrollPaneCode.setViewportView(codeTextArea);
+		codeArea = new JTextArea();
+		codeArea.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		scrollPaneCode.setViewportView(codeArea);
 		getContentPane().add(scrollPaneCode, gbc_scrollPane);
+	}
+
+	private void run() {
+		mips = new Mips();
 	}
 
 	private void initConsoleArea() {
