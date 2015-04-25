@@ -225,8 +225,13 @@ public class Mips {
      * Fetching an instruction from the loaded instructions
      */
     public int fetch() {
-        int instruction = getInstructionBitStream(parsedInstrutions
-                .get(Components.getPC()));
+        int instruction;
+        try {
+            instruction = getInstructionBitStream(parsedInstrutions
+                    .get(Components.getPC()));
+        } catch (IndexOutOfBoundsException e) {
+            instruction = 0;
+        }
 
         IFIDRegister.setInstruction(instruction);
         IFIDRegister.setPc(Components.incrementPC());
@@ -460,7 +465,7 @@ public class Mips {
     }
 
     public void run() {
-        while (Components.getPC() < parsedInstrutions.size()) {
+        while (Components.getPC() < parsedInstrutions.size() + 4) {
             advance();
         }
     }
