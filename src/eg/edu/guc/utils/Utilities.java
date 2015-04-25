@@ -70,8 +70,11 @@ public class Utilities {
      * @return the name of the Register
      */
     public static String getRegisterName(Register register) {
+        if (Constants.nameRegister == null)
+            Constants.initializeNameRegisterHtbl();
+        
         for (Map.Entry<String, Register> entry : Constants.nameRegister.entrySet()) {
-            if (register.equals(entry.getValue())) {
+            if (register == entry.getValue()) {
                 return entry.getKey();
             }
         }
