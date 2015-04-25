@@ -207,9 +207,19 @@ public class GUI extends JFrame {
 				hex.setBackground(Color.gray);
 				hex.setHorizontalAlignment(SwingConstants.CENTER);
 				regHexPanel.add(hex);
-				registerValueLabels[1][i] = dec;
-				registerValueLabels[0][i] = hex;
+				registerValueLabels[0][i] = dec;
+				registerValueLabels[1][i] = hex;
 			}
+		}
+	}
+
+	private void updateRegistersValues() {
+		for (int i = 0; i < 32; i++) {
+			if (registers[i] == null)
+				continue;
+			registerValueLabels[0][i].setText(registers[i].getData() + "1");
+			registerValueLabels[1][i].setText(Integer.toHexString(registers[i]
+					.getData()) + "");
 		}
 	}
 
