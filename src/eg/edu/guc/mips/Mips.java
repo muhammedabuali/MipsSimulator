@@ -1,13 +1,10 @@
 package eg.edu.guc.mips;
 
-import eg.edu.guc.registers.EXMEMRegister;
-import eg.edu.guc.registers.IFIDRegister;
-import eg.edu.guc.registers.IDEXRegister;
+import eg.edu.guc.registers.*;
 
 import java.io.*;
 import java.util.ArrayList;
 
-import eg.edu.guc.registers.Register;
 import eg.edu.guc.utils.ALUControl;
 import eg.edu.guc.utils.Utilities;
 
@@ -351,6 +348,23 @@ public class Mips {
 
         //adding the register address in case of jr
         EXMEMRegister.setJrRegisterAddress(IDEXRegister.getRegisterOneValue());
+    }
+
+    public void memory() {
+
+        //WB controls
+        MEMWBRegister.setMemToReg(EXMEMRegister.isMemToReg());
+        MEMWBRegister.setRegWrite(EXMEMRegister.isRegWrite());
+
+        //ALUOut
+        MEMWBRegister.setAluOut(EXMEMRegister.getAluOut());
+
+        // READING
+        if (EXMEMRegister.isMemRead()) {
+
+        }
+
+
     }
 
     /**
