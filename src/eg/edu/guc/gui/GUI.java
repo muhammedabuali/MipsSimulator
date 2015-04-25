@@ -52,6 +52,7 @@ public class GUI extends JFrame {
 		getContentPane().setLayout(gridBagLayout);
 
 		initButtons();
+		initPipelinedRegistersPanel();
 	}
 
 	private void initButtons() {
@@ -104,6 +105,17 @@ public class GUI extends JFrame {
 		gbc_debugBtn.gridx = 2;
 		gbc_debugBtn.gridy = 0;
 		btnsPanel.add(debugBtn, gbc_debugBtn);
+	}
+	
+	private void initPipelinedRegistersPanel() {
+		JPanel pipelinedPanel = new JPanel();
+		GridBagConstraints gbc_pipelinedPanel = new GridBagConstraints();
+		gbc_pipelinedPanel.insets = new Insets(5, 5, 5, 5);
+		gbc_pipelinedPanel.fill = GridBagConstraints.BOTH;
+		gbc_pipelinedPanel.gridheight = 4;
+		gbc_pipelinedPanel.gridx = 3;
+		gbc_pipelinedPanel.gridy = 0;
+		getContentPane().add(pipelinedPanel, gbc_pipelinedPanel);
 	}
 
 }
