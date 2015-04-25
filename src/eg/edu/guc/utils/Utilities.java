@@ -72,7 +72,7 @@ public class Utilities {
     public static String getRegisterName(Register register) {
         if (Constants.nameRegister == null)
             Constants.initializeNameRegisterHtbl();
-        
+
         for (Map.Entry<String, Register> entry : Constants.nameRegister.entrySet()) {
             if (register == entry.getValue()) {
                 return entry.getKey();
