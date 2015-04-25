@@ -20,6 +20,7 @@ public class Register {
 	public Register(int data, int number, String name) {
 		this.data = data;
 		this.number = number;
+		this.name = name;
 	}
 
 	public int getData() {
