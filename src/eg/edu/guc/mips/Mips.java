@@ -294,26 +294,35 @@ public class Mips {
         int constant = Utilities.getLabelNumber(target);
         return (opCode << 26) | (constant);
     }
+    /**
+     * perform the IDEX STAGE and write all values to the Register EXMEM
+     */
     public void excute(){
     	//WB controls
     	EXMEMRegister.setMemToReg(IDEXRegister.isMemToReg());
     	EXMEMRegister.setRegWrite(IDEXRegister.isRegWrite());
+    	
     	//Mem controls
     	EXMEMRegister.setMemWrite(IDEXRegister.isMemWrite());
     	EXMEMRegister.setMemRead(IDEXRegister.isMemRead());
+    	
     	//AluOp
-    	int aluControlOutput = ALUControl.generateAluop(IDEXRegister.getAluOp(), IDEXRegister.getOffset());
+    	int functionField = IDEXRegister.getOffset()&63;//extract last 6 bits
+    	int aluControlOutput = ALUControl.generateAluop(IDEXRegister.getAluOp(), functionField);
     	int AluSecondInput = (!IDEXRegister.isAluSrc()?IDEXRegister.getRegisterTwoValue():IDEXRegister.getOffset());
     	int aluOutput = ALUControl.perform(IDEXRegister.getRegisterOneValue(),AluSecondInput, aluControlOutput);
     	EXMEMRegister.setAluOut(aluOutput);
     	EXMEMRegister.setZeroFlag(aluOutput==0?true:false);
+    	
     	//branch address
     	int shifted = IDEXRegister.getOffset() << 2;
     	int added = shifted + IDEXRegister.getPc();
     	EXMEMRegister.setBranchAddress(added);
+    	
     	//rd
     	byte rd = !IDEXRegister.isRegDest()?IDEXRegister.getRt():IDEXRegister.getRd();//need to be reviewed
     	EXMEMRegister.setRd(rd);
+    	
     	//register value to mem
     	EXMEMRegister.setRegisterValueToMem(IDEXRegister.getRegisterTwoValue());
     }
