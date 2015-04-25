@@ -14,7 +14,7 @@ import eg.edu.guc.registers.RegisterFile;
 public class Constants {
 	protected static BufferedReader reader;
 	protected static Hashtable<String, String[]> instructionNameData;
-	protected static Hashtable<String, Register> nameRegister;
+	protected static Hashtable<String, Integer> nameRegister;
 	protected static Register[] numberRegister;
 	protected static Hashtable<Integer, String> opcodeInstructionName;
 	protected static Hashtable<String, Integer> labelNameNumber = new Hashtable<String, Integer>();
@@ -45,46 +45,12 @@ public class Constants {
 	 * adds each Register in the registerFile class into the nameRegister htbl
 	 */
 	protected static void initializeNameRegisterHtbl() {
-		nameRegister = new Hashtable<String, Register>();
-
-		nameRegister.put("$a0", RegisterFile.A0_REGISTER);
-		nameRegister.put("$a1", RegisterFile.A1_REGISTER);
-		nameRegister.put("$a2", RegisterFile.A2_REGISTER);
-		nameRegister.put("$a3", RegisterFile.A3_REGISTER);
-
-		nameRegister.put("$ra", RegisterFile.RA_REGISTER);
-		nameRegister.put("$fp", RegisterFile.FP_REGISTER);
-
-		nameRegister.put("$s0", RegisterFile.S0_REGISTER);
-		nameRegister.put("$s1", RegisterFile.S1_REGISTER);
-		nameRegister.put("$s2", RegisterFile.S2_REGISTER);
-		nameRegister.put("$s3", RegisterFile.S3_REGISTER);
-		nameRegister.put("$s4", RegisterFile.S4_REGISTER);
-		nameRegister.put("$s5", RegisterFile.S5_REGISTER);
-		nameRegister.put("$s6", RegisterFile.S6_REGISTER);
-		nameRegister.put("$s7", RegisterFile.S7_REGISTER);
-
-		nameRegister.put("$sp", RegisterFile.SP_REGISTER);
-		nameRegister.put("$gp", RegisterFile.GP_REGISTER);
-
-		nameRegister.put("$0", RegisterFile.ZERO_REGISTER);
-
-		nameRegister.put("$at", RegisterFile.AT_REGISTER);
-
-		nameRegister.put("$v0", RegisterFile.V0_REGISTER);
-		nameRegister.put("$v1", RegisterFile.V1_REGISTER);
-
-		nameRegister.put("$t0", RegisterFile.T0_REGISTER);
-		nameRegister.put("$t1", RegisterFile.T1_REGISTER);
-		nameRegister.put("$t2", RegisterFile.T2_REGISTER);
-		nameRegister.put("$t3", RegisterFile.T3_REGISTER);
-		nameRegister.put("$t4", RegisterFile.T4_REGISTER);
-		nameRegister.put("$t5", RegisterFile.T5_REGISTER);
-		nameRegister.put("$t6", RegisterFile.T6_REGISTER);
-		nameRegister.put("$t7", RegisterFile.T7_REGISTER);
-		nameRegister.put("$t8", RegisterFile.T8_REGISTER);
-		nameRegister.put("$t9", RegisterFile.T9_REGISTER);
-
+		nameRegister = new Hashtable<String, Integer>();
+		for (int i = 0; i < 32; i++) {
+			if (numberRegister[i] != null) {
+				nameRegister.put(numberRegister[i].getName(), i);
+			}
+		}
 	}
 
 	protected static void initializeOpcodeInstNameHtbl() {
