@@ -35,7 +35,7 @@ public class Utilities {
 
 	/**
 	 * returns instruction name for a given (opcode << 26 | funcode)
-	 * 
+	 *
 	 * @param opcodeOrFunctionCode
 	 * @return
 	 */
@@ -62,9 +62,11 @@ public class Utilities {
 	}
 
 	public static int getSubset(int originalNumber, int start, int end) {
-		originalNumber = originalNumber >> start;
-		originalNumber = originalNumber & ((1 << end) - 1);
-		return originalNumber;
-	}
+		int mask = 0;
+		for (int i = start; i <= end; i++) {
+			mask += Math.pow(2, i);
+		}
+		return (originalNumber & mask) >> start;
 
+	}
 }
