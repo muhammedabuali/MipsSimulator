@@ -19,8 +19,8 @@ public class Utilities {
 	public static Register getRegisterByNumber(int regNum) {
 		if (Constants.numberRegister == null)
 			Constants.initializeNumberRegisterHtbl();
-		if (Constants.numberRegister.containsKey(regNum))
-			return Constants.numberRegister.get(regNum);
+		if (regNum < 32)
+			return Constants.numberRegister[regNum];
 		System.err.println("Register number " + regNum
 				+ " was not found in the Registers table");
 		return null;
