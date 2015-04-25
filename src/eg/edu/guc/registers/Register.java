@@ -1,7 +1,5 @@
 package eg.edu.guc.registers;
 
-import eg.edu.guc.utils.Utilities;
-
 /**
  * Created by kady on 12/04/15.
  * <p/>
@@ -65,6 +63,11 @@ public class Register {
 				.append(this.data).append("\n");
 
 		return res.toString();
+	}
+
+	public String dataString() {
+		return "BIN: " + Integer.toBinaryString(data) + " DEC: "
+				+ Integer.toString(data) + " HEX: " + Integer.toHexString(data);
 	}
 
 }
