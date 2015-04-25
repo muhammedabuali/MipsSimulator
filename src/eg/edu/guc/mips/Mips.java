@@ -12,7 +12,6 @@ import eg.edu.guc.utils.Utilities;
 public class Mips {
     private ArrayList<String> instructions;
     private ArrayList<String[]> parsedInstrutions;
-    private int state = 0;
 
     /**
      * Reading a file containing a mips instructions
@@ -438,28 +437,16 @@ public class Mips {
     }
 
     public void advance() {
-        switch (state) {
-            case 0:
-                fetch();
-                break;
-            case 1:
-                decode();
-                break;
-            case 2:
-                execute();
-                break;
-            case 3:
-                memory();
-                break;
-            case 4:
-                writeBack();
-                break;
-            default:
-                System.err.println("State not defined");
+        writeBack();
+        memory();
+        execute();
+        decode();
+        fetch();
+    }
 
 
-        }
-        state = (state + 1) % 5;
+    public void run() {
+
     }
 
 }
