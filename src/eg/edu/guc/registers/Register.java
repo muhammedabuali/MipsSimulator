@@ -56,7 +56,7 @@ public class Register {
 		StringBuilder res = new StringBuilder();
 		res.append("REGISTER\n");
 
-		res.append(Utilities.getRegisterName(this));
+		res.append(this.name);
 
 		res.append("\t==> number:").append(this.number).append("\nHEX:")
 				.append(Integer.toString(this.data, 16)).append("\nBIN:")
