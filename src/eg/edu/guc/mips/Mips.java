@@ -39,6 +39,15 @@ public class Mips {
         run();
     }
 
+    public void runText(JTextArea codeArea) {
+        instructions = new ArrayList<String>();
+        String[] lines = codeArea.getText().split("\n");
+        for (String inst : lines)
+            instructions.add(inst);
+        parsedInstrutions = Parser.parseInstructions(instructions);
+        run();
+    }
+
     /**
      * Reading a file containing a mips instructions
      *
