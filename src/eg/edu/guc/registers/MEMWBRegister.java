@@ -7,53 +7,53 @@ package eg.edu.guc.registers;
  */
 public class MEMWBRegister {
 
-    private int aluOut, memoryRead;
+    private static int aluOut, memoryRead;
 
-    private byte rd;
+    private static byte rd;
 
     //WB controls
 
-    boolean memToReg, RegWrite;
+    static boolean memToReg, regWrite;
 
-    public int getAluOut() {
+    public static int getAluOut() {
         return aluOut;
     }
 
-    public void setAluOut(int aluOut) {
-        this.aluOut = aluOut;
+    public static void setAluOut(int aluOut) {
+        MEMWBRegister.aluOut = aluOut;
     }
 
-    public int getMemoryRead() {
+    public static int getMemoryRead() {
         return memoryRead;
     }
 
-    public void setMemoryRead(int memoryRead) {
-        this.memoryRead = memoryRead;
+    public static void setMemoryRead(int memoryRead) {
+        MEMWBRegister.memoryRead = memoryRead;
     }
 
-    public byte getRd() {
+    public static byte getRd() {
         //TODO mask
         return rd;
     }
 
-    public void setRd(byte rd) {
+    public static void setRd(byte rd) {
         //TODO Check length ... 5
-        this.rd = rd;
+        MEMWBRegister.rd = rd;
     }
 
-    public boolean isMemToReg() {
+    public static boolean isMemToReg() {
         return memToReg;
     }
 
-    public void setMemToReg(boolean memToReg) {
-        this.memToReg = memToReg;
+    public static void setMemToReg(boolean memToReg) {
+        MEMWBRegister.memToReg = memToReg;
     }
 
-    public boolean isRegWrite() {
-        return RegWrite;
+    public static boolean isRegWrite() {
+        return regWrite;
     }
 
-    public void setRegWrite(boolean regWrite) {
-        RegWrite = regWrite;
+    public static void setRegWrite(boolean regWrite) {
+        MEMWBRegister.regWrite = regWrite;
     }
 }
