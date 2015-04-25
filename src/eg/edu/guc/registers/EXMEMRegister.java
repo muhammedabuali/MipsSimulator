@@ -6,90 +6,90 @@ package eg.edu.guc.registers;
  * @author kady
  */
 public class EXMEMRegister {
-    private int branchAddress, aluOut, registerValueToMem;
-    private boolean zeroFlag;
+    private static int branchAddress, aluOut, registerValueToMem;
+    private static boolean zeroFlag;
 
-    private byte rd;
+    private static byte rd;
 
     //WB controls
 
-    boolean memToReg, RegWrite;
+    static boolean memToReg, RegWrite;
 
     //Memory controls
 
-    boolean memWrite, memRead;
+    static boolean memWrite, memRead;
 
-    public int getBranchAddress() {
+    public static int getBranchAddress() {
         return branchAddress;
     }
 
-    public void setBranchAddress(int branchAddress) {
-        this.branchAddress = branchAddress;
+    public static void setBranchAddress(int branchAddress) {
+        EXMEMRegister.branchAddress = branchAddress;
     }
 
-    public int getAluOut() {
+    public static int getAluOut() {
         return aluOut;
     }
 
-    public void setAluOut(int aluOut) {
-        this.aluOut = aluOut;
+    public static void setAluOut(int aluOut) {
+        EXMEMRegister.aluOut = aluOut;
     }
 
-    public int getRegisterValueToMem() {
+    public static int getRegisterValueToMem() {
         return registerValueToMem;
     }
 
-    public void setRegisterValueToMem(int registerValueToMem) {
-        this.registerValueToMem = registerValueToMem;
+    public static void setRegisterValueToMem(int registerValueToMem) {
+        EXMEMRegister.registerValueToMem = registerValueToMem;
     }
 
-    public boolean isZeroFlag() {
+    public static boolean isZeroFlag() {
         return zeroFlag;
     }
 
-    public void setZeroFlag(boolean zeroFlag) {
-        this.zeroFlag = zeroFlag;
+    public static void setZeroFlag(boolean zeroFlag) {
+        EXMEMRegister.zeroFlag = zeroFlag;
     }
 
-    public byte getRd() {
+    public static byte getRd() {
         //TODO mask
         return rd;
     }
 
-    public void setRd(byte rd) {
+    public static void setRd(byte rd) {
         //TODO Check length ... 5
-        this.rd = rd;
+        EXMEMRegister.rd = rd;
     }
 
-    public boolean isMemToReg() {
+    public static boolean isMemToReg() {
         return memToReg;
     }
 
-    public void setMemToReg(boolean memToReg) {
-        this.memToReg = memToReg;
+    public static void setMemToReg(boolean memToReg) {
+        EXMEMRegister.memToReg = memToReg;
     }
 
-    public boolean isRegWrite() {
+    public static boolean isRegWrite() {
         return RegWrite;
     }
 
-    public void setRegWrite(boolean regWrite) {
+    public static void setRegWrite(boolean regWrite) {
         RegWrite = regWrite;
     }
 
-    public boolean isMemWrite() {
+    public static boolean isMemWrite() {
         return memWrite;
     }
 
-    public void setMemWrite(boolean memWrite) {
-        this.memWrite = memWrite;
+    public static void setMemWrite(boolean memWrite) {
+        EXMEMRegister.memWrite = memWrite;
     }
 
-    public boolean isMemRead() {
+    public static boolean isMemRead() {
         return memRead;
     }
 
-    public void setMemRead(boolean memRead) {
-        this.memRead = memRead;
+    public static void setMemRead(boolean memRead) {
+        EXMEMRegister.memRead = memRead;
     }
 }

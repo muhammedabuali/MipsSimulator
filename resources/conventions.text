@@ -1,0 +1,40 @@
+					Alu control
+------------------------------------------------------------------------------------------------
+ins    aluop  funct    aluAction   aluControlInput
+---------------------------------------------------
+lw     00     xx xxxx   add         010
+sw     00     xx xxxx   add         010 //they all have
+lb     00     xx xxxx   add         010 // the same
+sb     00     xx xxxx   add         010 // Alu inputs .
+lbu    00     xx xxxx   add         010 // however they are diffrent in control signals 
+lui 
+---------------------------------------------------
+beq    01     xx xxxx   sub         110
+bne    01     xx xxxx   sub         110 //diffrence in control signals .. check the compOne signal
+---------------------------------------------------
+add    10     10 0000   add         010
+sub    10     10 0010   sub         110
+addi   10     10 0000   add         010
+sll    10     01 0000   sll         101 //i added that because it wasn't supported
+srl    10     00 0010   srl         011 //i added that as well
+and    10     10 0100   and         000
+nor    10     10 0111   nor         100 //and that too
+slt    10     10 1010   slt         111 
+sltu   10     10 1011   sltu        001 // and also this one 
+jr     :|     :"""""|   :{|}
+*************************************************************************************************
+control signals 
+ALUSrc 		Selects the second source operand for the ALU (rt or sign-extended immediate field in Patterson and Hennessey).
+ALUOp 		Either specifies the ALU operation to be performed or specifies that the operation should be determined from the function bits.
+MemRead 	Enables a memory read for load instructions.
+MemWrite 	Enables a memory write for store instructions.
+RegWrite 	Enables a write to one of the registers.
+RegDst 		Determines how the destination register is specified (rt or rd in Patterson and Hennessey).
+MemtoReg 	Determines where the value to be written comes from (ALU result or memory in Patterson and Hennessey). 
+memByte 	Determines how the destination register is specified (rt or rd in Patterson and Hennessey).
+unsigned 	Determines whether the loading 
+compOne 	determines whether to compare with one or zero
+jump,branch determine what to be loaded to PC next instruction 
+incremented PC (normal) 0x00 , incremented PC + offset (branch) 0x01, jump address , 0x10 26 to 32 jump address ,0x11 32 register address
+
+ 

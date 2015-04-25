@@ -16,6 +16,7 @@ public class Constants {
 	protected static Hashtable<String, String[]> instructionNameData;
 	protected static Hashtable<String, Register> nameRegister;
 	protected static Hashtable<Integer, Register> numberRegister;
+	protected static Hashtable<Integer, String> opcodeInstructionName;
 	protected static Hashtable<String, Integer> labelNameNumber = new Hashtable<String, Integer>();
 
 	/**
@@ -84,6 +85,22 @@ public class Constants {
 		nameRegister.put("$t8", RegisterFile.T8_REGISTER);
 		nameRegister.put("$t9", RegisterFile.T9_REGISTER);
 
+	}
+
+	protected static void initializeOpcodeInstNameHtbl() {
+		opcodeInstructionName = new Hashtable<Integer, String>();
+		if (instructionNameData == null)
+			readInstructionsData();
+		Enumeration<String[]> instructionsData = instructionNameData.elements();
+		while (instructionsData.hasMoreElements()) {
+			String[] currInstData = instructionsData.nextElement();
+			int opcode = Integer.parseInt(currInstData[2], 16);
+			opcode = opcode << 26;
+			int funcode = 0;
+			if (!currInstData[3].equals("NA"))
+				funcode = Integer.parseInt(currInstData[3], 16);
+			opcodeInstructionName.put(opcode | funcode, currInstData[0]);
+		}
 	}
 
 	protected static void initializeNumberRegisterHtbl() {
