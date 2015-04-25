@@ -14,7 +14,6 @@ import static org.junit.Assert.*;
 public class RegistersTests {
     @Test
     public void testingRegisterDisplay() {
-        RegisterFile.init();
 
         Register a0 = RegisterFile.A0_REGISTER;
 

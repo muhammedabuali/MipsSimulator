@@ -15,7 +15,6 @@ public class MipsTests {
 
     @Test
     public void testGetRInstructionBitStream() {
-        RegisterFile.init();
         Mips m = new Mips();
 
         int instCode = m.getInstructionBitStream(Parser.parseInstruction(
@@ -27,7 +26,6 @@ public class MipsTests {
 
     @Test
     public void testGetIInstructionBitStream() {
-        RegisterFile.init();
         Mips m = new Mips();
 
         int instCode = m.getInstructionBitStream(Parser.parseInstruction(
@@ -39,7 +37,6 @@ public class MipsTests {
 
     @Test
     public void testGetInstructionNameByOpcodePart() {
-        RegisterFile.init();
         int instruction = Integer.parseInt("2149000b", 16);
         int opcode = (instruction >> 26) << 26;
 
@@ -56,7 +53,6 @@ public class MipsTests {
 
     @Test
     public void testAddInstructionDecode() {
-        RegisterFile.init();
         //add t0 t1 t2
         int instruction = Integer.parseInt("000000" + "01000" + "01001" + "01010" + "00000" + "100000", 2);
         IFIDRegister.setInstruction(instruction);

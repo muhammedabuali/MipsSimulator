@@ -33,7 +33,7 @@ public class Mips {
 
 		Register register2 = Utilities.getRegisterByNumber(Utilities.getSubset(
 				IFIDRegister.getInstruction(), 16, 20));
-		IDEXRegister.setRegisterOneValue(register2.getData());// store register
+		IDEXRegister.setRegisterTwoValue(register2.getData());// store register
 																// 2 data
 
 		Register register3 = Utilities.getRegisterByNumber(Utilities.getSubset(
