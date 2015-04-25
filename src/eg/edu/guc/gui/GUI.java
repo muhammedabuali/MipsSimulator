@@ -1,15 +1,19 @@
 package eg.edu.guc.gui;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridBagLayout;
+import java.awt.SystemColor;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class GUI extends JFrame {
 
-	private JPanel contentPane;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5878820421093084909L;
+	private Color backgroundColor = SystemColor.activeCaption;
 
 	/**
 	 * Launch the application.
@@ -31,12 +35,17 @@ public class GUI extends JFrame {
 	 * Create the frame.
 	 */
 	public GUI() {
+		getContentPane().setBackground(backgroundColor);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		setBounds(100, 100, 880, 550);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[] { 260, 35, 29, 178, 311 };
+		gridBagLayout.rowHeights = new int[] { 41, 319, 19, 77, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.4, 0.4, 0.0, 0.4, 0.4,
+				Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.001, 0.5, 0.0, 0.4,
+				Double.MIN_VALUE };
+		getContentPane().setLayout(gridBagLayout);
 	}
 
 }
