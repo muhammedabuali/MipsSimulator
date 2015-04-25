@@ -13,6 +13,20 @@ public class Mips {
     private ArrayList<String> instructions;
     private ArrayList<String[]> parsedInstrutions;
 
+    public Mips() {
+
+    }
+
+    public Mips(String path) {
+        try {
+            readProgram(new File(path));
+            run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * Reading a file containing a mips instructions
      *
@@ -20,6 +34,7 @@ public class Mips {
      */
 
     public void decode() {
+
 
         int instruction = IFIDRegister.getInstruction();
 
@@ -210,8 +225,13 @@ public class Mips {
      * Fetching an instruction from the loaded instructions
      */
     public int fetch() {
-        int instruction = getInstructionBitStream(parsedInstrutions
-                .get(Components.getPC()));
+        int instruction;
+        try {
+            instruction = getInstructionBitStream(parsedInstrutions
+                    .get(Components.getPC()));
+        } catch (IndexOutOfBoundsException e) {
+            instruction = 0;
+        }
 
         IFIDRegister.setInstruction(instruction);
         IFIDRegister.setPc(Components.incrementPC());
@@ -434,6 +454,20 @@ public class Mips {
         int opCode = Integer.parseInt(instOpCode, 16);
         int constant = Utilities.getLabelNumber(target);
         return (opCode << 26) | (constant);
+    }
+
+    public void advance() {
+        writeBack();
+        memory();
+        execute();
+        decode();
+        fetch();
+    }
+
+    public void run() {
+        while (Components.getPC() < parsedInstrutions.size() + 4) {
+            advance();
+        }
     }
 
 }
