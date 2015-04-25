@@ -3,3 +3,4 @@ lop: add $t2 ,$t2,$t2
 
 
 addi $t1, $t1,7
+j lop:
