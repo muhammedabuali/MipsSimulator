@@ -132,15 +132,56 @@ public class MipsTests {
         m.execute();
 
         m.memory();
-        System.out.println(MEMWBRegister.getAluOut());
-
-        System.out.println(Utilities.getRegisterByNumber(IDEXRegister.getRt()).getName());
-        System.out.println(Utilities.getRegisterByNumber(EXMEMRegister.getRd()).getName());
-        System.out.println(Utilities.getRegisterByNumber(MEMWBRegister.getRd()).getName());
-
         m.writeBack();
         System.out.println(RegisterFile.T1_REGISTER.getData());
         assertTrue("t1 should be 10", RegisterFile.T1_REGISTER.getData() == 10);
     }
+    @Test
+    public void testAndInstructionDecode() {
+        //add t0 t1 t2
+        Mips m = new Mips();
 
+        RegisterFile.T1_REGISTER.setData(3);
+        RegisterFile.T2_REGISTER.setData(7);
+
+
+        int instCode = m.getInstructionBitStream(Parser.parseInstruction(
+                "and $t0, $t1, $t2", 1));
+        IFIDRegister.setInstruction(instCode);
+        IDEXRegister.setPc(1);
+
+        m.decode();
+
+        m.execute();
+
+        m.memory();
+
+        m.writeBack();
+
+        assertTrue("t0 should be 2", RegisterFile.T0_REGISTER.getData() == 3);
+    }
+    @Test
+    public void testNorInstructionDecode() {
+        //add t0 t1 t2
+        Mips m = new Mips();
+
+        RegisterFile.T1_REGISTER.setData(2);
+        RegisterFile.T2_REGISTER.setData(7);
+
+        int instCode = m.getInstructionBitStream(Parser.parseInstruction(
+                "nor $t0, $t1, $t2", 1));
+        IFIDRegister.setInstruction(instCode);
+        IDEXRegister.setPc(1);
+
+        m.decode();
+
+        m.execute();
+
+        m.memory();
+
+        m.writeBack();
+
+        System.out.println(RegisterFile.T0_REGISTER.getData());
+        assertTrue("t0 should be -8", RegisterFile.T0_REGISTER.getData() == -8);
+    }
 }
