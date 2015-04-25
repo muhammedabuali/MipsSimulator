@@ -235,6 +235,31 @@ public class GUI extends JFrame {
 		gbc_MEMWBPanel.gridx = 0;
 		gbc_MEMWBPanel.gridy = 3;
 		pipelinedPanel.add(MEMWBPanel, gbc_MEMWBPanel);
+		
+		GridBagLayout gbl_MEMWBPanel = new GridBagLayout();
+		gbl_MEMWBPanel.columnWidths = new int[] { 0 };
+		gbl_MEMWBPanel.rowHeights = new int[] { 0, 0 };
+		gbl_MEMWBPanel.columnWeights = new double[] { 0.2 };
+		gbl_MEMWBPanel.rowWeights = new double[] { 0.3, 0.7 };
+		MEMWBPanel.setLayout(gbl_MEMWBPanel);
+
+		JPanel labelPane = new JPanel();
+		GridBagConstraints gbc_panel2 = new GridBagConstraints();
+		gbc_panel2.insets = new Insets(0, 0, 5, 0);
+		gbc_panel2.fill = GridBagConstraints.BOTH;
+		gbc_panel2.gridheight = 1;
+		gbc_panel2.gridx = 0;
+		gbc_panel2.gridy = 0;
+		MEMWBPanel.add(labelPane, gbc_panel2);
+		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
+
+		JPanel valuesPane = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		MEMWBPanel.add(valuesPane, gbc_panel);
+		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 	}
 
 	private void initEXMEMReg() {
@@ -244,6 +269,31 @@ public class GUI extends JFrame {
 		gbc_EXMEMPanel.gridx = 0;
 		gbc_EXMEMPanel.gridy = 4;
 		pipelinedPanel.add(EXMEMPanel, gbc_EXMEMPanel);
+		
+		GridBagLayout gbl_EXMEMPanel = new GridBagLayout();
+		gbl_EXMEMPanel.columnWidths = new int[] { 0 };
+		gbl_EXMEMPanel.rowHeights = new int[] { 0, 0 };
+		gbl_EXMEMPanel.columnWeights = new double[] { 0.2 };
+		gbl_EXMEMPanel.rowWeights = new double[] { 0.3, 0.7 };
+		EXMEMPanel.setLayout(gbl_EXMEMPanel);
+
+		JPanel labelPane = new JPanel();
+		GridBagConstraints gbc_panel2 = new GridBagConstraints();
+		gbc_panel2.insets = new Insets(0, 0, 5, 0);
+		gbc_panel2.fill = GridBagConstraints.BOTH;
+		gbc_panel2.gridheight = 1;
+		gbc_panel2.gridx = 0;
+		gbc_panel2.gridy = 0;
+		EXMEMPanel.add(labelPane, gbc_panel2);
+		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
+
+		JPanel valuesPane = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		EXMEMPanel.add(valuesPane, gbc_panel);
+		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 
 	}
 
