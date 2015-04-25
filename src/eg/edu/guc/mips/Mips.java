@@ -72,7 +72,7 @@ public class Mips {
                 break;
 
             case "addi":
-                setControSignals(true, true, 0b00, false, false, false, false,
+                setControSignals(true, false, 0b00, false, false, false, false,
                         false, false, false, true, false);
                 break;
             // loading from memory

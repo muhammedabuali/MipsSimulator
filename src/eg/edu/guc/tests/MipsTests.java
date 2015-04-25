@@ -106,8 +106,41 @@ public class MipsTests {
         m.memory();
 
         m.writeBack();
-        System.out.println(RegisterFile.T0_REGISTER.getData());
         assertTrue("t0 should be 1", RegisterFile.T0_REGISTER.getData() == 1);
+    }
+    @Test
+    public void testAddIInstructionDecode() {
+        //add t0 t1 t2
+        Mips m = new Mips();
+
+        RegisterFile.T1_REGISTER.setData(3);
+
+        int instCode = m.getInstructionBitStream(Parser.parseInstruction(
+                "addi $t1, $t1, 7", 1));
+        IFIDRegister.setInstruction(instCode);
+        IDEXRegister.setPc(1);
+
+        /*int instruction = Integer.parseInt("000000" + "01001" + "01010" + "01000" + "00000" + "100010", 2);
+        assertTrue("instruction bits should be  000000 01001 01010 01000 00000 100000", IFIDRegister.getInstruction() == instruction);
+
+        assertTrue("funct should be 100010", Utilities.getSubset(IDEXRegister.getOffset(), 0, 5) == 0b100010);
+        assertTrue("rt should be $t2", Utilities.getRegisterByNumber(IDEXRegister.getRt()) == RegisterFile.T2_REGISTER);
+        assertTrue("rd should be $t0", Utilities.getRegisterByNumber(IDEXRegister.getRd()).equals(RegisterFile.T0_REGISTER));
+        */
+        m.decode();
+
+        m.execute();
+
+        m.memory();
+        System.out.println(MEMWBRegister.getAluOut());
+
+        System.out.println(Utilities.getRegisterByNumber(IDEXRegister.getRt()).getName());
+        System.out.println(Utilities.getRegisterByNumber(EXMEMRegister.getRd()).getName());
+        System.out.println(Utilities.getRegisterByNumber(MEMWBRegister.getRd()).getName());
+
+        m.writeBack();
+        System.out.println(RegisterFile.T1_REGISTER.getData());
+        assertTrue("t1 should be 10", RegisterFile.T1_REGISTER.getData() == 10);
     }
 
 }
