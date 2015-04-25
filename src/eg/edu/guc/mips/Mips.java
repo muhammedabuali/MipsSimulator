@@ -5,6 +5,9 @@ import eg.edu.guc.registers.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.JTextArea;
 
 import eg.edu.guc.utils.ALUControl;
 import eg.edu.guc.utils.Utilities;
@@ -27,6 +30,24 @@ public class Mips {
 
     }
 
+    public Mips(JTextArea codeArea) {
+        instructions = new ArrayList<String>();
+        String[] lines = codeArea.getText().split("\n");
+        for (String inst : lines)
+            instructions.add(inst);
+        parsedInstrutions = Parser.parseInstructions(instructions);
+        run();
+    }
+
+    public void runText(JTextArea codeArea) {
+        instructions = new ArrayList<String>();
+        String[] lines = codeArea.getText().split("\n");
+        for (String inst : lines)
+            instructions.add(inst);
+        parsedInstrutions = Parser.parseInstructions(instructions);
+        run();
+    }
+
     /**
      * Reading a file containing a mips instructions
      *
@@ -34,7 +55,6 @@ public class Mips {
      */
 
     public void decode() {
-
 
         int instruction = IFIDRegister.getInstruction();
 
@@ -53,7 +73,7 @@ public class Mips {
                 IFIDRegister.getInstruction(), 11, 15));
 
         int offset = Utilities.getSubset(IFIDRegister.getInstruction(), 0, 15);
-        IDEXRegister.setOffset(offset);// store offset
+        IDEXRegister.setOffset(offset | 0xffff0000);// store offset
 
         int rt = register2.getNumber();
         IDEXRegister.setRt((byte) rt);
@@ -61,7 +81,7 @@ public class Mips {
         int rd = register3.getNumber();
         IDEXRegister.setRd((byte) rd);
 
-        int opcode = (instruction >> 26) << 26;
+        int opcode = Utilities.getSubset(instruction, 26, 31) << 26;
 
         if (opcode == 0) {
             // R format Instruction need to get function code
@@ -321,65 +341,69 @@ public class Mips {
             srcRegNum = Integer.parseInt(srcReg);
         }
         return (opCode << 26) | (srcRegNum << 21) | (targetRegNum << 16)
-                | (constant);
+                | (constant & 0x0000ffff);
     }
 
     /**
      * perform the IDEX STAGE and write all values to the Register EXMEM
      */
     public void execute() {
-        //WB controls
+        // WB controls
         EXMEMRegister.setMemToReg(IDEXRegister.isMemToReg());
         EXMEMRegister.setRegWrite(IDEXRegister.isRegWrite());
 
-        //Mem controls
+        // Mem controls
         EXMEMRegister.setMemWrite(IDEXRegister.isMemWrite());
         EXMEMRegister.setMemRead(IDEXRegister.isMemRead());
         EXMEMRegister.setLink(IDEXRegister.isLink());
 
-        //AluOp
-        int functionField = IDEXRegister.getOffset() & 63;//extract last 6 bits
-        int aluControlOutput = ALUControl.generateAluop(IDEXRegister.getAluOp(), functionField);
-        int AluSecondInput = (!IDEXRegister.isAluSrc() ? IDEXRegister.getRegisterTwoValue() : IDEXRegister.getOffset());
-        int aluOutput = ALUControl.perform(IDEXRegister.getRegisterOneValue(), AluSecondInput, aluControlOutput);
+        // AluOp
+        int functionField = IDEXRegister.getOffset() & 63;// extract last 6 bits
+        int aluControlOutput = ALUControl.generateAluop(
+                IDEXRegister.getAluOp(), functionField);
+        int AluSecondInput = (!IDEXRegister.isAluSrc() ? IDEXRegister
+                .getRegisterTwoValue() : IDEXRegister.getOffset());
+        int aluOutput = ALUControl.perform(IDEXRegister.getRegisterOneValue(),
+                AluSecondInput, aluControlOutput);
         EXMEMRegister.setAluOut(aluOutput);
         EXMEMRegister.setZeroFlag(aluOutput == 0 ? true : false);
 
-        //branch address
+        // branch address
         int shifted = IDEXRegister.getOffset() << 2;
         int added = shifted + IDEXRegister.getPc();
         EXMEMRegister.setBranchAddress(added);
 
-        //rd
-        byte rd = !IDEXRegister.isRegDest() ? IDEXRegister.getRt() : IDEXRegister.getRd();//need to be reviewed
+        // rd
+        byte rd = !IDEXRegister.isRegDest() ? IDEXRegister.getRt()
+                : IDEXRegister.getRd();// need to be reviewed
         EXMEMRegister.setRd(rd);
 
-        //register value to mem
+        // register value to mem
         EXMEMRegister.setMemoryWriteValue(IDEXRegister.getRegisterTwoValue());
 
-        //membyte unsigned compOne jump branch
+        // membyte unsigned compOne jump branch
         EXMEMRegister.setMemByte(IDEXRegister.isMemByte());
         EXMEMRegister.setUnsigned(IDEXRegister.isUnsigned());
         EXMEMRegister.setCompOne(IDEXRegister.isCompOne());
         EXMEMRegister.setJump(IDEXRegister.isJump());
         EXMEMRegister.setBranch(IDEXRegister.isBranch());
 
-        //adding jumpAddress
+        // adding jumpAddress
         int leftFourBitsPC = IFIDRegister.getPc() & 0xf0000000;
         int addressJump = IDEXRegister.getJumpAddress();
         EXMEMRegister.setJumpAddress(leftFourBitsPC | addressJump);
 
-        //adding the register address in case of jr
+        // adding the register address in case of jr
         EXMEMRegister.setJrRegisterAddress(IDEXRegister.getRegisterOneValue());
     }
 
     public void memory() {
 
-        //WB controls
+        // WB controls
         MEMWBRegister.setMemToReg(EXMEMRegister.isMemToReg());
         MEMWBRegister.setRegWrite(EXMEMRegister.isRegWrite());
 
-        //ALUOut
+        // ALUOut
         MEMWBRegister.setAluOut(EXMEMRegister.getAluOut());
 
         // REGISTER Address
@@ -390,23 +414,28 @@ public class Mips {
             if (EXMEMRegister.isMemByte()) {
                 if (EXMEMRegister.isUnsigned()) {
                     // lbu
-                    MEMWBRegister.setMemoryRead(Memory.loadByteUnsigned(EXMEMRegister.getAluOut()));
+                    MEMWBRegister.setMemoryRead(Memory
+                            .loadByteUnsigned(EXMEMRegister.getAluOut()));
                 } else {
                     // lb
-                    MEMWBRegister.setMemoryRead(Memory.loadByte(EXMEMRegister.getAluOut()));
+                    MEMWBRegister.setMemoryRead(Memory.loadByte(EXMEMRegister
+                            .getAluOut()));
                 }
             } else {
                 // lw
-                MEMWBRegister.setMemoryRead(Memory.loadWord(EXMEMRegister.getAluOut()));
+                MEMWBRegister.setMemoryRead(Memory.loadWord(EXMEMRegister
+                        .getAluOut()));
             }
 
         } else if (EXMEMRegister.isMemWrite()) {
             if (EXMEMRegister.isMemByte())
                 // sb
-                Memory.storeByte((byte) EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
+                Memory.storeByte((byte) EXMEMRegister.getMemoryWriteValue(),
+                        EXMEMRegister.getAluOut());
             else
                 // sw
-                Memory.storeWord(EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
+                Memory.storeWord(EXMEMRegister.getMemoryWriteValue(),
+                        EXMEMRegister.getAluOut());
         }
         if (EXMEMRegister.isJump()) {
             if (EXMEMRegister.isBranch()) {
@@ -415,29 +444,31 @@ public class Mips {
                     RegisterFile.RA_REGISTER.setData(Components.getPC());
                 Components.setPC(EXMEMRegister.getJumpAddress());
             } else {
-                //jr
+                // jr
                 Components.setPC(EXMEMRegister.getJrRegisterOneValueAddress());
             }
         } else {
             // beq and bne
             if (EXMEMRegister.isBranch()) {
 
-                if ((!EXMEMRegister.isCompOne() && EXMEMRegister.isZeroFlag()) ||
-                        (EXMEMRegister.isCompOne() && !EXMEMRegister.isZeroFlag()))
+                if ((!EXMEMRegister.isCompOne() && EXMEMRegister.isZeroFlag())
+                        || (EXMEMRegister.isCompOne() && !EXMEMRegister
+                        .isZeroFlag()))
                     Components.setPC(EXMEMRegister.getBranchAddress());
 
             }
         }
-
 
     }
 
     public void writeBack() {
         if (MEMWBRegister.isRegWrite()) {
             if (MEMWBRegister.isMemToReg()) {
-                Utilities.getRegisterByNumber(MEMWBRegister.getRd()).setData(MEMWBRegister.getMemoryRead());
+                Utilities.getRegisterByNumber(MEMWBRegister.getRd()).setData(
+                        MEMWBRegister.getMemoryRead());
             } else {
-                Utilities.getRegisterByNumber(MEMWBRegister.getRd()).setData(MEMWBRegister.getAluOut());
+                Utilities.getRegisterByNumber(MEMWBRegister.getRd()).setData(
+                        MEMWBRegister.getAluOut());
             }
         }
     }
