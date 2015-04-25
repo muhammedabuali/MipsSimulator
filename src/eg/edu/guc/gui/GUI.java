@@ -17,6 +17,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import eg.edu.guc.mips.Mips;
+import eg.edu.guc.registers.Register;
+import eg.edu.guc.utils.Constants;
+import eg.edu.guc.utils.Utilities;
+
 public class GUI extends JFrame {
 
 	/**
@@ -24,6 +29,10 @@ public class GUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 5878820421093084909L;
 	private Color backgroundColor = SystemColor.activeCaption;
+
+	private Mips mips = new Mips();
+	private Register[] registers = Utilities.getRegistersArray();
+	private JLabel[] registerValueLabels;
 
 	/**
 	 * Launch the application.
@@ -176,7 +185,7 @@ public class GUI extends JFrame {
 		scrollPaneCode.setViewportView(codeTextArea);
 		getContentPane().add(scrollPaneCode, gbc_scrollPane);
 	}
-	
+
 	private void initConsoleArea() {
 		JLabel lblConsole = new JLabel("    Console:");
 		GridBagConstraints gbc_lblConsole = new GridBagConstraints();
