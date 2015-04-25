@@ -128,6 +128,7 @@ public class GUI extends JFrame {
 
 	private void initPipelinedRegistersPanel() {
 		pipelinedPanel = new JPanel();
+		pipelinedPanel.setBackground(SystemColor.activeCaptionBorder);
 		GridBagConstraints gbc_pipelinedPanel = new GridBagConstraints();
 		gbc_pipelinedPanel.insets = new Insets(5, 5, 5, 5);
 		gbc_pipelinedPanel.fill = GridBagConstraints.BOTH;
@@ -144,8 +145,14 @@ public class GUI extends JFrame {
 		pipelinedPanel.setLayout(gbl_pipelinedPanel);
 
 		JLabel lblPiplenedRegisters = new JLabel("Piplened Registers");
+		lblPiplenedRegisters.setOpaque(true);
+		lblPiplenedRegisters.setBackground(Color.GRAY);
+		lblPiplenedRegisters.setForeground(SystemColor.activeCaption);
+		lblPiplenedRegisters.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPiplenedRegisters.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblPiplenedRegisters = new GridBagConstraints();
-		gbc_lblPiplenedRegisters.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPiplenedRegisters.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblPiplenedRegisters.insets = new Insets(0, 0, 0, 0);
 		gbc_lblPiplenedRegisters.gridx = 0;
 		gbc_lblPiplenedRegisters.gridy = 0;
 		pipelinedPanel.add(lblPiplenedRegisters, gbc_lblPiplenedRegisters);
@@ -164,13 +171,22 @@ public class GUI extends JFrame {
 		gbc_IFIDPanel.gridx = 0;
 		gbc_IFIDPanel.gridy = 1;
 		pipelinedPanel.add(IFIDPanel, gbc_IFIDPanel);
-		
+
 		GridBagLayout gbl_IFIDPanel = new GridBagLayout();
 		gbl_IFIDPanel.columnWidths = new int[] { 0 };
-		gbl_IFIDPanel.rowHeights = new int[] { 0, 0 };
+		gbl_IFIDPanel.rowHeights = new int[] { 0, 0, 0 };
 		gbl_IFIDPanel.columnWeights = new double[] { 0.2 };
-		gbl_IFIDPanel.rowWeights = new double[] { 0.3, 0.7 };
+		gbl_IFIDPanel.rowWeights = new double[] { 0.0, 0.3, 0.7 };
 		IFIDPanel.setLayout(gbl_IFIDPanel);
+
+		JLabel lblIfidRegister = new JLabel("IFID Register");
+		lblIfidRegister.setOpaque(true);
+		lblIfidRegister.setBackground(SystemColor.inactiveCaption);
+		GridBagConstraints gbc_lblIfidRegister = new GridBagConstraints();
+		gbc_lblIfidRegister.insets = new Insets(0, 0, 5, 0);
+		gbc_lblIfidRegister.gridx = 0;
+		gbc_lblIfidRegister.gridy = 0;
+		IFIDPanel.add(lblIfidRegister, gbc_lblIfidRegister);
 
 		JPanel labelPane = new JPanel();
 		GridBagConstraints gbc_panel2 = new GridBagConstraints();
@@ -178,7 +194,7 @@ public class GUI extends JFrame {
 		gbc_panel2.fill = GridBagConstraints.BOTH;
 		gbc_panel2.gridheight = 1;
 		gbc_panel2.gridx = 0;
-		gbc_panel2.gridy = 0;
+		gbc_panel2.gridy = 1;
 		IFIDPanel.add(labelPane, gbc_panel2);
 		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
 
@@ -186,7 +202,7 @@ public class GUI extends JFrame {
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
+		gbc_panel.gridy = 2;
 		IFIDPanel.add(valuesPane, gbc_panel);
 		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 	}
@@ -199,13 +215,22 @@ public class GUI extends JFrame {
 		gbc_IDEXPanel.gridx = 0;
 		gbc_IDEXPanel.gridy = 2;
 		pipelinedPanel.add(IDEXPanel, gbc_IDEXPanel);
-		
+
 		GridBagLayout gbl_IDEXPanel = new GridBagLayout();
 		gbl_IDEXPanel.columnWidths = new int[] { 0 };
-		gbl_IDEXPanel.rowHeights = new int[] { 0, 0 };
+		gbl_IDEXPanel.rowHeights = new int[] { 0, 0, 0 };
 		gbl_IDEXPanel.columnWeights = new double[] { 0.2 };
-		gbl_IDEXPanel.rowWeights = new double[] { 0.3, 0.7 };
+		gbl_IDEXPanel.rowWeights = new double[] { 0.0, 0.3, 0.7 };
 		IDEXPanel.setLayout(gbl_IDEXPanel);
+
+		JLabel lblIdexRegister = new JLabel("IDEX Register");
+		lblIdexRegister.setBackground(SystemColor.inactiveCaption);
+		lblIdexRegister.setOpaque(true);
+		GridBagConstraints gbc_lblIdexRegister = new GridBagConstraints();
+		gbc_lblIdexRegister.insets = new Insets(0, 0, 5, 0);
+		gbc_lblIdexRegister.gridx = 0;
+		gbc_lblIdexRegister.gridy = 0;
+		IDEXPanel.add(lblIdexRegister, gbc_lblIdexRegister);
 
 		JPanel labelPane = new JPanel();
 		GridBagConstraints gbc_panel2 = new GridBagConstraints();
@@ -213,7 +238,7 @@ public class GUI extends JFrame {
 		gbc_panel2.fill = GridBagConstraints.BOTH;
 		gbc_panel2.gridheight = 1;
 		gbc_panel2.gridx = 0;
-		gbc_panel2.gridy = 0;
+		gbc_panel2.gridy = 1;
 		IDEXPanel.add(labelPane, gbc_panel2);
 		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
 
@@ -221,7 +246,7 @@ public class GUI extends JFrame {
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
+		gbc_panel.gridy = 2;
 		IDEXPanel.add(valuesPane, gbc_panel);
 		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 	}
@@ -235,13 +260,22 @@ public class GUI extends JFrame {
 		gbc_MEMWBPanel.gridx = 0;
 		gbc_MEMWBPanel.gridy = 3;
 		pipelinedPanel.add(MEMWBPanel, gbc_MEMWBPanel);
-		
+
 		GridBagLayout gbl_MEMWBPanel = new GridBagLayout();
 		gbl_MEMWBPanel.columnWidths = new int[] { 0 };
-		gbl_MEMWBPanel.rowHeights = new int[] { 0, 0 };
+		gbl_MEMWBPanel.rowHeights = new int[] { 0, 0, 0 };
 		gbl_MEMWBPanel.columnWeights = new double[] { 0.2 };
-		gbl_MEMWBPanel.rowWeights = new double[] { 0.3, 0.7 };
+		gbl_MEMWBPanel.rowWeights = new double[] { 0.0, 0.3, 0.7 };
 		MEMWBPanel.setLayout(gbl_MEMWBPanel);
+
+		JLabel lblMemwbRegister = new JLabel("MEMWB Register");
+		lblMemwbRegister.setBackground(SystemColor.inactiveCaption);
+		lblMemwbRegister.setOpaque(true);
+		GridBagConstraints gbc_lblMemwbRegister = new GridBagConstraints();
+		gbc_lblMemwbRegister.insets = new Insets(0, 0, 5, 0);
+		gbc_lblMemwbRegister.gridx = 0;
+		gbc_lblMemwbRegister.gridy = 0;
+		MEMWBPanel.add(lblMemwbRegister, gbc_lblMemwbRegister);
 
 		JPanel labelPane = new JPanel();
 		GridBagConstraints gbc_panel2 = new GridBagConstraints();
@@ -249,7 +283,7 @@ public class GUI extends JFrame {
 		gbc_panel2.fill = GridBagConstraints.BOTH;
 		gbc_panel2.gridheight = 1;
 		gbc_panel2.gridx = 0;
-		gbc_panel2.gridy = 0;
+		gbc_panel2.gridy = 1;
 		MEMWBPanel.add(labelPane, gbc_panel2);
 		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
 
@@ -257,7 +291,7 @@ public class GUI extends JFrame {
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
+		gbc_panel.gridy = 2;
 		MEMWBPanel.add(valuesPane, gbc_panel);
 		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 	}
@@ -269,13 +303,23 @@ public class GUI extends JFrame {
 		gbc_EXMEMPanel.gridx = 0;
 		gbc_EXMEMPanel.gridy = 4;
 		pipelinedPanel.add(EXMEMPanel, gbc_EXMEMPanel);
-		
+
 		GridBagLayout gbl_EXMEMPanel = new GridBagLayout();
 		gbl_EXMEMPanel.columnWidths = new int[] { 0 };
-		gbl_EXMEMPanel.rowHeights = new int[] { 0, 0 };
+		gbl_EXMEMPanel.rowHeights = new int[] { 0, 0, 0 };
 		gbl_EXMEMPanel.columnWeights = new double[] { 0.2 };
-		gbl_EXMEMPanel.rowWeights = new double[] { 0.3, 0.7 };
+		gbl_EXMEMPanel.rowWeights = new double[] { 0.0, 0.3, 0.7 };
 		EXMEMPanel.setLayout(gbl_EXMEMPanel);
+
+		JLabel lblExmemRegister = new JLabel("EXMEM Register");
+		lblExmemRegister.setBackground(SystemColor.inactiveCaption);
+		lblExmemRegister.setOpaque(true);
+
+		GridBagConstraints gbc_lblExmemRegister = new GridBagConstraints();
+		gbc_lblExmemRegister.insets = new Insets(0, 0, 5, 0);
+		gbc_lblExmemRegister.gridx = 0;
+		gbc_lblExmemRegister.gridy = 0;
+		EXMEMPanel.add(lblExmemRegister, gbc_lblExmemRegister);
 
 		JPanel labelPane = new JPanel();
 		GridBagConstraints gbc_panel2 = new GridBagConstraints();
@@ -283,7 +327,7 @@ public class GUI extends JFrame {
 		gbc_panel2.fill = GridBagConstraints.BOTH;
 		gbc_panel2.gridheight = 1;
 		gbc_panel2.gridx = 0;
-		gbc_panel2.gridy = 0;
+		gbc_panel2.gridy = 1;
 		EXMEMPanel.add(labelPane, gbc_panel2);
 		labelPane.setLayout(new GridLayout(1, 0, 0, 0));
 
@@ -291,7 +335,7 @@ public class GUI extends JFrame {
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
+		gbc_panel.gridy = 2;
 		EXMEMPanel.add(valuesPane, gbc_panel);
 		valuesPane.setLayout(new GridLayout(1, 0, 0, 0));
 
