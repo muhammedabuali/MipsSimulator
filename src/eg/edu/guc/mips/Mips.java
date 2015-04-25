@@ -333,7 +333,7 @@ public class Mips {
         EXMEMRegister.setRd(rd);
 
         //register value to mem
-        EXMEMRegister.setMemoryReadValue(IDEXRegister.getRegisterTwoValue());
+        EXMEMRegister.setMemoryWriteValue(IDEXRegister.getRegisterTwoValue());
 
         //membyte unsigned compOne jump branch
         EXMEMRegister.setMemByte(IDEXRegister.isMemByte());
@@ -367,13 +367,19 @@ public class Mips {
         if (EXMEMRegister.isMemRead()) {
             if (EXMEMRegister.isMemByte()) {
                 if (EXMEMRegister.isUnsigned()) {
-                    EXMEMRegister.setMemoryReadValue(Memory.loadByteUnsigned(EXMEMRegister.getAluOut()));
+                    // lbu
+                    MEMWBRegister.setMemoryRead(Memory.loadByteUnsigned(EXMEMRegister.getAluOut()));
                 } else {
-                    EXMEMRegister.setMemoryReadValue(Memory.loadByte(EXMEMRegister.getAluOut()));
+                    // lb
+                    MEMWBRegister.setMemoryRead(Memory.loadByte(EXMEMRegister.getAluOut()));
                 }
             } else {
-                EXMEMRegister.setMemoryReadValue(Memory.loadWord(EXMEMRegister.getAluOut()));
+                // lw
+                MEMWBRegister.setMemoryRead(Memory.loadWord(EXMEMRegister.getAluOut()));
             }
+
+        } else if (EXMEMRegister.isMemWrite()) {
+            Memory.storeWord(EXMEMRegister.getMemoryWriteValue(), EXMEMRegister.getAluOut());
         }
 
 
