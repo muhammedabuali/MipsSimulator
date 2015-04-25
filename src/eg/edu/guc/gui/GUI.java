@@ -446,7 +446,7 @@ public class GUI extends JFrame {
 		for (int i = 0; i < 32; i++) {
 			if (registers[i] == null)
 				continue;
-			registerValueLabels[0][i].setText(registers[i].getData() + "1");
+			registerValueLabels[0][i].setText(registers[i].getData() + "");
 			registerValueLabels[1][i].setText(Integer.toHexString(registers[i]
 					.getData()) + "");
 		}

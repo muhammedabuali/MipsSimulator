@@ -33,7 +33,6 @@ public class Mips {
 	public Mips(JTextArea codeArea) {
 		instructions = new ArrayList<String>();
 		String[] lines = codeArea.getText().split("\n");
-		System.out.println(Arrays.toString(lines));
 		for (String inst : lines)
 			instructions.add(inst);
 		parsedInstrutions = Parser.parseInstructions(instructions);
