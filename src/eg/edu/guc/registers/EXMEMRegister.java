@@ -6,7 +6,7 @@ package eg.edu.guc.registers;
  * @author kady
  */
 public class EXMEMRegister {
-    private static int branchAddress, aluOut, memoryReadValue;
+    private static int branchAddress, aluOut, memoryWriteValue;
     private static boolean zeroFlag;
 
     private static byte rd;
@@ -53,12 +53,12 @@ public class EXMEMRegister {
         EXMEMRegister.aluOut = aluOut;
     }
 
-    public static int getMemoryReadValue() {
-        return memoryReadValue;
+    public static int getMemoryWriteValue() {
+        return memoryWriteValue;
     }
 
-    public static void setMemoryReadValue(int memoryReadValue) {
-        EXMEMRegister.memoryReadValue = memoryReadValue;
+    public static void setMemoryWriteValue(int memoryWriteValue) {
+        EXMEMRegister.memoryWriteValue = memoryWriteValue;
     }
 
     public static boolean isZeroFlag() {
