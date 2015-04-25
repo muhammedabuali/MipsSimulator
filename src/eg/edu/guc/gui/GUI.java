@@ -19,7 +19,6 @@ import javax.swing.SwingConstants;
 
 import eg.edu.guc.mips.Mips;
 import eg.edu.guc.registers.Register;
-import eg.edu.guc.utils.Constants;
 import eg.edu.guc.utils.Utilities;
 
 public class GUI extends JFrame {
