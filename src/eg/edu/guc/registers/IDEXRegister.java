@@ -27,8 +27,13 @@ public class IDEXRegister {
     static boolean regDest, aluSrc;
 
     static int aluOp;
+    
+    //jumpAddress
+    static int jumpAddress;
 
-    public static int getPc() {
+
+
+	public static int getPc() {
         return pc;
     }
 
@@ -179,5 +184,11 @@ public class IDEXRegister {
     public static void setCompOne(boolean compOne) {
         IDEXRegister.compOne = compOne;
     }
+    public static int getJumpAddress() {
+		return jumpAddress;
+	}
 
+	public static void setJumpAddress(int jumpAdress) {
+		IDEXRegister.jumpAddress = jumpAdress;
+	}
 }

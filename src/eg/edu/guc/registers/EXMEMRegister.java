@@ -18,8 +18,26 @@ public class EXMEMRegister {
     //Memory controls
 
     static boolean memWrite, memRead;
+    
+    //Aly Control Signals
+    
+    static boolean memByte,unsigned,compOne,jump,branch;
+    
+    //jump address <last line in conventions.text --> jump address
+    static int jumpAddress;
+    
+    //register one value in case of jr
+    static int jrRegisterAddress;
+    
+	public static int getJumpAddress() {
+		return jumpAddress;
+	}
 
-    public static int getBranchAddress() {
+	public static void setJumpAddress(int jumpAddress) {
+		EXMEMRegister.jumpAddress = jumpAddress;
+	}
+
+	public static int getBranchAddress() {
         return branchAddress;
     }
 
@@ -92,4 +110,50 @@ public class EXMEMRegister {
     public static void setMemRead(boolean memRead) {
         EXMEMRegister.memRead = memRead;
     }
+    public static boolean isMemByte() {
+		return memByte;
+	}
+
+	public static void setMemByte(boolean memByte) {
+		EXMEMRegister.memByte = memByte;
+	}
+
+	public static boolean isUnsigned() {
+		return unsigned;
+	}
+
+	public static void setUnsigned(boolean unsigned) {
+		EXMEMRegister.unsigned = unsigned;
+	}
+
+	public static boolean isCompOne() {
+		return compOne;
+	}
+
+	public static void setCompOne(boolean compOne) {
+		EXMEMRegister.compOne = compOne;
+	}
+
+	public static boolean isJump() {
+		return jump;
+	}
+
+	public static void setJump(boolean jump) {
+		EXMEMRegister.jump = jump;
+	}
+
+	public static boolean isBranch() {
+		return branch;
+	}
+
+	public static void setBranch(boolean branch) {
+		EXMEMRegister.branch = branch;
+	}
+	public static int getJrRegisterOneValueAddress() {
+		return jrRegisterAddress;
+	}
+
+	public static void setJrRegisterAddress(int jrRegisterAddress) {
+		EXMEMRegister.jrRegisterAddress = jrRegisterAddress;
+	}
 }
