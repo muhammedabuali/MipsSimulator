@@ -2,13 +2,11 @@ package eg.edu.guc.tests;
 
 import static org.junit.Assert.*;
 
-import eg.edu.guc.registers.IDEXRegister;
-import eg.edu.guc.registers.IFIDRegister;
+import eg.edu.guc.registers.*;
 import org.junit.Test;
 
 import eg.edu.guc.mips.Mips;
 import eg.edu.guc.mips.Parser;
-import eg.edu.guc.registers.RegisterFile;
 import eg.edu.guc.utils.Utilities;
 
 public class MipsTests {
@@ -49,6 +47,7 @@ public class MipsTests {
         String instructionName = Utilities.getInstructionNameByOpcode(opcode);
         assertTrue("The instruction should be addi",
                 instructionName.equals("addi"));
+
     }
 
     @Test
@@ -56,15 +55,59 @@ public class MipsTests {
         //add t0 t1 t2
         Mips m = new Mips();
 
-        //int instruction = Integer.parseInt("000000" + "01001" + "01010" + "01000" + "00000" + "100000", 2);
-        //IFIDRegister.setInstruction(instruction);
+        RegisterFile.T1_REGISTER.setData(2);
+        RegisterFile.T2_REGISTER.setData(3);
 
         int instCode = m.getInstructionBitStream(Parser.parseInstruction(
-                "add $t1, $t2, $t3", 1));
+                "add $t0, $t1, $t2", 1));
+        IFIDRegister.setInstruction(instCode);
+        IDEXRegister.setPc(0);
+
+        int instruction = Integer.parseInt("000000" + "01001" + "01010" + "01000" + "00000" + "100000", 2);
+        assertTrue("instruction bits should be  000000 01001 01010 01000 00000 100000", IFIDRegister.getInstruction() == instruction);
 
         m.decode();
         assertTrue("funct should be 100000", Utilities.getSubset(IDEXRegister.getOffset(), 0, 5) == 0b100000);
         assertTrue("rt should be $t2", Utilities.getRegisterByNumber(IDEXRegister.getRt()) == RegisterFile.T2_REGISTER);
         assertTrue("rd should be $t0", Utilities.getRegisterByNumber(IDEXRegister.getRd()).equals(RegisterFile.T0_REGISTER));
+
+        m.execute();
+
+        m.memory();
+
+        m.writeBack();
+
+        assertTrue("t0 should be 5", RegisterFile.T0_REGISTER.getData() == 5);
     }
+
+    @Test
+    public void testSubInstructionDecode() {
+        //add t0 t1 t2
+        Mips m = new Mips();
+
+        RegisterFile.T1_REGISTER.setData(3);
+        RegisterFile.T2_REGISTER.setData(2);
+
+        int instCode = m.getInstructionBitStream(Parser.parseInstruction(
+                "sub $t0, $t1, $t2", 1));
+        IFIDRegister.setInstruction(instCode);
+        IDEXRegister.setPc(0);
+
+        int instruction = Integer.parseInt("000000" + "01001" + "01010" + "01000" + "00000" + "100010", 2);
+        assertTrue("instruction bits should be  000000 01001 01010 01000 00000 100000", IFIDRegister.getInstruction() == instruction);
+
+        m.decode();
+        assertTrue("funct should be 100010", Utilities.getSubset(IDEXRegister.getOffset(), 0, 5) == 0b100010);
+        assertTrue("rt should be $t2", Utilities.getRegisterByNumber(IDEXRegister.getRt()) == RegisterFile.T2_REGISTER);
+        assertTrue("rd should be $t0", Utilities.getRegisterByNumber(IDEXRegister.getRd()).equals(RegisterFile.T0_REGISTER));
+
+        m.execute();
+
+        m.memory();
+
+        m.writeBack();
+        System.out.println(RegisterFile.T0_REGISTER.getData());
+        assertTrue("t0 should be 1", RegisterFile.T0_REGISTER.getData() == 1);
+    }
+
 }
