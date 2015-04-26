@@ -207,28 +207,4 @@ public class MipsTests {
         System.out.println(RegisterFile.T4_REGISTER.getData());
         assertTrue("t4 should be 1", RegisterFile.T4_REGISTER.getData() == 1);
     }
-    @Test
-    public void testSltInstructionDecode() {
-        //add t0 t1 t2
-        Mips m = new Mips();
-
-        RegisterFile.T1_REGISTER.setData(7);
-        RegisterFile.T2_REGISTER.setData(8);
-
-        int instCode = m.getInstructionBitStream(Parser.parseInstruction(
-                "slt $t4, $t1, $t2", 1));
-        IFIDRegister.setInstruction(instCode);
-        IDEXRegister.setPc(1);
-
-        m.decode();
-
-        m.execute();
-
-        m.memory();
-
-        m.writeBack();
-
-        System.out.println(RegisterFile.T4_REGISTER.getData());
-        assertTrue("t4 should be 1", RegisterFile.T4_REGISTER.getData() == 1);
-    }
 }

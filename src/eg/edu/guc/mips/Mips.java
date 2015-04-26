@@ -73,8 +73,10 @@ public class Mips {
                 IFIDRegister.getInstruction(), 11, 15));
 
         int offset = Utilities.getSubset(IFIDRegister.getInstruction(), 0, 15);
-        IDEXRegister.setOffset(offset | 0xffff0000);// store offset
-
+        if (Integer.toBinaryString(offset).length() == 16)
+            offset |= 0xffff0000;
+        IDEXRegister.setOffset(offset);// store offset
+        System.out.println(offset);
         int rt = register2.getNumber();
         IDEXRegister.setRt((byte) rt);
 

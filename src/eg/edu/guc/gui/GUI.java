@@ -17,8 +17,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import eg.edu.guc.mips.Components;
 import eg.edu.guc.mips.Mips;
+import eg.edu.guc.registers.IFIDRegister;
+import eg.edu.guc.registers.MEMWBRegister;
 import eg.edu.guc.registers.Register;
+import eg.edu.guc.registers.RegisterFile;
 import eg.edu.guc.utils.Utilities;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -467,8 +471,11 @@ public class GUI extends JFrame {
 	}
 
 	private void run() {
+		mips = new Mips();
+		Components.setPC(0);
 		mips.runText(codeArea);
 		System.out.println(codeArea.getText());
+		System.out.println(Integer.toBinaryString(RegisterFile.T1_REGISTER.getData()));
 		updateRegistersValues();
 	}
 
