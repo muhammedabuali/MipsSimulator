@@ -267,7 +267,7 @@ public class Mips {
      * @return
      */
     public int getInstructionBitStream(String[] instruction) {
-        // TODO Convert instruction to the appropriate bitstream
+        if(instruction[0].equals("NOP"))return 0;
         String[] instructionData = Utilities
                 .getInstructionDataByName(instruction[0].toString());
 

@@ -25,6 +25,7 @@ public class Parser {
 	}
 
 	public static String[] parseInstruction(String currInstruction, int line) {
+		if (currInstruction.length()==0)return new String[]{"NOP"};
 		LinkedList<String> instruction = removeSeprators(currInstruction
 				.replace(' ', ',').split(","));
 		if (instruction.get(0).endsWith(":")) {
